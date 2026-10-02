@@ -16,6 +16,7 @@ import barandales from '../../assets/barandal.png'
 import ventanales from '../../assets/ventana.png'
 import especiales from '../../assets/especiales.png'
 import Catalogo from '../Catalogo'
+import soporte from '../../assets/soporte.png'
 
 // ============================================================
 // UTILIDAD WHATSAPP
@@ -388,7 +389,7 @@ const SERVICIO_DESTACADO = {
  texto: 'Mantenimiento preventivo y correctivo, diagnóstico técnico y asesoría especializada.',
  slug: 'asesoria-mantenimiento',
  eyebrow: 'SOLUCIONES INTEGRALES',
- img: 'https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1600&q=75'
+ img: soporte
 }
 
 const PROYECTOS = [
@@ -511,61 +512,74 @@ export default function Home() {
 
  {/* ============ 1. HERO CON POST-IT ============ */}
  <section className="slide slide-hero">
- <div className="slide-inner hero-inner">
- <img
- className="hero-bg"
- src={banner}
- alt=""
- />
- <div className="hero-veil" />
+  <div className="slide-inner hero-inner">
+    <img className="hero-bg" src={banner} alt="" />
+    <div className="hero-veil" />
 
- <div className="hero-body">
- <Reveal as="span" className="hero-eyebrow" delay={100}>
- CIMA HERRAJES · SOLUCIONES ARQUITECTÓNICAS
- </Reveal>
- <Reveal as="h1" delay={200}>
- Diseñamos, fabricamos e instalamos<br />
- herrajes para proyectos que duran.
- </Reveal>
- <Reveal as="p" delay={320}>
- Ventanas, puertas y sistemas de aluminio para arquitectos,
- constructoras y hogares que valoran la precisión.
- </Reveal>
- <Reveal delay={440}>
- <a href="#nosotros" className="hero-cta">
- Conoce la empresa <FiArrowRight size={18} />
- </a>
- </Reveal>
- </div>
+    <div className="hero-body">
+      <Reveal as="span" className="hero-eyebrow" delay={100}>
+        CIMA HERRAJES · SOLUCIONES ARQUITECTÓNICAS
+      </Reveal>
 
- <Reveal className="hero-postit" delay={600}>
- <span className="hero-postit-tag">CONTACTO RÁPIDO</span>
- <h3>¿Tienes un proyecto en mente?</h3>
- <p>Te asesoramos sin costo.</p>
- <button
- type="button"
- className="hero-postit-btn"
- onClick={() => abrirWhatsApp(mensajeGeneral(), 'hero-postit')}
- >
- Contáctanos <FiArrowUpRight size={16} />
- </button>
- <div className="hero-postit-contact">
- <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer">
- <FiPhone size={14} /> +52 000 000 0000
- </a>
- <a href="mailto:hola@cimaherrajes.mx">
- <FiMail size={14} /> hola@cimaherrajes.mx
- </a>
- </div>
- </Reveal>
+      <Reveal as="h1" delay={200}>
+        Soluciones para proyectos<br />
+        arquitectónicos de alto nivel.
+      </Reveal>
 
- <div className="hero-scroll">
- <span>Desliza</span>
- <div className="hero-scroll-line" />
- </div>
- </div>
- </section>
+      <Reveal as="p" delay={320}>
+        Diseñamos, fabricamos e instalamos cancelería, aluminio,
+        cristal templado, barandales y automatización para proyectos
+        residenciales, comerciales y de construcción.
+      </Reveal>
 
+      <Reveal className="hero-tags" delay={420}>
+        <span>Residencial</span>
+        <span>Comercial</span>
+        <span>Constructoras</span>
+        <span>Arquitectos</span>
+      </Reveal>
+
+      <Reveal className="hero-actions" delay={520}>
+        <a href="#servicios" className="hero-cta">
+          Ver servicios <FiArrowRight size={18} />
+        </a>
+        <a href="#nosotros" className="hero-cta hero-cta-ghost">
+          Conoce la empresa
+        </a>
+      </Reveal>
+    </div>
+
+    <Reveal className="hero-postit" delay={600}>
+      <span className="hero-postit-tag">CONTACTO RÁPIDO</span>
+      <h3>¿Tienes un proyecto en mente?</h3>
+      <p>Te asesoramos sin costo.</p>
+      <button
+        type="button"
+        className="hero-postit-btn"
+        onClick={() => abrirWhatsApp(mensajeGeneral(), 'hero-postit')}
+      >
+        Contáctanos <FiArrowUpRight size={16} />
+      </button>
+      <div className="hero-postit-contact">
+        <a
+          href={`https://wa.me/${WHATSAPP_NUMBER}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FiPhone size={14} /> +52 000 000 0000
+        </a>
+        <a href="mailto:hola@cimaherrajes.mx">
+          <FiMail size={14} /> hola@cimaherrajes.mx
+        </a>
+      </div>
+    </Reveal>
+
+    <div className="hero-scroll">
+      <span>Desliza</span>
+      <div className="hero-scroll-line" />
+    </div>
+  </div>
+</section>
  {/* ============ 2. SOBRE NOSOTROS ============ */}
  <Slide id="nosotros" className="slide-sobre-nosotros">
  <div className="about-content">
@@ -602,7 +616,7 @@ export default function Home() {
  <Slide id="servicios" className="slide-servicios">
  <Reveal as="span" className="kicker center">NUESTROS SERVICIOS</Reveal>
  <Reveal as="h2" className="display center" delay={80}>
- Qué hacemos
+Especialidades
  </Reveal>
  <Reveal as="p" className="servicios-sub" delay={140}>
  Soluciones integrales en aluminio, cristal templado y automatización
@@ -614,21 +628,18 @@ export default function Home() {
  const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80
  return (
  <Reveal key={s.slug} className="servicio-card" delay={delay}>
- <Link to={() => abrirBurbujaServicio(s.titulo)} className="servicio-card-media">
+ <Link to={`#que-hacemos`} className="servicio-card-media">
  <img src={s.img} alt={s.titulo} loading="lazy" />
  </Link>
  <div className="servicio-card-body">
  <div className="servicio-card-head">
- <Link to={() => abrirBurbujaServicio(s.titulo)} className="servicio-card-title">
+ <Link to={`#que-hacemos`} className="servicio-card-title">
  {s.titulo}
  </Link>
- <Link
- to={() => abrirBurbujaServicio(s.titulo)}
- className="servicio-card-arrow"
- aria-label={`Ver ${s.titulo}`}
- >
- <FiArrowRight size={18} />
- </Link>
+<a href="#que-hacemos" className="servicio-card-arrow" aria-label={`Ver ${s.titulo}`}>
+  <FiArrowRight size={18} />
+</a>
+
  </div>
  <p>{s.texto}</p>
 
@@ -839,12 +850,12 @@ export default function Home() {
 </Slide>
 
  {/* ============ 6. IMAGEN EN RANURA ============ */}
- <section className="titulo-seccion" aria-label="Especialidades">
+ <section id="que-hacemos" className="titulo-seccion" aria-label="Especialidades">
  <span className="kicker">Que hacemos </span>
  <h2 className="display">Especialidades </h2>
- 
-</section>
  <Catalogo></Catalogo>
+</section>
+ 
 
  {/* ============ 7. PROCESO ============ */}
  <Slide id="proceso" className="slide-proceso">
