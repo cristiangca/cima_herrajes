@@ -494,6 +494,7 @@ export default function Home() {
  </Link>
 
  <nav className=" landing-nav">
+  <a href="#inicio">Inicio</a>
  <a href="#nosotros">Nosotros</a>
  <a href="#servicios">Servicios</a>
  <a href="#proyectos">Proyectos</a>
@@ -511,9 +512,9 @@ export default function Home() {
  </header>
 
  {/* ============ 1. HERO CON POST-IT ============ */}
- <section className="slide slide-hero">
+ <section id="inicio" className="slide slide-hero">
   <div className="slide-inner hero-inner">
-    <img className="hero-bg" src={banner} alt="" />
+    {/* <img className="hero-bg" src={banner} alt="" /> */}
     <div className="hero-veil" />
 
     <div className="hero-body">
@@ -532,12 +533,6 @@ export default function Home() {
         residenciales, comerciales y de construcción.
       </Reveal>
 
-      <Reveal className="hero-tags" delay={420}>
-        <span>Residencial</span>
-        <span>Comercial</span>
-        <span>Constructoras</span>
-        <span>Arquitectos</span>
-      </Reveal>
 
       <Reveal className="hero-actions" delay={520}>
         <a href="#servicios" className="hero-cta">
@@ -581,37 +576,44 @@ export default function Home() {
   </div>
 </section>
  {/* ============ 2. SOBRE NOSOTROS ============ */}
- <Slide id="nosotros" className="slide-sobre-nosotros">
- <div className="about-content">
- <Reveal as="span" className="about-label" delay={80}>
- SOBRE NOSOTROS
- </Reveal>
- <Reveal as="h2" className="about-title" delay={160}>
- La experiencia nos respalda.
- <br />
- <span>Una nueva generación de especialistas nos define.</span>
- </Reveal>
- <Reveal as="p" className="about-intro" delay={240}>
- En Cima Herrajes combinamos experiencia, innovación y una visión
- actual para crear, transformar y mantener espacios funcionales,
- estéticos e inteligentes.
- </Reveal>
- <Reveal as="p" className="about-text" delay={320}>
- Desarrollamos soluciones en vidrio, aluminio, automatización y
- acabados, adaptándonos a las necesidades de cada proyecto.
- </Reveal>
- <Reveal as="p" className="about-text" delay={400}>
- Nuestro trabajo va más allá de la fabricación e instalación.
- Acompañamos cada proyecto desde la asesoría y medición hasta su
- ejecución, cuidando la precisión, los acabados y cada detalle.
- </Reveal>
- <Reveal className="about-footer" delay={480}>
- <div className="about-line" />
- <span>30+ AÑOS DE EXPERIENCIA</span>
- </Reveal>
- </div>
- </Slide>
 
+<Slide id="nosotros" className="slide-sobre-nosotros">
+  <div className="about-content">
+    <Reveal as="span" className="about-label" delay={80}>
+      Sobre nosotros
+    </Reveal>
+
+    <Reveal as="h2" className="about-title" delay={160}>
+      La experiencia nos respalda.
+      <br />
+      <span>Una nueva generación de especialistas nos define.</span>
+    </Reveal>
+
+    <Reveal as="p" className="about-intro" delay={240}>
+      Desarrollamos soluciones en vidrio, aluminio, automatización y
+      acabados, adaptándonos a las necesidades de cada proyecto.
+    </Reveal>
+
+    <Reveal as="p" className="about-text" delay={320}>
+      En Cima Herrajes combinamos experiencia, innovación y una visión
+      actual para crear, transformar y mantener espacios funcionales,
+      estéticos e inteligentes.
+    </Reveal>
+
+    <Reveal as="p" className="about-text" delay={400}>
+      Nuestro trabajo va más allá de la fabricación e instalación.
+      Acompañamos cada proyecto desde la asesoría y medición hasta su
+      ejecución, cuidando la precisión, los acabados y cada detalle
+      para entregar soluciones bien realizadas, funcionales y pensadas
+      para durar.
+    </Reveal>
+
+    <Reveal className="about-footer" delay={480}>
+      <div className="about-line" />
+      <span>30+ AÑOS DE EXPERIENCIA</span>
+    </Reveal>
+  </div>
+</Slide>
  {/* ============ 3. SERVICIOS ============ */}
  <Slide id="servicios" className="slide-servicios">
  <Reveal as="span" className="kicker center">NUESTROS SERVICIOS</Reveal>
