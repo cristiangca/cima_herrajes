@@ -15,6 +15,7 @@ import canceleria from '../../assets/baño.png'
 import barandales from '../../assets/barandal.png'
 import ventanales from '../../assets/ventana.png'
 import especiales from '../../assets/especiales.png'
+import Catalogo from '../Catalogo'
 
 // ============================================================
 // UTILIDAD WHATSAPP
@@ -632,13 +633,13 @@ export default function Home() {
  <p>{s.texto}</p>
 
  {/* Botón para abrir burbuja con mensaje del servicio */}
- <button
+ {/* <button
  type="button"
  className="servicio-wa-btn"
  onClick={() => abrirBurbujaServicio(s.titulo)}
  >
  <FaWhatsapp size={15} /> Consultar por WhatsApp
- </button>
+ </button> */}
  </div>
  </Reveal>
  )
@@ -755,44 +756,95 @@ export default function Home() {
  </div>
  </Slide>
 
- {/* ============ 5. CÓMO TRABAJAMOS ============ */}
- <Slide id="como-trabajamos" className="slide-hacemos">
- <div className="split">
- <Reveal className="split-media">
- <img
- src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
- alt="Taller"
- />
- </Reveal>
- <div className="split-text">
- <Reveal as="span" className="kicker" delay={80}>04 — Cómo trabajamos</Reveal>
- <Reveal as="h2" delay={140}>
- Fabricamos, distribuimos e instalamos.
- </Reveal>
- <Reveal as="p" delay={200}>
- Trabajamos con aluminio, acero y accesorios de alta
- resistencia. Cada pieza se prueba antes de salir del
- taller para garantizar durabilidad y acabado.
- </Reveal>
- <Reveal delay={260}>
- <ul className="split-list">
- <li><FiCheck size={16} /> Fabricación a medida</li>
- <li><FiCheck size={16} /> Distribución nacional</li>
- <li><FiCheck size={16} /> Instalación profesional</li>
- <li><FiCheck size={16} /> Asesoría técnica</li>
- </ul>
- </Reveal>
- </div>
- </div>
- </Slide>
+{/* ============ 5. CÓMO TRABAJAMOS ============ */}
+<Slide id="como-trabajamos" className="slide-hacemos">
+  <div className="split">
+    <Reveal className="split-media">
+      <img
+        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
+        alt="Taller Cima Herrajes"
+      />
+    </Reveal>
+
+    <div className="split-text">
+      <Reveal as="span" className="kicker" delay={80}>
+        04 — Cómo trabajamos
+      </Reveal>
+
+      <Reveal as="h2" delay={140}>
+        Nuestra forma de trabajar
+      </Reveal>
+
+      <Reveal as="p" delay={200}>
+        Combinamos conocimiento técnico, control de calidad y
+        acompañamiento cercano para llevar cada proyecto a una
+        ejecución precisa, funcional y bien resuelta.
+      </Reveal>
+
+      <div className="split-pilares">
+        <Reveal className="split-pilar" delay={260}>
+          <div className="split-pilar-icon">
+            <FiTool size={18} />
+          </div>
+          <div>
+            <h4>Experiencia</h4>
+            <p>
+              Nuestro conocimiento técnico nos permite entender las
+              necesidades de cada proyecto y ejecutarlas con precisión.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal className="split-pilar" delay={320}>
+          <div className="split-pilar-icon">
+            <FiShield size={18} />
+          </div>
+          <div>
+            <h4>Calidad</h4>
+            <p>
+              Cuidamos cada etapa, desde los materiales y la fabricación
+              hasta la instalación y los acabados.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal className="split-pilar" delay={380}>
+          <div className="split-pilar-icon">
+            <FiUsers size={18} />
+          </div>
+          <div>
+            <h4>Acompañamiento</h4>
+            <p>
+              Acompañamos al cliente durante cada etapa, con comunicación
+              cercana y seguimiento continuo.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal className="split-pilar" delay={440}>
+          <div className="split-pilar-icon">
+            <FiEdit3 size={18} />
+          </div>
+          <div>
+            <h4>Personalización</h4>
+            <p>
+              Analizamos las necesidades de cada proyecto para encontrar
+              la solución más adecuada.
+            </p>
+          </div>
+        </Reveal>
+      </div>
+    </div>
+  </div>
+</Slide>
 
  {/* ============ 6. IMAGEN EN RANURA ============ */}
- <SlotImage
- src="https://images.unsplash.com/photo-1511818966892-d7d671e672a2?auto=format&fit=crop&w=2000&q=82"
- alt="Detalle arquitectónico de Cima Herrajes"
- eyebrow="05 — Detalle"
- title="La precisión también se ve."
- />
+ <section className="titulo-seccion" aria-label="Especialidades">
+ <span className="kicker">Que hacemos </span>
+ <h2 className="display">Especialidades </h2>
+ 
+</section>
+ <Catalogo></Catalogo>
 
  {/* ============ 7. PROCESO ============ */}
  <Slide id="proceso" className="slide-proceso">

@@ -11,7 +11,7 @@ export default function App() {
     <>
     
       
-     { admin === true ? <Adminpanel /> : <></> }
+     {/* { admin === true ? <Adminpanel /> : <></> } */}
       <main className="container">
         <Routes>
           <Route path="/" element={<Home />} />
