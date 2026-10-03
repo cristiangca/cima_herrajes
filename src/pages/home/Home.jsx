@@ -514,7 +514,7 @@ export default function Home() {
  {/* ============ 1. HERO CON POST-IT ============ */}
  <section id="inicio" className="slide slide-hero">
   <div className="slide-inner hero-inner">
-    {/* <img className="hero-bg" src={banner} alt="" /> */}
+    <img className="hero-bg" src={banner} alt="" />
     <div className="hero-veil" />
 
     <div className="hero-body">
@@ -544,7 +544,7 @@ export default function Home() {
       </Reveal>
     </div>
 
-    <Reveal className="hero-postit" delay={600}>
+    {/* <Reveal className="hero-postit" delay={600}>
       <span className="hero-postit-tag">CONTACTO RÁPIDO</span>
       <h3>¿Tienes un proyecto en mente?</h3>
       <p>Te asesoramos sin costo.</p>
@@ -567,7 +567,7 @@ export default function Home() {
           <FiMail size={14} /> hola@cimaherrajes.mx
         </a>
       </div>
-    </Reveal>
+    </Reveal> */}
 
     <div className="hero-scroll">
       <span>Desliza</span>
@@ -595,7 +595,7 @@ export default function Home() {
     </Reveal>
 
     <Reveal as="p" className="about-text" delay={320}>
-      En Cima Herrajes combinamos experiencia, innovación y una visión
+      Combinamos experiencia, innovación y una visión
       actual para crear, transformar y mantener espacios funcionales,
       estéticos e inteligentes.
     </Reveal>
@@ -630,9 +630,9 @@ Especialidades
  const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80
  return (
  <Reveal key={s.slug} className="servicio-card" delay={delay}>
- <Link to={`#que-hacemos`} className="servicio-card-media">
+ <a href={`#que-hacemos${s.slug}`} className="servicio-card-media">
  <img src={s.img} alt={s.titulo} loading="lazy" />
- </Link>
+ </a>
  <div className="servicio-card-body">
  <div className="servicio-card-head">
  <Link to={`#que-hacemos`} className="servicio-card-title">

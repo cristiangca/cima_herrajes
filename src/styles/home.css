@@ -211,12 +211,9 @@
   max-width: 640px;
 }
 .lead.center { text-align: center; margin: 0 auto 2rem; }
-
 /* ============================================================
-   1. HERO
-   ============================================================ */
-/* ============================================================
-   HERO — fondo blanco, texto oscuro, imagen lateral
+   HERO — escritorio: texto izq + imagen der con fade
+            móvil: imagen de fondo full con fade y texto encima
    ============================================================ */
 .slide-hero {
   padding: 0;
@@ -226,40 +223,72 @@
   overflow: hidden;
 }
 
+/* ============================================================
+   DESKTOP (>= 1025px)
+   ============================================================ */
 .hero-inner {
   position: relative;
   width: 100%;
-  max-width: 1280px;
-  margin: 0 auto;
+  max-width: none;
+  margin: 0;
   min-height: 100vh;
   display: grid;
-  grid-template-columns: 1.05fr 1fr;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
   align-items: center;
-  gap: 4rem;
-  padding: 8rem 3rem 5rem;
+  gap: 0;
+  padding: 8rem 0 5rem 5rem;
 }
 
-/* Imagen — a la derecha, marco redondeado */
+/* Imagen pegada al borde derecho con fade hacia blanco */
 .hero-bg {
   position: relative;
-  inset: auto;
   grid-column: 2;
   grid-row: 1;
   width: 100%;
-  height: 78vh;
-  max-height: 640px;
+  height: 100vh;
+  max-height: none;
   object-fit: cover;
-  border-radius: 24px;
-  box-shadow: 0 30px 80px rgba(15, 23, 42, 0.12);
+  object-position: center;
+
+  -webkit-mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      #000 18%,
+      #000 92%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+  -webkit-mask-composite: source-in;
+
+  mask-image:
+    linear-gradient(to right,
+      transparent 0%,
+      #000 18%,
+      #000 92%,
+      transparent 100%
+    ),
+    linear-gradient(to bottom,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%
+    );
+  mask-composite: intersect;
+
   z-index: 1;
 }
 
-/* Sin velo oscuro — la imagen se ve limpia */
+/* Sin velo en desktop */
 .hero-veil {
   display: none;
 }
 
-/* Cuerpo de texto — a la izquierda */
+/* Cuerpo del texto */
 .hero-body {
   position: relative;
   z-index: 2;
@@ -267,8 +296,12 @@
   color: #0f172a;
   grid-column: 1;
   grid-row: 1;
+  padding-right: 3rem;
 }
 
+/* ============================================================
+   TIPOGRAFÍA DEL HERO
+   ============================================================ */
 .hero-eyebrow {
   display: inline-flex;
   align-items: center;
@@ -305,12 +338,12 @@
   margin-bottom: 2rem;
 }
 
-/* Chips de audiencia (si los usas) */
+/* Chips de audiencia */
 .hero-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  margin-bottom: 2rem;
+  margin: 0 0 2rem;
 }
 .hero-tags span {
   font-size: 0.7rem;
@@ -365,30 +398,13 @@
   box-shadow: none;
 }
 
-/* Post-it — ahora flota sobre la imagen */
-.hero-postit {
-  position: absolute;
-  right: 3rem;
-  bottom: 5rem;
-  top: auto;
-  z-index: 3;
-  width: 280px;
-  background: #fff;
-  border-radius: 14px;
-  padding: 1.4rem 1.4rem 1.2rem;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
-  border: 1px solid #f1f5f9;
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-
-/* Scroll indicator */
+/* ============================================================
+   SCROLL INDICATOR
+   ============================================================ */
 .hero-scroll {
   position: absolute;
   bottom: 2rem;
-  left: 3rem;
-  transform: none;
+  left: 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -410,216 +426,159 @@
   50% { transform: scaleX(1); transform-origin: left; }
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
-  .hero-inner {
-    grid-template-columns: 1fr;
-    gap: 2.5rem;
-    padding: 7rem 2rem 4rem;
-  }
-  .hero-bg {
-    grid-column: 1;
-    grid-row: 2;
-    height: 50vh;
-    max-height: 420px;
-  }
-  .hero-body {
-    grid-column: 1;
-    grid-row: 1;
-    max-width: 100%;
-  }
-  .hero-postit {
-    position: static;
-    width: 100%;
-    max-width: 380px;
-    margin: 1.5rem auto 0;
-    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
-  }
-  .hero-scroll {
-    left: 2rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .hero-inner {
-    padding: 6rem 1.3rem 4rem;
-  }
-  .hero-body h1 {
-    font-size: 1.9rem;
-  }
-  .hero-body p {
-    font-size: 0.98rem;
-  }
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .hero-cta,
-  .hero-cta-ghost {
-    justify-content: center;
-    width: 100%;
-  }
-  .hero-bg {
-    height: 38vh;
-  }
-  .hero-scroll {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-scroll-line {
-    animation: none;
-  }
-}
 /* ============================================================
-   HERO — chips de audiencia
-   ============================================================ */
-.hero-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin: 0 0 2rem;
-}
-.hero-tags span {
-  font-size: 0.72rem;
-  letter-spacing: 1px;
-  text-transform: uppercase;
-  font-weight: 600;
-  color: rgba(255, 255, 255, 0.9);
-  padding: 0.4rem 0.85rem;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* ============================================================
-   HERO — botones de acción (CTA principal + secundario)
-   ============================================================ */
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  align-items: center;
-}
-
-.hero-cta-ghost {
-  background: transparent;
-  color: #0f172a;              /* texto oscuro para contraste en fondo blanco */
-  border: 1.5px solid #0f172a; /* borde oscuro */
-  padding: 0.6rem 1.2rem;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.hero-cta-ghost:hover {
-  background: #0f172a;   /* se rellena oscuro al hover */
-  color: #ffffff;        /* texto blanco para contraste */
-  border-color: #0f172a; /* borde se unifica con el fondo */
-  box-shadow: none;
-}
-
-
-/* Responsive extra para el hero */
-@media (max-width: 900px) {
-  .hero-tags {
-    margin-bottom: 1.5rem;
-  }
-  .hero-tags span {
-    font-size: 0.68rem;
-    padding: 0.35rem 0.7rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-actions {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-  }
-  .hero-cta,
-  .hero-cta-ghost {
-    justify-content: center;
-    width: 100%;
-  }
-}
-/* ============================================================
-   POST-IT HERO
+   POST-IT (si lo activas)
    ============================================================ */
 .hero-postit {
   position: absolute;
-  top: 6.5rem;
-  right: 2rem;
+  right: 3rem;
+  bottom: 5rem;
   z-index: 3;
   width: 280px;
   background: #fff;
   border-radius: 14px;
   padding: 1.4rem 1.4rem 1.2rem;
-  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.18);
+  border: 1px solid #f1f5f9;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.hero-postit-tag {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  font-weight: 700;
-  color: var(--accent);
-  margin-bottom: 0.2rem;
+
+/* ============================================================
+   MÓVIL (<= 1024px) — imagen como fondo, texto encima
+   ============================================================ */
+@media (max-width: 1024px) {
+  .slide-hero {
+    min-height: auto;
+  }
+
+  .hero-inner {
+    display: block;                /* dejamos de usar grid */
+    padding: 7rem 1.5rem 4rem;
+    min-height: auto;
+    position: relative;
+  }
+
+  /* La imagen pasa a ser fondo absoluto de toda la sección */
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    z-index: 0;
+
+    /* Fade hacia blanco puro: abajo fuerte para integrarse con el texto */
+    -webkit-mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 8%,
+      #000 60%,
+      transparent 100%
+    );
+    mask-image: linear-gradient(
+      to bottom,
+      transparent 0%,
+      #000 8%,
+      #000 60%,
+      transparent 100%
+    );
+    -webkit-mask-composite: source-over;
+    mask-composite: add;
+  }
+
+  /* El velo blanco se activa para asegurar legibilidad */
+  .hero-veil {
+    display: block;
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      rgba(255, 255, 255, 0.1) 0%,
+      rgba(255, 255, 255, 0.55) 45%,
+      rgba(255, 255, 255, 0.9) 75%,
+      #ffffff 100%
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  /* El texto ahora va encima de la imagen */
+  .hero-body {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    padding-right: 0;
+    padding-top: 32vh;             /* 🔑 empuja el texto hasta abajo */
+    color: #0f172a;
+  }
+
+  .hero-body h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero-body p {
+    font-size: 0.98rem;
+  }
+
+  /* Scroll indicator arriba de los botones */
+  .hero-scroll {
+    left: 1.5rem;
+    bottom: 1.5rem;
+  }
 }
-.hero-postit h3 {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--ink);
-  line-height: 1.25;
+
+/* ============================================================
+   MÓVIL PEQUEÑO (<= 600px)
+   ============================================================ */
+@media (max-width: 600px) {
+  .hero-inner {
+    padding: 6rem 1.3rem 3.5rem;
+  }
+
+  .hero-body {
+    padding-top: 30vh;
+  }
+
+  .hero-body h1 {
+    font-size: 1.75rem;
+  }
+
+  .hero-body p {
+    font-size: 0.95rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Botones apilados full-width */
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    gap: 0.6rem;
+  }
+  .hero-cta,
+  .hero-cta-ghost {
+    justify-content: center;
+    width: 100%;
+    padding: 0.9rem 1.4rem;
+  }
+
+  /* En pantallas muy chicas quitamos el indicador */
+  .hero-scroll {
+    display: none;
+  }
 }
-.hero-postit p {
-  font-size: 0.82rem;
-  color: var(--muted);
-  margin-bottom: 0.5rem;
+
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-line {
+    animation: none;
+  }
 }
-.hero-postit-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.4rem;
-  background: var(--ink);
-  color: #fff;
-  padding: 0.7rem 1rem;
-  border: none;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 0.82rem;
-  cursor: pointer;
-  font-family: inherit;
-  transition: all 0.25s;
-}
-.hero-postit-btn:hover {
-  background: var(--ink-soft);
-  transform: translateY(-1px);
-  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
-}
-.hero-postit-contact {
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  padding-top: 0.7rem;
-  margin-top: 0.3rem;
-  border-top: 1px solid #f1f5f9;
-}
-.hero-postit-contact a {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.75rem;
-  color: var(--muted);
-  text-decoration: none;
-  transition: color 0.2s;
-}
-.hero-postit-contact a:hover { color: var(--accent); }
 
 /* ============================================================
    SOBRE NOSOTROS
