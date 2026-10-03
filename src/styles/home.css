@@ -25,6 +25,9 @@
 /* ============================================================
    HEADER
    ============================================================ */
+/* ============================================================
+   HEADER
+   ============================================================ */
 .landing-header {
   position: fixed;
   top: 0;
@@ -41,6 +44,8 @@
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(15, 23, 42, 0.05);
 }
+
+/* Marca */
 .landing-brand {
   display: flex;
   align-items: center;
@@ -59,10 +64,15 @@
   border-radius: 8px;
 }
 
+/* ============================================================
+   NAV — desktop normal
+   ============================================================ */
 .landing-nav {
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  margin-left: auto;
+  margin-right: 1rem;
 }
 .landing-nav a {
   color: #475569;
@@ -73,6 +83,116 @@
 }
 .landing-nav a:hover { color: var(--ink); }
 
+/* Botón hamburguesa — oculto en desktop */
+.landing-burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+  z-index: 60;
+  position: relative;
+}
+.landing-burger:hover { background: #f1f5f9; }
+
+/* Utilidades */
+.mobile-only  { display: none; }
+.desktop-only { display: inline-flex; }
+
+/* ============================================================
+   MÓVIL (<= 900px) — panel desplegable
+   ============================================================ */
+@media (max-width: 900px) {
+  .landing-header {
+    padding: 0.9rem 1.2rem;
+  }
+
+  .landing-burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .desktop-only { display: none; }
+
+  .mobile-only {
+    display: inline-flex;
+    margin-top: 1rem;
+    align-self: flex-start;
+    width: auto;
+    padding: 0.7rem 1.3rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+  }
+
+  /* 🔑 Panel desplegable — se activa con .open */
+  .landing-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100vh;
+
+    background: #fff;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    gap: 0;
+
+    padding: 5.5rem 1.5rem 2rem;
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-12px);
+    transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s;
+
+    z-index: 55;   /* entre header (50) y overlay si existe */
+    overflow-y: auto;
+  }
+
+  /* ⬇ ESTA ES LA CLAVE — el estado abierto EN MOVIL */
+  .landing-nav.open {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .landing-nav a {
+    width: 100%;
+    padding: 1rem 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--ink);
+    border-bottom: 1px solid #f1f5f9;
+    letter-spacing: 0.2px;
+  }
+  .landing-nav a:last-of-type {
+    border-bottom: none;
+  }
+  .landing-nav a:hover {
+    color: var(--accent);
+  }
+}
+
+@media (max-width: 480px) {
+  .landing-brand span {
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+  }
+  .landing-brand img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* CTA */
 .landing-header-cta {
   display: inline-flex;
   align-items: center;
@@ -96,6 +216,71 @@
   box-shadow: 0 10px 22px rgba(37, 211, 102, 0.35);
 }
 
+/* Botón hamburguesa — oculto en desktop */
+.landing-burger {
+  display: none;
+  background: transparent;
+  border: none;
+  color: var(--ink);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+.landing-burger:hover { background: #f1f5f9; }
+
+/* Utilidades para mostrar/ocultar */
+.mobile-only { display: none; }
+.desktop-only { display: inline-flex; }
+
+/* ============================================================
+   MÓVIL (<= 900px)
+   ============================================================ */
+@media (max-width: 900px) {
+  .landing-header {
+    padding: 0.9rem 1.2rem;
+  }
+
+  /* Mostramos hamburguesa */
+  .landing-burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;               /* queda a la derecha del logo */
+  }
+
+  /* CTA desktop oculto */
+  .desktop-only { display: none; }
+
+  /* CTA dentro del menú visible */
+  .mobile-only {
+    display: inline-flex;
+    margin-top: 0.5rem;
+    align-self: flex-start;
+  }
+
+  /* Nav como panel desplegable */
+
+
+  /* El header mantiene el z-index por encima del panel */
+  .landing-header.open .landing-burger {
+    color: var(--ink);
+  }
+}
+
+/* ============================================================
+   MÓVIL MUY PEQUEÑO (<= 480px)
+   ============================================================ */
+@media (max-width: 480px) {
+  .landing-brand span {
+    font-size: 0.78rem;
+    letter-spacing: 1.2px;
+  }
+  .landing-brand img {
+    width: 30px;
+    height: 30px;
+  }
+}
 /* ============================================================
    SCROLL INDICATOR (dos líneas que se juntan)
    ============================================================ */
@@ -427,7 +612,7 @@
 }
 
 /* ============================================================
-   POST-IT (si lo activas)
+   HERO — POST-IT "Contacto rápido"
    ============================================================ */
 .hero-postit {
   position: absolute;
@@ -443,6 +628,109 @@
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+}
+
+/* Etiqueta superior */
+.hero-postit-tag {
+  font-size: 0.65rem;
+  letter-spacing: 2px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #2563eb;
+  margin-bottom: 0.2rem;
+}
+
+/* Título */
+.hero-postit h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.25;
+  margin: 0;
+}
+
+/* Subtítulo */
+.hero-postit p {
+  font-size: 0.82rem;
+  color: #64748b;
+  margin: 0 0 0.5rem;
+}
+
+/* Botón principal */
+.hero-postit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  background: #0f172a;
+  color: #fff;
+  padding: 0.7rem 1rem;
+  border: none;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 0.82rem;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.hero-postit-btn:hover {
+  background: #1e293b;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(15, 23, 42, 0.25);
+}
+.hero-postit-btn:active {
+  transform: translateY(0);
+}
+
+/* Bloque de contactos secundarios */
+.hero-postit-contact {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.7rem;
+  margin-top: 0.3rem;
+  border-top: 1px solid #f1f5f9;
+}
+.hero-postit-contact a {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  color: #64748b;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.hero-postit-contact a:hover {
+  color: #2563eb;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .hero-postit {
+    position: static;
+    width: 100%;
+    max-width: 380px;
+    margin: 2rem auto 0;
+    box-shadow: 0 15px 40px rgba(15, 23, 42, 0.12);
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-postit {
+    padding: 1.1rem 1.1rem 1rem;
+  }
+  .hero-postit h3 {
+    font-size: 0.95rem;
+  }
+  .hero-postit p {
+    font-size: 0.78rem;
+  }
+  .hero-postit-btn {
+    font-size: 0.8rem;
+    padding: 0.65rem 0.9rem;
+  }
 }
 
 /* ============================================================
@@ -1276,10 +1564,7 @@
 /* ============================================================
    RESPONSIVE
    ============================================================ */
-@media (max-width: 1100px) {
-  .landing-nav { gap: 1rem; }
-  .landing-nav a { font-size: 0.78rem; }
-}
+
 
 @media (max-width: 900px) {
   .slide {
@@ -1294,7 +1579,6 @@
     padding: 5rem 1.5rem;
   }
 
-  .landing-nav { display: none; }
 
   .hero-body h1 { font-size: 1.9rem; }
   .hero-body p { font-size: 1rem; }

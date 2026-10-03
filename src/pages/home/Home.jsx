@@ -5,7 +5,9 @@ import {
  FiShield, FiTool, FiClock,
  FiCheck, FiPhone, FiMail, FiMapPin,
  FiGrid, FiMaximize2, FiSun, FiZap,
- FiEdit3, FiUsers, FiShoppingBag, FiLayers
+ FiEdit3, FiUsers, FiShoppingBag, FiLayers,
+ FiMenu,
+ FiX
 } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import '../../styles/home.css'
@@ -481,35 +483,62 @@ export default function Home() {
  document.addEventListener('mousedown', handleClickOutside)
  return () => document.removeEventListener('mousedown', handleClickOutside)
  }, [whatsappOpen])
+const [menuOpen, setMenuOpen] = useState(false)
 
+// Cierra el menú al hacer click en un link
+const cerrarMenu = () => setMenuOpen(false)
  return (
  <div className="landing">
  <ScrollIndicator />
+ <header className={`landing-header ${menuOpen ? 'open' : ''}`}>
+  <Link
+    to="/"
+    className="landing-brand"
+    onClick={() => setMenuOpen(false)}
+  >
+    <img src={logo} alt="Cima Herrajes" />
+    <span>CIMA HERRAJES</span>
+  </Link>
 
- {/* HEADER */}
- <header className="landing-header">
- <Link to="/" className="landing-brand">
- <img src={logo} alt="Cima Herrajes" />
- <span>CIMA HERRAJES</span>
- </Link>
+  <button
+    type="button"
+    className="landing-burger"
+    onClick={() => setMenuOpen(v => !v)}
+    aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+    aria-expanded={menuOpen}
+  >
+    {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
+  </button>
 
- <nav className=" landing-nav">
-  <a href="#inicio">Inicio</a>
- <a href="#nosotros">Nosotros</a>
- <a href="#servicios">Servicios</a>
- <a href="#proyectos">Proyectos</a>
- <a href="#referidos">Referidos</a>
- <a href="#contacto">Contacto</a>
- </nav>
+  {/* ⚠️ Asegúrate de que el className dinámico esté aquí */}
+  <nav className={`landing-nav ${menuOpen ? 'open' : ''}`}>
+    <a href="#inicio"    onClick={() => setMenuOpen(false)}>Inicio</a>
+    <a href="#nosotros"  onClick={() => setMenuOpen(false)}>Nosotros</a>
+    <a href="#servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
+    <a href="#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</a>
+    <a href="#referidos" onClick={() => setMenuOpen(false)}>Referidos</a>
+    <a href="#contacto"  onClick={() => setMenuOpen(false)}>Contacto</a>
 
- <button
- type="button"
- className="landing-header-cta"
- onClick={() => abrirWhatsApp(mensajeGeneral(), 'header')}
- >
- Cotizar <FiArrowUpRight size={16} />
- </button>
- </header>
+    <button
+      type="button"
+      className="landing-header-cta mobile-only"
+      onClick={() => {
+        setMenuOpen(false)
+        abrirWhatsApp(mensajeGeneral(), 'header-mobile')
+      }}
+    >
+      Cotizar <FiArrowUpRight size={16} />
+    </button>
+  </nav>
+
+  <button
+    type="button"
+    className="landing-header-cta desktop-only"
+    onClick={() => abrirWhatsApp(mensajeGeneral(), 'header')}
+  >
+    Cotizar <FiArrowUpRight size={16} />
+  </button>
+</header>
 
  {/* ============ 1. HERO CON POST-IT ============ */}
  <section id="inicio" className="slide slide-hero">
@@ -543,8 +572,8 @@ export default function Home() {
         </a>
       </Reveal>
     </div>
-
-    {/* <Reveal className="hero-postit" delay={600}>
+{/* 
+    <Reveal className="hero-postit" delay={600}>
       <span className="hero-postit-tag">CONTACTO RÁPIDO</span>
       <h3>¿Tienes un proyecto en mente?</h3>
       <p>Te asesoramos sin costo.</p>
