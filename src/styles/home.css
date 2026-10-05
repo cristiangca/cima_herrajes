@@ -930,7 +930,7 @@
 }
 .about-text {
   max-width: 850px;
-  margin: 24px 0 0;
+  margin: 19px 0 0;
   font-size: clamp(0.95rem, 1.25vw, 1.1rem);
   line-height: 1.8;
   color: #a5afbd;

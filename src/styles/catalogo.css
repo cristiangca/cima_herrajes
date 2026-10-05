@@ -170,3 +170,182 @@
     grid-template-columns: 1fr;
   }
 }
+/* ============================================================
+   CATÁLOGO — estilo blanco, minimalista, tipo galería
+   Optimizado para muchas categorías (15+)
+   ============================================================ */
+
+.catalogo-container {
+  min-height: 100vh;
+  background: #fff;
+  color: #0f172a;
+  font-family: system-ui, -apple-system, sans-serif;
+  padding: 5rem 2rem 4rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* TÍTULO */
+.catalogo-container h1 {
+  font-size: clamp(1.4rem, 2.6vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  color: #0f172a;
+  max-width: 720px;
+  margin: 0 auto 3rem;
+  text-align: center;
+  text-wrap: balance;
+}
+
+/* ============================================================
+   FILTROS — más compactos para 15 categorías
+   ============================================================ */
+.catalogo-filtros {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.45rem;
+  margin-bottom: 3rem;
+  padding: 0 0.5rem;
+}
+
+.catalogo-filtro {
+  background: #fff;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  font-family: inherit;
+  cursor: pointer;
+  letter-spacing: 0.2px;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.catalogo-filtro:hover {
+  border-color: #94a3b8;
+  color: #0f172a;
+  background: #f8fafc;
+}
+
+.catalogo-filtro.active,
+.catalogo-filtro:focus-visible {
+  background: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(15, 23, 42, 0.15);
+}
+
+/* ============================================================
+   GRID — más denso, productos más pequeños
+   ============================================================ */
+.catalogo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+/* ============================================================
+   ITEM — tarjetas más compactas
+   ============================================================ */
+.catalogo-item {
+  background: #fff;
+  border: 1px solid #f1f5f9;
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.catalogo-item:hover {
+  transform: translateY(-3px);
+  border-color: #e2e8f0;
+  box-shadow: 0 12px 30px rgba(15, 23, 42, 0.07);
+}
+
+.catalogo-item img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  display: block;
+  background: #f8fafc;
+  transition: transform 0.5s ease;
+}
+
+.catalogo-item:hover img {
+  transform: scale(1.03);
+}
+
+.catalogo-item h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #0f172a;
+  padding: 0.75rem 1rem 0.9rem;
+  margin: 0;
+  letter-spacing: -0.01em;
+  line-height: 1.3;
+}
+
+/* ============================================================
+   ESTADO VACÍO
+   ============================================================ */
+.catalogo-vacio {
+  text-align: center;
+  padding: 4rem 1rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .catalogo-container {
+    padding: 4rem 1.5rem 3rem;
+  }
+  .catalogo-container h1 {
+    margin-bottom: 2.2rem;
+  }
+  .catalogo-filtros {
+    margin-bottom: 2.2rem;
+    gap: 0.4rem;
+  }
+  .catalogo-grid {
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .catalogo-container {
+    padding: 3rem 1rem 2.5rem;
+  }
+  .catalogo-container h1 {
+    font-size: 1.2rem;
+    margin-bottom: 1.8rem;
+  }
+  .catalogo-filtro {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.72rem;
+  }
+  .catalogo-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.9rem;
+  }
+  .catalogo-item h2 {
+    font-size: 0.75rem;
+    padding: 0.6rem 0.7rem 0.7rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .catalogo-grid {
+    grid-template-columns: 1fr;
+  }
+}

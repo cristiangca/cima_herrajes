@@ -623,7 +623,7 @@ const cerrarMenu = () => setMenuOpen(false)
       acabados, adaptándonos a las necesidades de cada proyecto.
     </Reveal>
 
-    <Reveal as="p" className="about-text" delay={320}>
+    <Reveal as="p" className="about-text " delay={320}>
       Combinamos experiencia, innovación y una visión
       actual para crear, transformar y mantener espacios funcionales,
       estéticos e inteligentes.
@@ -948,7 +948,7 @@ Especialidades
  {/* ============ 9. PROYECTOS ============ */}
  <Slide id="proyectos" className="slide-proyectos">
  <Reveal as="span" className="kicker">08 — Proyectos</Reveal>
- <Reveal as="h2" className="display" delay={80}>Trabajos recientes</Reveal>
+ <Reveal as="h2" className="display" delay={80}>Trabajos destacados</Reveal>
 
  <div className="proyectos-grid">
  {PROYECTOS.map((p, i) => (
