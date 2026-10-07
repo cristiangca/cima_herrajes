@@ -770,7 +770,7 @@
       to bottom,
       transparent 0%,
       #000 8%,
-      #000 %,
+      #000 60%,
       transparent 100%
     );
     -webkit-mask-composite: source-over;
