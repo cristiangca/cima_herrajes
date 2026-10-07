@@ -4,9 +4,6 @@ import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import "../styles/pilares.css"
 
 export default function Pilares() {
-  // ============================================================
-  // COMPONENTES BASE
-  // ============================================================
   function Slide({ id, className = '', children }) {
     return (
       <section id={id} className={`slide ${className}`}>
@@ -56,9 +53,6 @@ export default function Pilares() {
     return [ref, visible]
   }
 
-  // ============================================================
-  // DATOS
-  // ============================================================
   const pilares = [
     {
       id: 'historia',
@@ -96,9 +90,6 @@ export default function Pilares() {
     },
   ]
 
-  // ============================================================
-  // ESTADO
-  // ============================================================
   const [[index, direction], setState] = useState([0, 1])
   const total = pilares.length
 
@@ -110,9 +101,6 @@ export default function Pilares() {
     setState(([current]) => [i, i > current ? 1 : -1])
   }, [])
 
-  // ============================================================
-  // VARIANTS
-  // ============================================================
   const variants = {
     enter: (dir) => ({
       x: dir > 0 ? 60 : -60,
@@ -143,9 +131,6 @@ export default function Pilares() {
 
   const pilar = pilares[index]
 
-  // ============================================================
-  // RENDER
-  // ============================================================
   return (
     <Slide id="pilares" className="slide-pilares">
       <Reveal as="span" className="kicker center" delay={40}>
@@ -161,7 +146,6 @@ export default function Pilares() {
       </Reveal>
 
       <Reveal className="esencia-carrusel" delay={200}>
-        {/* ---------- Controles flotantes (overlay) ---------- */}
         <div className="esencia-controls">
           <button
             type="button"
@@ -196,7 +180,6 @@ export default function Pilares() {
           </button>
         </div>
 
-        {/* ---------- Stage ---------- */}
         <div className="esencia-stage">
           <AnimatePresence mode="wait" custom={direction}>
             <motion.article
@@ -233,7 +216,6 @@ export default function Pilares() {
               </div>
 
               <h3>{pilar.titulo}</h3>
-              {/* <p className="esencia-lead">{pilar.lead}</p> */}
 
               {pilar.parrafos.map((txt, k) => (
                 <p key={k}>{txt}</p>
@@ -244,7 +226,6 @@ export default function Pilares() {
           </AnimatePresence>
         </div>
 
-        {/* ---------- Progreso (debajo del stage) ---------- */}
         <div className="esencia-progreso">
           <motion.span
             className="esencia-progreso-bar"

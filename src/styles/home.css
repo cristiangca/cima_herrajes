@@ -853,7 +853,7 @@
   align-items: center;
   overflow: hidden;
   padding: 100px 8vw;
-  background: var(--ink);
+  background: linear-gradient(180deg, #0b2256 0%, #092a5e 100%);
   color: #fff;
 }
 .slide-sobre-nosotros::before {
@@ -864,6 +864,7 @@
   width: 500px;
   height: 500px;
   border-radius: 50%;
+  
   background: radial-gradient(
     circle,
     rgba(0, 81, 255, 0.15) 0%,
@@ -1921,138 +1922,97 @@
     width: 100%;
     max-width: 380px;
   }
-}/* ========== Historia · Misión · Garantía ========== */
-.esencia-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-  margin-top: 56px;
-  max-width: 1200px;
+}
+/* ============================================================
+   PILARES
+   ============================================================ */
+.slide-pilares {
+  background: #fff;
+  text-align: center;
+  padding: 7rem 2rem;
+}
+.slide-pilares .display {
+  margin-bottom: 5rem;
+  max-width: 720px;
   margin-left: auto;
   margin-right: auto;
 }
 
-.esencia-card {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 20px;
-  padding: 36px 28px 32px;
+.pilares-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1080px;
+  margin: 0 auto;
+  align-items: end;
+}
+
+.pilar {
   display: flex;
   flex-direction: column;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  align-items: center;
+  gap: 1.5rem;
 }
 
-.esencia-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.07);
+.pilar-numero {
+  font-size: clamp(3rem, 6vw, 5rem);
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.04em;
+  line-height: 1;
 }
 
-.esencia-number {
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: #999;
-  margin-bottom: 16px;
-}
-
-.esencia-card h3 {
-  font-size: 22px;
-  font-weight: 700;
-  color: #111;
-  margin: 0 0 6px;
-}
-
-.esencia-lead {
-  font-size: 14px;
-  font-weight: 600;
-  color: #25D366; /* o el color principal de tu marca */
-  margin: 0 0 18px;
-  letter-spacing: 0.02em;
-}
-
-.esencia-card p {
-  font-size: 14.5px;
-  line-height: 1.65;
-  color: #444;
-  margin: 0 0 14px;
-}
-
-.esencia-card p:last-child {
-  margin-bottom: 0;
-}
-
-.esencia-cierre {
-  font-weight: 600;
-  color: #111 !important;
-  margin-top: 8px !important;
-}
-
-/* Card destacada (Sello) */
-.esencia-card-destacada {
-  background: #0f172a; /* azul muy oscuro */
-  border-color: #0f172a;
-  color: #fff;
-}
-
-.esencia-card-destacada h3,
-.esencia-card-destacada p {
-  color: #e2e8f0;
-}
-
-.esencia-card-destacada .esencia-lead {
-  color: #4ade80; /* verde claro */
-}
-
-.esencia-card-destacada .esencia-number {
-  color: #64748b;
-}
-
-.esencia-card-destacada .esencia-cierre {
-  color: #fff !important;
-}
-
-/* Sello visual */
-.esencia-sello {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  border: 2px solid #4ade80;
+/* Íconos del pilar central */
+.pilar-iconos {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 22px;
-  background: rgba(74, 222, 128, 0.08);
+  gap: 0.3rem;
+  color: var(--ink);
+  min-height: 70px;
+  flex-wrap: nowrap;
+}
+.pilar-iconos svg {
+  flex-shrink: 0;
 }
 
-.esencia-sello-inner {
-  text-align: center;
-  line-height: 1.15;
-}
-
-.esencia-sello-ch {
-  display: block;
-  font-size: 22px;
-  font-weight: 800;
-  color: #4ade80;
-  letter-spacing: 0.05em;
-}
-
-.esencia-sello-text {
-  display: block;
-  font-size: 9px;
+.pilar-alexa {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 1rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  color: #94a3b8;
-  margin-top: 2px;
+  color: #00A8E1;
+  letter-spacing: 0.5px;
+}
+.pilar-alexa span {
+  font-family: system-ui, -apple-system, sans-serif;
+  transform: translateY(1px);
 }
 
-/* Responsive */
-@media (max-width: 980px) {
-  .esencia-grid {
+.pilar-label {
+  font-size: 0.95rem;
+  color: var(--ink);
+  line-height: 1.5;
+  font-weight: 500;
+  text-align: center;
+  margin: 0;
+}
+
+/* ============================================================
+   RESPONSIVE PILARES
+   ============================================================ */
+@media (max-width: 900px) {
+  .slide-pilares { padding: 5rem 1.5rem; }
+  .slide-pilares .display { margin-bottom: 3.5rem; }
+
+  .pilares-grid {
     grid-template-columns: 1fr;
-    gap: 24px;
-    max-width: 560px;
+    gap: 3rem;
   }
+
+  .pilar-numero { font-size: 3rem; }
+  .pilar-iconos svg { transform: scale(0.9); }
 }
 /* ============================================================
    IMAGEN EN RANURA — ventana transversal
