@@ -33,9 +33,9 @@ const CATEGORIAS = [
   TITULO: "Ventanas",
   slug: "ventanas",
   productos: [
-    { id: "v-corredizas", TITULO: "Corredizas", slug: "corredizas", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-    { id: "v-doble-corrediza", TITULO: "Doble Corrediza", slug: "doble-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/2-doble-corrediza.webp" },
-    { id: "v-fija-corrediza", TITULO: "Fija Corrediza", slug: "fija-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/3-fija-corrediza.webp" },
+    { id: "v-corredizas", TITULO: "Corredizas", slug: "corredizas", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-doble-corrediza.webp" },
+    { id: "v-doble-corrediza", TITULO: "Doble Corrediza", slug: "doble-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/2-fija-corrediza.webp" },
+    { id: "v-fija-corrediza", TITULO: "Fija Corrediza", slug: "fija-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/3-fija.webp" },
     { id: "v-fijas", TITULO: "Fijas", slug: "fijas", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/3-fija.webp" },
     { id: "v-proyectable", TITULO: "Proyectable", slug: "proyectable", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/4-proyectable.webp" },
     { id: "v-vasista", TITULO: "Vasista", slug: "vasista", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/5-vasista.webp" },
