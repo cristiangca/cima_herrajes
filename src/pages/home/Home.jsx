@@ -7,7 +7,8 @@ import {
  FiGrid, FiMaximize2, FiSun, FiZap,
  FiEdit3, FiUsers, FiShoppingBag, FiLayers,
  FiMenu,
- FiX
+ FiX,
+ FiTarget
 } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
 import '../../styles/home.css'
@@ -19,6 +20,7 @@ import ventanales from '../../assets/ventana.png'
 import especiales from '../../assets/especiales.png'
 import Catalogo from '../Catalogo'
 import soporte from '../../assets/soporte.png'
+import Pilares from '../Pilares'
 
 // ============================================================
 // UTILIDAD WHATSAPP
@@ -732,73 +734,8 @@ Especialidades
  </Reveal>
  </Slide>
 
- {/* ============ 4. PILARES ============ */}
- <Slide id="pilares" className="slide-pilares">
- <Reveal as="h2" className="display center" delay={60}>
- Pilares que nos definen
- </Reveal>
-
- <div className="pilares-grid">
- <Reveal className="pilar" delay={120}>
- <div className="pilar-numero">+30</div>
- <p className="pilar-label">
- Años de Trayectoria<br />y Solidez
- </p>
- </Reveal>
-
- <Reveal className="pilar" delay={200}>
- <div className="pilar-iconos">
- <svg viewBox="0 0 24 24" width="42" height="42" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
- <rect x="4" y="11" width="16" height="10" rx="2" />
- <path d="M8 11V7a4 4 0 0 1 8 0v4" />
- <circle cx="12" cy="16" r="1.4" fill="currentColor" />
- </svg>
-
- <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
- <line x1="4" y1="12" x2="20" y2="12" />
- <polyline points="14 6 20 12 14 18" />
- </svg>
-
- <svg viewBox="0 0 24 32" width="38" height="50" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
- <rect x="3" y="1" width="18" height="30" rx="3" />
- <circle cx="12" cy="14" r="4" />
- <line x1="12" y1="14" x2="12" y2="18" />
- <circle cx="8" cy="6" r="0.8" fill="currentColor" />
- <circle cx="12" cy="6" r="0.8" fill="currentColor" />
- <circle cx="16" cy="6" r="0.8" fill="currentColor" />
- <circle cx="8" cy="9" r="0.8" fill="currentColor" />
- <circle cx="12" cy="9" r="0.8" fill="currentColor" />
- <circle cx="16" cy="9" r="0.8" fill="currentColor" />
- </svg>
-
- <svg viewBox="0 0 60 60" width="60" height="60" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
- <path d="M 6 52 C 6 20, 30 10, 54 12" />
- <polyline points="48 6 54 12 48 18" />
- </svg>
-
- <div className="pilar-alexa">
- <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#00A8E1" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
- <circle cx="12" cy="14" r="6" />
- <path d="M8 6a6 6 0 0 1 8 0" />
- </svg>
- <span>alexa</span>
- </div>
- </div>
-
- <p className="pilar-label">
- Evolución Tecnológica<br />(Soporte Alexa)
- </p>
- </Reveal>
-
- <Reveal className="pilar" delay={280}>
- <div className="pilar-numero">100%</div>
- <p className="pilar-label">
- Asesoría y Soluciones<br />a Medida
- </p>
- </Reveal>
- </div>
- </Slide>
-
+{/* ============ 4. HISTORIA · MISIÓN · GARANTÍA ============ */}
+<Pilares />
 {/* ============ 5. CÓMO TRABAJAMOS ============ */}
 <Slide id="como-trabajamos" className="slide-hacemos">
   <div className="split">
@@ -883,8 +820,10 @@ Especialidades
  {/* ============ 6. IMAGEN EN RANURA ============ */}
  <section id="que-hacemos" className="titulo-seccion" aria-label="Especialidades">
  <span className="kicker">Que hacemos </span>
- <h1 className="di">Soluciones diseñadas para adaptarse a cada espacio y necesidad </h1>
- <Catalogo></Catalogo>
+<h1 className="di">
+  Soluciones diseñadas para adaptarse  <br /> a
+  cada espacio y necesidad
+</h1> <Catalogo></Catalogo>
 </section>
  
 
