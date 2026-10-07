@@ -1,7 +1,12 @@
 import { useRef, useState, useEffect, useCallback } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
-import '../styles/pilares.css'
+import "../styles/pilares.css"
+
 export default function Pilares() {
+  // ============================================================
+  // COMPONENTES BASE
+  // ============================================================
   function Slide({ id, className = '', children }) {
     return (
       <section id={id} className={`slide ${className}`}>
@@ -52,7 +57,7 @@ export default function Pilares() {
   }
 
   // ============================================================
-  // DATOS DEL CARRUSEL
+  // DATOS
   // ============================================================
   const pilares = [
     {
@@ -92,110 +97,79 @@ export default function Pilares() {
   ]
 
   // ============================================================
-  // ESTADO DEL CARRUSEL
+  // ESTADO
   // ============================================================
-  const [index, setIndex] = useState(0)
+  const [[index, direction], setState] = useState([0, 1])
   const total = pilares.length
 
-  const next = useCallback(() => {
-    setIndex((i) => (i + 1) % total)
+  const paginate = useCallback((dir) => {
+    setState(([i]) => [(i + dir + total) % total, dir])
   }, [total])
 
-  const prev = useCallback(() => {
-    setIndex((i) => (i - 1 + total) % total)
-  }, [total])
+  const goTo = useCallback((i) => {
+    setState(([current]) => [i, i > current ? 1 : -1])
+  }, [])
 
-  // -------- Swipe táctil --------
-  const touchStartX = useRef(null)
-  const touchEndX = useRef(null)
-
-  const onTouchStart = (e) => {
-    touchStartX.current = e.changedTouches[0].clientX
+  // ============================================================
+  // VARIANTS
+  // ============================================================
+  const variants = {
+    enter: (dir) => ({
+      x: dir > 0 ? 60 : -60,
+      opacity: 0,
+      scale: 0.98,
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      transition: {
+        x: { type: "spring", stiffness: 280, damping: 32 },
+        opacity: { duration: 0.25 },
+        scale: { duration: 0.35 },
+      },
+    },
+    exit: (dir) => ({
+      x: dir > 0 ? -60 : 60,
+      opacity: 0,
+      scale: 0.98,
+      transition: {
+        x: { type: "spring", stiffness: 280, damping: 32 },
+        opacity: { duration: 0.2 },
+        scale: { duration: 0.3 },
+      },
+    }),
   }
-  const onTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].clientX
-    if (touchStartX.current === null) return
-    const delta = touchStartX.current - touchEndX.current
-    if (Math.abs(delta) > 50) {
-      delta > 0 ? next() : prev()
-    }
-    touchStartX.current = null
-    touchEndX.current = null
-  }
 
-  // -------- Teclado --------
-  const onKeyDown = (e) => {
-    if (e.key === 'ArrowRight') next()
-    if (e.key === 'ArrowLeft') prev()
-  }
+  const pilar = pilares[index]
 
+  // ============================================================
+  // RENDER
+  // ============================================================
   return (
     <Slide id="pilares" className="slide-pilares">
       <Reveal as="span" className="kicker center" delay={40}>
         Pilares que nos definen
       </Reveal>
+
       <Reveal as="h2" className="display center" delay={80}>
         Historia · Misión · Garantía
       </Reveal>
-      <Reveal as="p" className="servicios-sub center" delay={140}>
+
+      <Reveal as="p" className="servicios-sub dysplay center" delay={140}>
         De dónde venimos → Qué nos mueve → Qué respaldamos
       </Reveal>
 
       <Reveal className="esencia-carrusel" delay={200}>
-        {/* -------- Slides -------- */}
-        <div
-          className="esencia-track"
-          style={{ transform: `translateX(-${index * 100}%)` }}
-          onTouchStart={onTouchStart}
-          onTouchEnd={onTouchEnd}
-          onKeyDown={onKeyDown}
-          tabIndex={0}
-          role="region"
-          aria-roledescription="carrusel"
-          aria-label="Historia, misión y garantía"
-        >
-          {pilares.map((p) => (
-            <article
-              key={p.id}
-              className={`esencia-card ${p.destacada ? 'esencia-card-destacada' : ''}`}
-              aria-hidden={index !== pilares.indexOf(p)}
-            >
-              <div className="esencia-number">{p.numero}</div>
-
-              {p.destacada && (
-                <div className="esencia-sello">
-                  <div className="esencia-sello-inner">
-                    <span className="esencia-sello-ch">CH</span>
-                    <span className="esencia-sello-text">
-                      SELLO DE<br />GARANTÍA
-                    </span>
-                  </div>
-                </div>
-              )}
-
-              <h3>{p.titulo}</h3>
-              <p className="esencia-lead">{p.lead}</p>
-
-              {p.parrafos.map((txt, i) => (
-                <p key={i}>{txt}</p>
-              ))}
-
-              {p.cierre && (
-                <p className="esencia-cierre">{p.cierre}</p>
-              )}
-            </article>
-          ))}
-        </div>
-
-        {/* -------- Controles -------- */}
-        <div className="esencia-controles">
+        {/* ---------- Controles flotantes (overlay) ---------- */}
+        <div className="esencia-controls">
           <button
             type="button"
-            className="esencia-btn"
-            onClick={prev}
+            className="esencia-arrow"
+            onClick={() => paginate(-1)}
             aria-label="Anterior"
           >
-            <FiArrowLeft size={18} />
+            <FiArrowLeft size={16} />
           </button>
 
           <div className="esencia-dots" role="tablist">
@@ -207,26 +181,75 @@ export default function Pilares() {
                 aria-selected={i === index}
                 aria-label={`Ir a ${p.titulo}`}
                 className={`esencia-dot ${i === index ? 'active' : ''}`}
-                onClick={() => setIndex(i)}
+                onClick={() => goTo(i)}
               />
             ))}
           </div>
 
           <button
             type="button"
-            className="esencia-btn"
-            onClick={next}
+            className="esencia-arrow"
+            onClick={() => paginate(1)}
             aria-label="Siguiente"
           >
-            <FiArrowRight size={18} />
+            <FiArrowRight size={16} />
           </button>
         </div>
 
-        {/* -------- Progreso -------- */}
+        {/* ---------- Stage ---------- */}
+        <div className="esencia-stage">
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.article
+              key={pilar.id}
+              custom={direction}
+              variants={variants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              drag="x"
+              dragConstraints={{ left: 0, right: 0 }}
+              dragElastic={0.15}
+              onDragEnd={(e, info) => {
+                if (info.offset.x < -60) paginate(1)
+                else if (info.offset.x > 60) paginate(-1)
+              }}
+              className={`esencia-card ${
+                pilar.destacada ? 'esencia-card-destacada' : ''
+              }`}
+            >
+              <div className="esencia-card-head">
+                <div className="esencia-number">{pilar.numero}</div>
+
+                {pilar.destacada && (
+                  <div className="esencia-sello">
+                    <div className="esencia-sello-inner">
+                      <span className="esencia-sello-ch">CH</span>
+                      <span className="esencia-sello-text">
+                        SELLO DE<br />GARANTÍA
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <h3>{pilar.titulo}</h3>
+              {/* <p className="esencia-lead">{pilar.lead}</p> */}
+
+              {pilar.parrafos.map((txt, k) => (
+                <p key={k}>{txt}</p>
+              ))}
+
+              {pilar.cierre && <p className="esencia-cierre">{pilar.cierre}</p>}
+            </motion.article>
+          </AnimatePresence>
+        </div>
+
+        {/* ---------- Progreso (debajo del stage) ---------- */}
         <div className="esencia-progreso">
-          <span
+          <motion.span
             className="esencia-progreso-bar"
-            style={{ width: `${((index + 1) / total) * 100}%` }}
+            animate={{ width: `${((index + 1) / total) * 100}%` }}
+            transition={{ type: "spring", stiffness: 200, damping: 30 }}
           />
         </div>
       </Reveal>

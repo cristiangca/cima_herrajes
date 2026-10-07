@@ -1,5 +1,5 @@
 /* ============================================================
-   SLIDE — PILARES · CARRUSEL
+   SLIDE — PILARES
    ============================================================ */
 .slide-pilares {
   background: #fff;
@@ -8,28 +8,138 @@
 
 /* ---------- Carrusel ---------- */
 .esencia-carrusel {
-  max-width: 820px;
-  margin: 3rem auto 0;
   position: relative;
+  max-width: 720px;
+  margin: 3rem auto 0;
 }
 
-/* ---------- Track ---------- */
-.esencia-track {
-  display: flex;
-  transition: transform 0.55s cubic-bezier(0.22, 0.61, 0.36, 1);
-  outline: none;
+/* ============================================================
+   CONTROLES FLOTANTES (overlay arriba-derecha del carrusel)
+   ============================================================ */
+.esencia-controls {
+  position: absolute;
+  top: 1rem;
+  right: 1.2rem;
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.35rem 0.5rem;
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.9);
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
 }
 
-/* ---------- Card ---------- */
+/* ---------- Flechas ---------- */
+.esencia-arrow {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: #0f172a;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.esencia-arrow:hover {
+  background: #0f172a;
+  color: #fff;
+  transform: scale(1.05);
+}
+
+.esencia-arrow:active {
+  transform: scale(0.98);
+}
+
+.esencia-arrow:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* ---------- Dots ---------- */
+.esencia-dots {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0 0.35rem;
+}
+
+.esencia-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  border: none;
+  background: #cbd5e1;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.esencia-dot:hover {
+  background: #94a3b8;
+}
+
+.esencia-dot.active {
+  width: 22px;
+  background: #2563eb;
+}
+
+.esencia-dot:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   STAGE + TARJETA
+   ============================================================ */
+.esencia-stage {
+  position: relative;
+  width: 100%;
+  min-height: 460px;
+}
+
 .esencia-card {
-  flex: 0 0 100%;
-  min-width: 100%;
-  padding: 0 0.5rem;
-  box-sizing: border-box;
+  position: absolute;
+  inset: 0;
+  background: #fff;
+  border: 1px solid #eef2f7;
+  border-radius: 22px;
+  padding: 3rem 2.6rem 2.4rem; /* 👈 top más grande por el overlay */
   display: flex;
   flex-direction: column;
   gap: 0.85rem;
-  user-select: text;
+  box-shadow:
+    0 1px 0 rgba(15, 23, 42, 0.02),
+    0 30px 60px -20px rgba(15, 23, 42, 0.12);
+  cursor: grab;
+  touch-action: pan-y;
+  overflow: hidden;
+}
+
+.esencia-card:active {
+  cursor: grabbing;
+}
+
+.esencia-card-destacada {
+  background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  border-color: #dbeafe;
+}
+
+/* ---------- Encabezado interno ---------- */
+.esencia-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.2rem;
 }
 
 .esencia-number {
@@ -39,8 +149,9 @@
   color: #2563eb;
 }
 
+/* ---------- Texto ---------- */
 .esencia-card h3 {
-  font-size: 1.45rem;
+  font-size: 1.6rem;
   font-weight: 800;
   color: #0f172a;
   letter-spacing: -0.02em;
@@ -54,7 +165,7 @@
   text-transform: uppercase;
   font-weight: 700;
   color: #94a3b8;
-  margin: 0;
+  margin: 0 0 0.5rem;
 }
 
 .esencia-card p {
@@ -70,23 +181,22 @@
 }
 
 .esencia-cierre {
-  margin-top: 0.5rem;
+  margin-top: 0.6rem;
   padding-top: 1rem;
   border-top: 1px solid #eef2f7;
   color: #0f172a !important;
   font-weight: 600;
 }
 
-/* ---------- Card destacada (sello) ---------- */
-.esencia-card-destacada .esencia-sello {
-  width: 92px;
-  height: 92px;
+/* ---------- Sello ---------- */
+.esencia-sello {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   border: 2px dashed #2563eb;
-  padding: 5px;
-  margin-bottom: 0.4rem;
+  padding: 4px;
+  flex: 0 0 auto;
 }
-
 .esencia-sello-inner {
   width: 100%;
   height: 100%;
@@ -98,92 +208,40 @@
   align-items: center;
   justify-content: center;
   text-align: center;
-  gap: 2px;
+  gap: 1px;
 }
-
 .esencia-sello-ch {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 900;
   letter-spacing: -0.04em;
   color: #2563eb;
   line-height: 1;
 }
-
 .esencia-sello-text {
-  font-size: 0.5rem;
+  font-size: 0.45rem;
   letter-spacing: 1px;
   font-weight: 700;
   color: #64748b;
   line-height: 1.1;
 }
 
-/* ---------- Controles ---------- */
-.esencia-controles {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 1.2rem;
-  margin-top: 2.2rem;
-}
-
-.esencia-btn {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  border: 1.5px solid #e2e8f0;
-  background: #fff;
-  color: #0f172a;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.25s ease;
-}
-.esencia-btn:hover {
-  background: #0f172a;
-  color: #fff;
-  border-color: #0f172a;
-  transform: translateY(-1px);
-}
-
-/* ---------- Dots ---------- */
-.esencia-dots {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.esencia-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: none;
-  background: #cbd5e1;
-  cursor: pointer;
-  transition: all 0.25s ease;
-  padding: 0;
-}
-.esencia-dot.active {
-  width: 26px;
-  border-radius: 999px;
-  background: #2563eb;
-}
-
-/* ---------- Barra de progreso ---------- */
+/* ============================================================
+   PROGRESO
+   ============================================================ */
 .esencia-progreso {
   width: 100%;
+  max-width: 220px;
   height: 2px;
   background: #eef2f7;
   border-radius: 999px;
-  margin-top: 1.5rem;
   overflow: hidden;
+  margin: 1.2rem auto 0;
 }
 .esencia-progreso-bar {
   display: block;
   height: 100%;
   background: #2563eb;
   border-radius: 999px;
-  transition: width 0.5s ease;
 }
 
 /* ============================================================
@@ -197,32 +255,75 @@
 
 @media (max-width: 600px) {
   .slide-pilares {
-    padding: 4rem 1.3rem;
+    padding: 4rem 1.2rem;
   }
+
+  .esencia-carrusel {
+    margin-top: 2.2rem;
+  }
+
+  .esencia-controls {
+    top: 0.7rem;
+    right: 0.7rem;
+    padding: 0.3rem 0.4rem;
+  }
+
+  .esencia-arrow {
+    width: 28px;
+    height: 28px;
+  }
+
+  .esencia-dot {
+    width: 6px;
+    height: 6px;
+  }
+  .esencia-dot.active {
+    width: 18px;
+  }
+
+  .esencia-stage {
+    min-height: 520px;
+  }
+
+  .esencia-card {
+    padding: 2.6rem 1.5rem 1.8rem;
+    border-radius: 18px;
+  }
+
   .esencia-card h3 {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
   }
+
   .esencia-card p {
     font-size: 0.92rem;
   }
-  .esencia-btn {
-    width: 38px;
-    height: 38px;
-  }
+
   .esencia-sello {
-    width: 78px;
-    height: 78px;
+    width: 66px;
+    height: 66px;
   }
   .esencia-sello-ch {
-    font-size: 1.15rem;
+    font-size: 1rem;
+  }
+
+  .esencia-progreso {
+    max-width: 180px;
   }
 }
 
+/* ============================================================
+   ACCESIBILIDAD
+   ============================================================ */
 @media (prefers-reduced-motion: reduce) {
-  .esencia-track,
-  .esencia-dot,
-  .esencia-btn,
-  .esencia-progreso-bar {
+  .esencia-arrow,
+  .esencia-dot {
     transition: none;
   }
+}
+.servicios-sub {
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+  color: #475569;
+  margin-top: 0.5rem;
+  text-align: center;
 }
