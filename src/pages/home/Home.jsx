@@ -543,9 +543,10 @@ const cerrarMenu = () => setMenuOpen(false)
  {/* ============ 1. HERO CON POST-IT ============ */}
  <section id="inicio" className="slide slide-hero">
   <div className="slide-inner hero-inner">
-    <img className="hero-bg" src={banner} alt="" />
-    <div className="hero-veil" />
 
+
+ <div className="hero-veil" />
+<img className="hero-bg" src={banner} alt="" />   
     <div className="hero-body">
       <Reveal as="span" className="hero-eyebrow" delay={100}>
         CIMA HERRAJES · SOLUCIONES ARQUITECTÓNICAS
@@ -698,14 +699,14 @@ Especialidades
  <h3>{SERVICIO_DESTACADO.titulo}</h3>
  <p>{SERVICIO_DESTACADO.texto}</p>
 
- <button
+ {/* <button
  type="button"
  className="servicio-wa-btn"
  onClick={() => abrirBurbujaServicio(SERVICIO_DESTACADO.titulo)}
  style={{ marginTop: 12 }}
  >
  <FaWhatsapp size={15} /> Consultar por WhatsApp
- </button>
+ </button> */}
  </div>
  <Link
  to={`/servicios/${SERVICIO_DESTACADO.slug}`}
@@ -825,65 +826,64 @@ Especialidades
 
       <div className="split-pilares">
         <Reveal className="split-pilar" delay={260}>
-          <div className="split-pilar-icon">
-            <FiTool size={18} />
-          </div>
-          <div>
+          <div className="split-pilar-head">
+            <div className="split-pilar-icon">
+              <FiTool size={18} />
+            </div>
             <h4>Experiencia</h4>
-            <p>
-              Nuestro conocimiento técnico nos permite entender las
-              necesidades de cada proyecto y ejecutarlas con precisión.
-            </p>
           </div>
+          <p>
+            Nuestro conocimiento técnico nos permite entender las
+            necesidades de cada proyecto y ejecutarlas con precisión.
+          </p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={320}>
-          <div className="split-pilar-icon">
-            <FiShield size={18} />
-          </div>
-          <div>
+          <div className="split-pilar-head">
+            <div className="split-pilar-icon">
+              <FiShield size={18} />
+            </div>
             <h4>Calidad</h4>
-            <p>
-              Cuidamos cada etapa, desde los materiales y la fabricación
-              hasta la instalación y los acabados.
-            </p>
           </div>
+          <p>
+            Cuidamos cada etapa, desde los materiales y la fabricación
+            hasta la instalación y los acabados.
+          </p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={380}>
-          <div className="split-pilar-icon">
-            <FiUsers size={18} />
-          </div>
-          <div>
+          <div className="split-pilar-head">
+            <div className="split-pilar-icon">
+              <FiUsers size={18} />
+            </div>
             <h4>Acompañamiento</h4>
-            <p>
-              Acompañamos al cliente durante cada etapa, con comunicación
-              cercana y seguimiento continuo.
-            </p>
           </div>
+          <p>
+            Acompañamos al cliente durante cada etapa, con comunicación
+            cercana y seguimiento continuo.
+          </p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={440}>
-          <div className="split-pilar-icon">
-            <FiEdit3 size={18} />
-          </div>
-          <div>
+          <div className="split-pilar-head">
+            <div className="split-pilar-icon">
+              <FiEdit3 size={18} />
+            </div>
             <h4>Personalización</h4>
-            <p>
-              Analizamos las necesidades de cada proyecto para encontrar
-              la solución más adecuada.
-            </p>
           </div>
+          <p>
+            Analizamos las necesidades de cada proyecto para encontrar
+            la solución más adecuada.
+          </p>
         </Reveal>
       </div>
     </div>
   </div>
 </Slide>
-
  {/* ============ 6. IMAGEN EN RANURA ============ */}
  <section id="que-hacemos" className="titulo-seccion" aria-label="Especialidades">
  <span className="kicker">Que hacemos </span>
- <h2 className="display">Soluciones diseñadas para adaptarse a cada espacio y necesidad </h2>
+ <h1 className="di">Soluciones diseñadas para adaptarse a cada espacio y necesidad </h1>
  <Catalogo></Catalogo>
 </section>
  
