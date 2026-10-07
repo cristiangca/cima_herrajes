@@ -12,7 +12,7 @@ import {
 import { FaWhatsapp } from 'react-icons/fa'
 import '../../styles/home.css'
 import logo from '../../assets/cima.jpg'
-import banner from '../../assets/herbaner.png'
+import banner from '../../assets/hero-2.png'
 import canceleria from '../../assets/baño.png'
 import barandales from '../../assets/barandal.png'
 import ventanales from '../../assets/ventana.png'
@@ -618,18 +618,18 @@ const cerrarMenu = () => setMenuOpen(false)
       <span>Una nueva generación de especialistas nos define.</span>
     </Reveal>
 
-    <Reveal as="p" className="about-intro" delay={240}>
+    <Reveal as="h2" className="about-intro" delay={240}>
       Desarrollamos soluciones en vidrio, aluminio, automatización y
       acabados, adaptándonos a las necesidades de cada proyecto.
     </Reveal>
 
-    <Reveal as="p" className="about-text " delay={320}>
+    <Reveal as="h2" className="about-text " delay={320}>
       Combinamos experiencia, innovación y una visión
       actual para crear, transformar y mantener espacios funcionales,
       estéticos e inteligentes.
     </Reveal>
 
-    <Reveal as="p" className="about-text" delay={400}>
+    <Reveal as="h2" className="about-text" delay={400}>
       Nuestro trabajo va más allá de la fabricación e instalación.
       Acompañamos cada proyecto desde la asesoría y medición hasta su
       ejecución, cuidando la precisión, los acabados y cada detalle
@@ -883,7 +883,7 @@ Especialidades
  {/* ============ 6. IMAGEN EN RANURA ============ */}
  <section id="que-hacemos" className="titulo-seccion" aria-label="Especialidades">
  <span className="kicker">Que hacemos </span>
- <h2 className="display">Especialidades </h2>
+ <h2 className="display">Soluciones diseñadas para adaptarse a cada espacio y necesidad </h2>
  <Catalogo></Catalogo>
 </section>
  
