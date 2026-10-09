@@ -3,12 +3,12 @@ import '../styles/catalogo.css';
 import imagen from '../assets/ventana.png';
 import imagen2 from '../assets/barandal.png';
 import imagen3 from '../assets/baño.png';
-import { FaWhatsapp, FaSearch, FaTimes } from 'react-icons/fa';
+import { FaWhatsapp, FaSearch, FaTimes, FaShareAlt } from 'react-icons/fa';
 
 const NUMERO_WHATSAPP = "521234567890"; // Reemplaza con tu número de WhatsApp
 
 // ===== CATEGORÍAS COMPLETAS =====
-const CATEGORIAS = [
+export const CATEGORIAS = [
 {
   TITULO: "Puertas",
   slug: "puertas",
@@ -258,18 +258,19 @@ const CATEGORIAS = [
     ]
   }
 ];
-export default function Catalogo() {
+
+export default function Catalogo({ interactivo = false }) {
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('puertas');
   const [busqueda, setBusqueda] = useState('');
   const [productoModal, setProductoModal] = useState(null);
 
-  // Obtener productos de la categoría activa sin necesidad de un useState duplicado
+  // Productos de la categoría activa
   const productosCategoria = useMemo(() => {
     const cat = CATEGORIAS.find((c) => c.slug === categoriaSeleccionada);
     return cat ? cat.productos : [];
   }, [categoriaSeleccionada]);
 
-  // Si hay texto en el buscador, busca en TODAS las categorías simultáneamente
+  // Si hay texto en el buscador, busca en TODAS las categorías
   const productosVisibles = useMemo(() => {
     if (!busqueda.trim()) return productosCategoria;
 
@@ -279,39 +280,192 @@ export default function Catalogo() {
     ).filter((prod) => prod.TITULO.toLowerCase().includes(query));
   }, [busqueda, productosCategoria]);
 
+  // ===== Acciones =====
   const obtenerEnlaceWhatsApp = (nombreProducto) => {
-    const mensaje = encodeURIComponent(`Hola, me interesa cotizar el producto: ${nombreProducto}`);
+    const mensaje = encodeURIComponent(
+      `Hola, me interesa cotizar el producto: ${nombreProducto}`
+    );
     return `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
   };
-return (
-  <div className="catalogo-container">
 
-    {!busqueda && (
-      <div className="catalogo-filtros">
-        {CATEGORIAS.map((categoria) => (
+  const obtenerUrlProducto = (producto) => {
+    return `${window.location.origin}/servicios/${producto.id}`;
+  };
+
+  const compartirProducto = async (producto, e) => {
+    if (e) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    const url = obtenerUrlProducto(producto);
+    const data = {
+      title: producto.TITULO,
+      text: `Mira este producto: ${producto.TITULO}`,
+      url,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(data);
+      } else {
+        await navigator.clipboard.writeText(url);
+        alert('Enlace copiado al portapapeles');
+      }
+    } catch (err) {
+      // El usuario canceló el share, no hacemos nada
+    }
+  };
+
+  const irAProducto = (producto, e) => {
+    if (e) e.stopPropagation();
+    window.location.href = `/servicios/${producto.id}`;
+  };
+
+  return (
+    <div className="catalogo-container">
+
+      {/* Buscador */}
+      <div className="catalogo-buscador">
+        <FaSearch className="catalogo-buscador-icon" />
+        <input
+          type="text"
+          placeholder="Buscar producto..."
+          value={busqueda}
+          onChange={(e) => setBusqueda(e.target.value)}
+        />
+        {busqueda && (
           <button
-            key={categoria.slug}
-            className={`catalogo-filtro ${categoriaSeleccionada === categoria.slug ? 'active' : ''}`}
-            onClick={() => setCategoriaSeleccionada(categoria.slug)}
+            className="catalogo-buscador-clear"
+            onClick={() => setBusqueda('')}
+            aria-label="Limpiar búsqueda"
           >
-            {categoria.TITULO}
+            <FaTimes />
           </button>
+        )}
+      </div>
+
+      {/* Filtros por categoría (se ocultan al buscar) */}
+      {!busqueda && (
+        <div className="catalogo-filtros">
+          {CATEGORIAS.map((categoria) => (
+            <button
+              key={categoria.slug}
+              className={`catalogo-filtro ${
+                categoriaSeleccionada === categoria.slug ? 'active' : ''
+              }`}
+              onClick={() => setCategoriaSeleccionada(categoria.slug)}
+            >
+              {categoria.TITULO}
+            </button>
+          ))}
+        </div>
+      )}
+
+      {/* Grid de productos */}
+      <div className="catalogo-grid">
+        {productosVisibles.map((producto) => (
+          <div key={producto.id} className="catalogo-item">
+            <div
+              className="catalogo-img-wrapper"
+              onClick={() => setProductoModal(producto)}
+            >
+              <img src={producto.img} alt={producto.TITULO} loading="lazy" />
+            </div>
+
+            <h2>{producto.TITULO}</h2>
+
+            {producto.categoriaPadre && (
+              <span className="categoria-tag">{producto.categoriaPadre}</span>
+            )}
+
+            {/* ===== Acciones solo si es interactivo ===== */}
+            {interactivo && (
+              <div className="catalogo-item-acciones">
+                <a
+                  href={obtenerEnlaceWhatsApp(producto.TITULO)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accion btn-whatsapp"
+                  onClick={(e) => e.stopPropagation()}
+                  title="Cotizar por WhatsApp"
+                >
+                  <FaWhatsapp /> Cotizar
+                </a>
+
+                <button
+                  className="btn-accion btn-compartir"
+                  onClick={(e) => compartirProducto(producto, e)}
+                  title="Compartir producto"
+                >
+                  <FaShareAlt /> Compartir
+                </button>
+              </div>
+            )}
+
+            {/* Link directo a la página del producto (solo interactivo) */}
+            {interactivo && (
+              <button
+                className="btn-ver-producto"
+                onClick={(e) => irAProducto(producto, e)}
+              >
+                Ver producto →
+              </button>
+            )}
+          </div>
         ))}
       </div>
-    )}
-    <div className="catalogo-grid">
-      {productosVisibles.map((producto) => (
-        <div key={producto.id} className="catalogo-item">
-          <div className="catalogo-img-wrapper" onClick={() => setProductoModal(producto)}>
-            <img src={producto.img} alt={producto.TITULO} loading="lazy" />
+
+      {/* ===== MODAL del producto ===== */}
+      {productoModal && (
+        <div
+          className="catalogo-modal-overlay"
+          onClick={() => setProductoModal(null)}
+        >
+          <div
+            className="catalogo-modal"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              className="catalogo-modal-close"
+              onClick={() => setProductoModal(null)}
+              aria-label="Cerrar"
+            >
+              <FaTimes />
+            </button>
+
+            <img src={productoModal.img} alt={productoModal.TITULO} />
+
+            <h2>{productoModal.TITULO}</h2>
+
+            {interactivo && (
+              <div className="catalogo-modal-acciones">
+                <a
+                  href={obtenerEnlaceWhatsApp(productoModal.TITULO)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-accion btn-whatsapp"
+                >
+                  <FaWhatsapp /> Cotizar por WhatsApp
+                </a>
+
+                <button
+                  className="btn-accion btn-compartir"
+                  onClick={(e) => compartirProducto(productoModal, e)}
+                >
+                  <FaShareAlt /> Compartir
+                </button>
+
+                <button
+                  className="btn-accion btn-ver-producto"
+                  onClick={(e) => irAProducto(productoModal, e)}
+                >
+                  Ver producto completo →
+                </button>
+              </div>
+            )}
           </div>
-          <h2>{producto.TITULO}</h2>
-          {producto.categoriaPadre && (
-            <span className="categoria-tag">{producto.categoriaPadre}</span>
-          )}
         </div>
-      ))}
+      )}
     </div>
-  </div>
-);
+  );
 }

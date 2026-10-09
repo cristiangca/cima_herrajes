@@ -885,7 +885,7 @@
   font-weight: 700;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: #8fa8c7;
+  color: #2F6AEC;
 }
 .about-title {
   margin: 0;
@@ -896,7 +896,7 @@
   letter-spacing: -0.045em;
   color: #fff;
 }
-.about-title span { color: #8c99aa; }
+.about-title span { color: #2F6AEC; }
 .about-intro {
   max-width: 850px;
   margin: 55px 0 0;

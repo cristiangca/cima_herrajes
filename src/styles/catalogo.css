@@ -349,3 +349,354 @@
     grid-template-columns: 1fr;
   }
 }
+/* Acciones de cada tarjeta */
+.catalogo-item-acciones {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-accion {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.btn-accion:hover {
+  transform: translateY(-1px);
+  opacity: 0.9;
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+.btn-compartir {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-ver-producto {
+  margin-top: 8px;
+  background: transparent;
+  border: 1px solid #333;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  width: 100%;
+}
+
+/* Buscador */
+.catalogo-buscador {
+  position: relative;
+  margin-bottom: 1rem;
+  max-width: 400px;
+}
+
+.catalogo-buscador input {
+  width: 100%;
+  padding: 10px 36px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  font-size: 0.95rem;
+}
+
+.catalogo-buscador-icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888;
+}
+
+.catalogo-buscador-clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: #888;
+}
+
+/* Modal */
+.catalogo-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.catalogo-modal {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  position: relative;
+  text-align: center;
+}
+
+.catalogo-modal img {
+  max-width: 100%;
+  max-height: 300px;
+  object-fit: contain;
+  margin-bottom: 1rem;
+}
+
+.catalogo-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.catalogo-modal-acciones {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 1.5rem;
+}
+/* ============================================
+   DETALLE DEL PRODUCTO
+   ============================================ */
+
+.detalle-container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* Botón de volver */
+.detalle-btn-volver {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 1.5rem;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: #f5f5f5;
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s ease, transform 0.15s ease;
+}
+
+.detalle-btn-volver:hover {
+  background: #e8e8e8;
+  transform: translateX(-2px);
+}
+
+/* Tarjeta principal */
+.detalle-card {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 2.5rem;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+/* Imagen */
+.detalle-img-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fafafa;
+  border-radius: 12px;
+  padding: 2rem;
+  min-height: 350px;
+}
+
+.detalle-img-wrapper img {
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  transition: transform 0.3s ease;
+}
+
+.detalle-img-wrapper img:hover {
+  transform: scale(1.05);
+}
+
+/* Info */
+.detalle-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.detalle-categoria {
+  display: inline-block;
+  width: fit-content;
+  padding: 4px 12px;
+  border-radius: 20px;
+  background: #eef4ff;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.detalle-info h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111;
+  margin: 0 0 1rem;
+  line-height: 1.2;
+}
+
+.detalle-meta {
+  padding: 1rem 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  margin-bottom: 1.5rem;
+}
+
+.detalle-meta p {
+  margin: 0.3rem 0;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.detalle-meta strong {
+  color: #222;
+}
+
+/* Acciones */
+.detalle-acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.detalle-acciones .btn-accion {
+  flex: 1;
+  min-width: 160px;
+  justify-content: center;
+  padding: 12px 20px;
+  font-size: 0.95rem;
+  border-radius: 10px;
+}
+
+/* Reutilizamos los estilos de botones ya definidos */
+.btn-accion {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: transform 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-accion:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.btn-whatsapp {
+  background: #25D366;
+  color: #fff;
+}
+
+.btn-whatsapp:hover {
+  background: #1ebe5b;
+}
+
+.btn-compartir {
+  background: #f0f0f0;
+  color: #333;
+}
+
+.btn-compartir:hover {
+  background: #e4e4e4;
+}
+
+/* ============================================
+   PRODUCTO NO ENCONTRADO
+   ============================================ */
+
+.detalle-no-encontrado {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 3rem 2rem;
+  text-align: center;
+  background: #fff;
+  border-radius: 16px;
+  border: 1px solid #eee;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.detalle-no-encontrado h1 {
+  color: #e11d48;
+  margin-bottom: 0.5rem;
+}
+
+.detalle-no-encontrado p {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+.detalle-no-encontrado .detalle-btn-volver {
+  margin: 0 auto;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .detalle-card {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    padding: 1.5rem;
+  }
+
+  .detalle-img-wrapper {
+    min-height: 250px;
+    padding: 1rem;
+  }
+
+  .detalle-info h1 {
+    font-size: 1.5rem;
+  }
+
+  .detalle-acciones {
+    flex-direction: column;
+  }
+
+  .detalle-acciones .btn-accion {
+    width: 100%;
+  }
+}

@@ -518,7 +518,7 @@ const cerrarMenu = () => setMenuOpen(false)
     <a href="#nosotros"  onClick={() => setMenuOpen(false)}>Nosotros</a>
     <a href="#servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
     <a href="#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</a>
-    <a href="#referidos" onClick={() => setMenuOpen(false)}>Referidos</a>
+    <a href="#referidos" onClick={() => setMenuOpen(false)}>Testimonios</a>
     <a href="#contacto"  onClick={() => setMenuOpen(false)}>Contacto</a>
 
     <button

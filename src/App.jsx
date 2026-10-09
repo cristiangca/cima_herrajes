@@ -1,6 +1,7 @@
 import { Routes, Route } from 'react-router-dom'
 import Navbar from './components/Navbar.jsx'
 import Home from './pages/home/Home.jsx'
+import Servicios from './pages/servicios/Servicios.jsx'
 import Catalogo from './pages/Catalogo.jsx'
 import SubirProducto from './pages/SubirProducto.jsx'
 import Adminpanel from './pages/Adminpanel.jsx'
@@ -15,7 +16,9 @@ export default function App() {
       <main className="container">
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
+  <Route path="/servicios" element={<Servicios />} />
+  <Route path="/servicios/:idproductos" element={<Servicios />} />      
+      <Route path="/login" element={<Login />} />
           <Route path="/catalogo" element={<Catalogo />} />
           <Route path="/subir" element={<SubirProducto />} />
         </Routes>
