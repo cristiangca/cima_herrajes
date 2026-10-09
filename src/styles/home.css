@@ -1042,6 +1042,26 @@
   transform: translateY(-1px);
   box-shadow: 0 8px 18px rgba(37, 211, 102, 0.3);
 }
+.servicio-card-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.servicio-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Si .servicio-card ya era un <a> antes o tiene estilos de grid/flex,
+   esto asegura que el contenido interno no se desplace */
+.servicio-card-link .servicio-card-media,
+.servicio-card-link .servicio-card-body {
+  display: block;
+}
 
 /* ============================================================
    NÚMEROS

@@ -1,13 +1,14 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useCallback, useEffect, useDeferredValue, memo } from 'react';
 import '../styles/catalogo.css';
 import imagen from '../assets/ventana.png';
 import imagen2 from '../assets/barandal.png';
 import imagen3 from '../assets/baño.png';
 import { FaWhatsapp, FaSearch, FaTimes, FaShareAlt } from 'react-icons/fa';
+import { useServicioActivo } from './catalago/ServicioActivoContext';
 
-const NUMERO_WHATSAPP = "521234567890"; // Reemplaza con tu número de WhatsApp
+const NUMERO_WHATSAPP = "521234567890";
 
-// ===== CATEGORÍAS COMPLETAS =====
+// ===== CATEGORÍAS =====
 export const CATEGORIAS = [
 {
   TITULO: "Puertas",
@@ -259,10 +260,71 @@ export const CATEGORIAS = [
   }
 ];
 
+// Índice plano precalculado para búsquedas rápidas
+const PRODUCTOS_FLAT = CATEGORIAS.flatMap((cat) =>
+  cat.productos.map((prod) => ({ ...prod, categoriaPadre: cat.TITULO, categoriaSlug: cat.slug }))
+);
+
+// ===== Item memoizado =====
+const CatalogoItem = memo(function CatalogoItem({
+  producto, interactivo, onOpenModal, onWhatsApp, onCompartir, onVerProducto, destacado
+}) {
+  return (
+    <div className={`catalogo-item ${destacado ? 'destacado-azul' : ''}`}>
+      <div className="catalogo-img-wrapper" onClick={() => onOpenModal(producto)}>
+        <img src={producto.img} alt={producto.TITULO} loading="lazy" />
+      </div>
+      <h2>{producto.TITULO}</h2>
+      {producto.categoriaPadre && (
+        <span className="categoria-tag">{producto.categoriaPadre}</span>
+      )}
+      {interactivo && (
+        <div className="catalogo-item-acciones">
+          <a
+            href={onWhatsApp(producto.TITULO)}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="btn-accion btn-whatsapp"
+            onClick={(e) => e.stopPropagation()}
+            title="Cotizar por WhatsApp"
+          >
+            <FaWhatsapp /> Cotizar
+          </a>
+          <button
+            className="btn-accion btn-compartir"
+            onClick={(e) => onCompartir(producto, e)}
+            title="Compartir producto"
+          >
+            <FaShareAlt /> Compartir
+          </button>
+        </div>
+      )}
+      {interactivo && (
+        <button className="btn-ver-producto" onClick={(e) => onVerProducto(producto, e)}>
+          Ver producto →
+        </button>
+      )}
+    </div>
+  );
+});
+
 export default function Catalogo({ interactivo = false }) {
+  const { servicioActivo, limpiarServicio } = useServicioActivo();
+
   const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('puertas');
   const [busqueda, setBusqueda] = useState('');
   const [productoModal, setProductoModal] = useState(null);
+  const busquedaDiferida = useDeferredValue(busqueda);
+
+  // Cuando se activa un servicio, selecciona su primera categoría y hace scroll
+  useEffect(() => {
+    if (!servicioActivo) return;
+    const primera = servicioActivo.categorias?.[0];
+    if (primera) setCategoriaSeleccionada(primera);
+    setBusqueda('');
+    const el = document.getElementById('que-hacemos');
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, [servicioActivo]);
 
   // Productos de la categoría activa
   const productosCategoria = useMemo(() => {
@@ -270,196 +332,127 @@ export default function Catalogo({ interactivo = false }) {
     return cat ? cat.productos : [];
   }, [categoriaSeleccionada]);
 
-  // Si hay texto en el buscador, busca en TODAS las categorías
+  // Búsqueda sobre el índice plano
   const productosVisibles = useMemo(() => {
-    if (!busqueda.trim()) return productosCategoria;
+    if (!busquedaDiferida.trim()) return productosCategoria;
+    const q = busquedaDiferida.toLowerCase();
+    return PRODUCTOS_FLAT.filter((p) => p.TITULO.toLowerCase().includes(q));
+  }, [busquedaDiferida, productosCategoria]);
 
-    const query = busqueda.toLowerCase();
-    return CATEGORIAS.flatMap((cat) =>
-      cat.productos.map((prod) => ({ ...prod, categoriaPadre: cat.TITULO }))
-    ).filter((prod) => prod.TITULO.toLowerCase().includes(query));
-  }, [busqueda, productosCategoria]);
-
-  // ===== Acciones =====
-  const obtenerEnlaceWhatsApp = (nombreProducto) => {
-    const mensaje = encodeURIComponent(
-      `Hola, me interesa cotizar el producto: ${nombreProducto}`
-    );
+  // Handlers estables
+  const obtenerEnlaceWhatsApp = useCallback((nombreProducto) => {
+    const mensaje = encodeURIComponent(`Hola, me interesa cotizar el producto: ${nombreProducto}`);
     return `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
-  };
+  }, []);
 
-  const obtenerUrlProducto = (producto) => {
+  const obtenerUrlProducto = useCallback((producto) => {
     return `${window.location.origin}/servicios/${producto.id}`;
-  };
+  }, []);
 
-  const compartirProducto = async (producto, e) => {
-    if (e) {
-      e.preventDefault();
-      e.stopPropagation();
-    }
+  const compartirProducto = useCallback(async (producto, e) => {
+    if (e) { e.preventDefault(); e.stopPropagation(); }
     const url = obtenerUrlProducto(producto);
-    const data = {
-      title: producto.TITULO,
-      text: `Mira este producto: ${producto.TITULO}`,
-      url,
-    };
-
+    const data = { title: producto.TITULO, text: `Mira este producto: ${producto.TITULO}`, url };
     try {
-      if (navigator.share) {
-        await navigator.share(data);
-      } else {
-        await navigator.clipboard.writeText(url);
-        alert('Enlace copiado al portapapeles');
-      }
-    } catch (err) {
-      // El usuario canceló el share, no hacemos nada
-    }
-  };
+      if (navigator.share) await navigator.share(data);
+      else { await navigator.clipboard.writeText(url); alert('Enlace copiado al portapapeles'); }
+    } catch { /* cancelado */ }
+  }, [obtenerUrlProducto]);
 
-  const irAProducto = (producto, e) => {
+  const irAProducto = useCallback((producto, e) => {
     if (e) e.stopPropagation();
     window.location.href = `/servicios/${producto.id}`;
-  };
+  }, []);
+
+  const abrirModal = useCallback((p) => setProductoModal(p), []);
+  const cerrarModal = useCallback(() => setProductoModal(null), []);
+
+  const setCategoria = useCallback((slug) => {
+    setCategoriaSeleccionada(slug);
+    if (servicioActivo) limpiarServicio();
+  }, [servicioActivo, limpiarServicio]);
+
+  // Categorías relacionadas al servicio activo (para resaltar)
+  const categoriasDestacadas = useMemo(
+    () => new Set(servicioActivo?.categorias || []),
+    [servicioActivo]
+  );
 
   return (
     <div className="catalogo-container">
-{interactivo && (
-  <div className="catalogo-buscador">
-    {/* Buscador - Ahora sí es válido dentro de la etiqueta */}
-    <FaSearch className="catalogo-buscador-icon" />
-    <input
-      type="text"
-      placeholder="Buscar producto..."
-      value={busqueda}
-      onChange={(e) => setBusqueda(e.target.value)}
-    />
-    {busqueda && (
-      <button
-        className="catalogo-buscador-clear"
-        onClick={() => setBusqueda('')}
-        aria-label="Limpiar búsqueda"
-      >
-        <FaTimes />
-      </button>
-    )}
-  </div>
-)}
-
-      {/* Filtros por categoría (se ocultan al buscar) */}
-      {!busqueda && (
-        <div className="catalogo-filtros">
-          {CATEGORIAS.map((categoria) => (
-            <button
-              key={categoria.slug}
-              className={`catalogo-filtro ${
-                categoriaSeleccionada === categoria.slug ? 'active' : ''
-              }`}
-              onClick={() => setCategoriaSeleccionada(categoria.slug)}
-            >
-              {categoria.TITULO}
+      {interactivo && (
+        <div className="catalogo-buscador">
+          <FaSearch className="catalogo-buscador-icon" />
+          <input
+            type="text"
+            placeholder="Buscar producto..."
+            value={busqueda}
+            onChange={(e) => setBusqueda(e.target.value)}
+          />
+          {busqueda && (
+            <button className="catalogo-buscador-clear" onClick={() => setBusqueda('')} aria-label="Limpiar búsqueda">
+              <FaTimes />
             </button>
-          ))}
+          )}
         </div>
       )}
 
-      {/* Grid de productos */}
-      <div className="catalogo-grid">
-        {productosVisibles.map((producto) => (
-          <div key={producto.id} className="catalogo-item">
-            <div
-              className="catalogo-img-wrapper"
-              onClick={() => setProductoModal(producto)}
-            >
-              <img src={producto.img} alt={producto.TITULO} loading="lazy" />
-            </div>
-
-            <h2>{producto.TITULO}</h2>
-
-            {producto.categoriaPadre && (
-              <span className="categoria-tag">{producto.categoriaPadre}</span>
-            )}
-
-            {/* ===== Acciones solo si es interactivo ===== */}
-            {interactivo && (
-              <div className="catalogo-item-acciones">
-                <a
-                  href={obtenerEnlaceWhatsApp(producto.TITULO)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accion btn-whatsapp"
-                  onClick={(e) => e.stopPropagation()}
-                  title="Cotizar por WhatsApp"
-                >
-                  <FaWhatsapp /> Cotizar
-                </a>
-
-                <button
-                  className="btn-accion btn-compartir"
-                  onClick={(e) => compartirProducto(producto, e)}
-                  title="Compartir producto"
-                >
-                  <FaShareAlt /> Compartir
-                </button>
-              </div>
-            )}
-
-            {/* Link directo a la página del producto (solo interactivo) */}
-            {interactivo && (
+      {!busqueda && (
+        <div className="catalogo-filtros">
+          {CATEGORIAS.map((cat) => {
+            const relacionada = categoriasDestacadas.has(cat.slug);
+            return (
               <button
-                className="btn-ver-producto"
-                onClick={(e) => irAProducto(producto, e)}
+                key={cat.slug}
+                className={`catalogo-filtro ${categoriaSeleccionada === cat.slug ? 'active' : ''} ${relacionada ? 'relacionada-azul' : ''}`}
+                onClick={() => setCategoria(cat.slug)}
               >
-                Ver producto →
+                {cat.TITULO}
               </button>
-            )}
-          </div>
-        ))}
+            );
+          })}
+        </div>
+      )}
+
+      <div className="catalogo-grid">
+        {productosVisibles.map((producto) => {
+          const destacado = servicioActivo && (
+            producto.categoriaSlug
+              ? categoriasDestacadas.has(producto.categoriaSlug)
+              : categoriasDestacadas.has(categoriaSeleccionada)
+          );
+          return (
+            <CatalogoItem
+              key={producto.id}
+              producto={producto}
+              interactivo={interactivo}
+              onOpenModal={abrirModal}
+              onWhatsApp={obtenerEnlaceWhatsApp}
+              onCompartir={compartirProducto}
+              onVerProducto={irAProducto}
+              destacado={destacado}
+            />
+          );
+        })}
       </div>
 
-      {/* ===== MODAL del producto ===== */}
       {productoModal && (
-        <div
-          className="catalogo-modal-overlay"
-          onClick={() => setProductoModal(null)}
-        >
-          <div
-            className="catalogo-modal"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              className="catalogo-modal-close"
-              onClick={() => setProductoModal(null)}
-              aria-label="Cerrar"
-            >
+        <div className="catalogo-modal-overlay" onClick={cerrarModal}>
+          <div className="catalogo-modal" onClick={(e) => e.stopPropagation()}>
+            <button className="catalogo-modal-close" onClick={cerrarModal} aria-label="Cerrar">
               <FaTimes />
             </button>
-
             <img src={productoModal.img} alt={productoModal.TITULO} />
-
             <h2>{productoModal.TITULO}</h2>
-
             {interactivo && (
               <div className="catalogo-modal-acciones">
-                <a
-                  href={obtenerEnlaceWhatsApp(productoModal.TITULO)}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-accion btn-whatsapp"
-                >
+                <a href={obtenerEnlaceWhatsApp(productoModal.TITULO)} target="_blank" rel="noopener noreferrer" className="btn-accion btn-whatsapp">
                   <FaWhatsapp /> Cotizar por WhatsApp
                 </a>
-
-                <button
-                  className="btn-accion btn-compartir"
-                  onClick={(e) => compartirProducto(productoModal, e)}
-                >
+                <button className="btn-accion btn-compartir" onClick={(e) => compartirProducto(productoModal, e)}>
                   <FaShareAlt /> Compartir
                 </button>
-
-                <button
-                  className="btn-accion btn-ver-producto"
-                  onClick={(e) => irAProducto(productoModal, e)}
-                >
+                <button className="btn-accion btn-ver-producto" onClick={(e) => irAProducto(productoModal, e)}>
                   Ver producto completo →
                 </button>
               </div>

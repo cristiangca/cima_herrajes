@@ -21,6 +21,7 @@ import especiales from '../../assets/especiales.png'
 import Catalogo from '../Catalogo'
 import soporte from '../../assets/soporte.png'
 import Pilares from '../Pilares'
+import { ServicioActivoProvider } from '../catalago/ServicioActivoContext'
 
 // ============================================================
 // UTILIDAD WHATSAPP
@@ -490,6 +491,7 @@ const [menuOpen, setMenuOpen] = useState(false)
 // Cierra el menú al hacer click en un link
 const cerrarMenu = () => setMenuOpen(false)
  return (
+    <ServicioActivoProvider>
  <div className="landing">
  <ScrollIndicator />
  <header className={`landing-header ${menuOpen ? 'open' : ''}`}>
@@ -659,25 +661,30 @@ const cerrarMenu = () => setMenuOpen(false)
 
   <div className="servicios-grid">
     {SERVICIOS.map((s, i) => {
-      const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80
+      const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80;
       return (
         <Reveal key={s.slug} className="servicio-card" delay={delay}>
-          <a href={`#que-hacemos${s.slug}`} className="servicio-card-media">
-            <img src={s.img} alt={s.titulo} loading="lazy" />
-          </a>
-          <div className="servicio-card-body">
-            <div className="servicio-card-head">
-              <Link to={`#que-hacemos`} className="servicio-card-title">
-                {s.titulo}
-              </Link>
-              <a href="#que-hacemos" className="servicio-card-arrow" aria-label={`Ver ${s.titulo}`}>
-                <FiArrowRight size={18} />
-              </a>
+      <a
+        href="#que-hacemos"
+        className="servicio-card-link"
+        onClick={() => setServicioActivo(s.slug)}
+      >
+      
+            <div className="servicio-card-media">
+              <img src={s.img} alt={s.titulo} loading="lazy" />
             </div>
-            <p>{s.texto}</p>
-          </div>
+            <div className="servicio-card-body">
+              <div className="servicio-card-head">
+                <span className="servicio-card-title">{s.titulo}</span>
+                <span className="servicio-card-arrow" aria-hidden="true">
+                  <FiArrowRight size={18} />
+                </span>
+              </div>
+              <p>{s.texto}</p>
+            </div>
+          </a>
         </Reveal>
-      )
+      );
     })}
   </div>
 
@@ -803,7 +810,7 @@ const cerrarMenu = () => setMenuOpen(false)
 <h1 className="di">
   Soluciones diseñadas para adaptarse  <br /> a
   cada espacio y necesidad
-</h1> <Catalogo></Catalogo>
+</h1> <Catalogo interactivo={false} />
 </section>
  
 
@@ -1036,5 +1043,6 @@ const cerrarMenu = () => setMenuOpen(false)
  </button>
  </div>
  </div>
+ </ServicioActivoProvider>
  )
 }
