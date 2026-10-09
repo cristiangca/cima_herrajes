@@ -350,48 +350,48 @@ function SlotImage({ src, alt = '', eyebrow = 'Detalle', title = '' }) {
 // DATA
 // ============================================================
 const SERVICIOS = [
- {
- titulo: 'Cancelería de aluminio y cristal',
- texto: 'Diseño y ejecución de soluciones para proyectos residenciales, comerciales y de construcción.',
- slug: 'canceleria-aluminio',
- img: canceleria
- },
- {
- titulo: 'Ventanales, ventanas y puertas de aluminio',
- texto: 'Sistemas corredizos, abatibles y de proyección con perfiles de alta resistencia.',
- slug: 'ventanales-puertas-aluminio',
- img: ventanales
- },
- {
- titulo: 'Barandales',
- texto: 'Barandales personalizados en vidrio, acero inoxidable y aluminio.',
- slug: 'barandales',
- img: barandales
- },
- {
- titulo: 'Cristal templado y proyectos especiales',
- texto: 'Divisiones, cubiertas, domos, pérgolas y canceles de baño.',
- slug: 'cristal-templado',
- img: especiales
- },
- {
- titulo: 'Espejos, muebles y acabados arquitectónicos',
- texto: 'Soluciones de diseño y funcionalidad para hogares, baños, vestidores y exteriores.',
- slug: 'espejos-acabados',
- img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=75'
- },
- {
- titulo: 'Domótica',
- texto: 'Automatización y control inteligente para espacios residenciales y comerciales.',
- slug: 'domotica',
- img: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1000&q=75'
- }
+  {
+    titulo: 'Cancelería de aluminio y cristal',
+    texto: 'Diseño y ejecución de soluciones para proyectos residenciales, comerciales y de construcción.',
+    slug: 'canceleria-aluminio',
+    img: canceleria
+  },
+  {
+    titulo: 'Ventanales, ventanas y puertas de aluminio',
+    texto: 'Sistemas corredizos, abatibles y de proyección con perfiles de alta resistencia.',
+    slug: 'ventanales-puertas-aluminio',
+    img: ventanales
+  },
+  {
+    titulo: 'Barandales',
+    texto: 'Barandales personalizados en vidrio, acero inoxidable y aluminio.',
+    slug: 'barandales',
+    img: barandales
+  },
+  {
+    titulo: 'Cristal templado y proyectos especiales',
+    texto: 'Divisiones, cubiertas, domos, pérgolas y canceles de baño.',
+    slug: 'cristal-templado',
+    img: especiales
+  },
+  {
+    titulo: 'Espejos, muebles y acabados arquitectónicos',
+    texto: 'Soluciones de diseño y funcionalidad para hogares, baños, vestidores y exteriores.',
+    slug: 'espejos-acabados',
+    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=75'
+  },
+  {
+    titulo: 'Domótica',
+    texto: 'Automatización y control inteligente para espacios residenciales y comerciales.',
+    slug: 'domotica',
+    img: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1000&q=75'
+  }
 ]
 
 const SERVICIO_DESTACADO = {
- titulo: 'Asesoría, mantenimiento y adecuaciones',
- texto: 'Mantenimiento preventivo y correctivo, diagnóstico técnico y asesoría especializada.',
- slug: 'asesoria-mantenimiento',
+   titulo: 'Asesoría, mantenimiento y adecuaciones',
+    texto: 'Mantenimiento preventivo y correctivo, reparación y renovación de instalaciones existentes, diagnóstico y evaluación técnica de trabajos previos, y asesoría especializada para optimizar y resolver proyectos existentes.',
+    slug: 'asesoria-mantenimiento',
  eyebrow: 'SOLUCIONES INTEGRALES',
  img: soporte
 }
@@ -646,94 +646,74 @@ const cerrarMenu = () => setMenuOpen(false)
     </Reveal>
   </div>
 </Slide>
- {/* ============ 3. SERVICIOS ============ */}
- <Slide id="servicios" className="slide-servicios">
- <Reveal as="span" className="kicker center">NUESTROS SERVICIOS</Reveal>
- <Reveal as="h2" className="display center" delay={80}>
-Especialidades
- </Reveal>
- <Reveal as="p" className="servicios-sub" delay={140}>
- Soluciones integrales en aluminio, cristal templado y automatización
- para proyectos residenciales y comerciales.
- </Reveal>
+{/* ============ 3. SERVICIOS ============ */}
+<Slide id="servicios" className="slide-servicios">
+  <Reveal as="span" className="kicker center">NUESTROS SERVICIOS</Reveal>
+  <Reveal as="h2" className="display center" delay={80}>
+    Especialidades
+  </Reveal>
+  <Reveal as="p" className="servicios-sub" delay={140}>
+    Soluciones integrales en aluminio, cristal templado y automatización
+    para proyectos residenciales y comerciales.
+  </Reveal>
 
- <div className="servicios-grid">
- {SERVICIOS.map((s, i) => {
- const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80
- return (
- <Reveal key={s.slug} className="servicio-card" delay={delay}>
- <a href={`#que-hacemos${s.slug}`} className="servicio-card-media">
- <img src={s.img} alt={s.titulo} loading="lazy" />
- </a>
- <div className="servicio-card-body">
- <div className="servicio-card-head">
- <Link to={`#que-hacemos`} className="servicio-card-title">
- {s.titulo}
- </Link>
-<a href="#que-hacemos" className="servicio-card-arrow" aria-label={`Ver ${s.titulo}`}>
-  <FiArrowRight size={18} />
-</a>
+  <div className="servicios-grid">
+    {SERVICIOS.map((s, i) => {
+      const delay = 120 + Math.floor(i / 3) * 120 + (i % 3) * 80
+      return (
+        <Reveal key={s.slug} className="servicio-card" delay={delay}>
+          <a href={`#que-hacemos${s.slug}`} className="servicio-card-media">
+            <img src={s.img} alt={s.titulo} loading="lazy" />
+          </a>
+          <div className="servicio-card-body">
+            <div className="servicio-card-head">
+              <Link to={`#que-hacemos`} className="servicio-card-title">
+                {s.titulo}
+              </Link>
+              <a href="#que-hacemos" className="servicio-card-arrow" aria-label={`Ver ${s.titulo}`}>
+                <FiArrowRight size={18} />
+              </a>
+            </div>
+            <p>{s.texto}</p>
+          </div>
+        </Reveal>
+      )
+    })}
+  </div>
 
- </div>
- <p>{s.texto}</p>
+  {/* Card horizontal destacada */}
+  <Reveal className="servicio-destacado" delay={200}>
+    <div className="servicio-destacado-media">
+      <img src={SERVICIO_DESTACADO.img} alt={SERVICIO_DESTACADO.titulo} loading="lazy" />
+    </div>
+    <div className="servicio-destacado-body">
+      <span className="servicio-destacado-tag">{SERVICIO_DESTACADO.eyebrow}</span>
+      <h3>{SERVICIO_DESTACADO.titulo}</h3>
+      <p>{SERVICIO_DESTACADO.texto}</p>
+    </div>
+    <Link
+      to={`/servicios/${SERVICIO_DESTACADO.slug}`}
+      className="servicio-destacado-arrow"
+      aria-label={SERVICIO_DESTACADO.titulo}
+    >
+      <FiArrowRight size={22} />
+    </Link>
+  </Reveal>
 
- {/* Botón para abrir burbuja con mensaje del servicio */}
- {/* <button
- type="button"
- className="servicio-wa-btn"
- onClick={() => abrirBurbujaServicio(s.titulo)}
- >
- <FaWhatsapp size={15} /> Consultar por WhatsApp
- </button> */}
- </div>
- </Reveal>
- )
- })}
- </div>
-
- {/* Card horizontal destacada */}
- <Reveal className="servicio-destacado" delay={200}>
- <div className="servicio-destacado-media">
- <img src={SERVICIO_DESTACADO.img} alt={SERVICIO_DESTACADO.titulo} loading="lazy" />
- </div>
- <div className="servicio-destacado-body">
- <span className="servicio-destacado-tag">{SERVICIO_DESTACADO.eyebrow}</span>
- <h3>{SERVICIO_DESTACADO.titulo}</h3>
- <p>{SERVICIO_DESTACADO.texto}</p>
-
- {/* <button
- type="button"
- className="servicio-wa-btn"
- onClick={() => abrirBurbujaServicio(SERVICIO_DESTACADO.titulo)}
- style={{ marginTop: 12 }}
- >
- <FaWhatsapp size={15} /> Consultar por WhatsApp
- </button> */}
- </div>
- <Link
- to={`/servicios/${SERVICIO_DESTACADO.slug}`}
- className="servicio-destacado-arrow"
- aria-label={SERVICIO_DESTACADO.titulo}
- >
- <FiArrowRight size={22} />
- </Link>
- </Reveal>
-
- {/* CTA final oscuro */}
- <Reveal delay={280}>
- <button
- type="button"
- className="servicios-cta-final"
- onClick={() => abrirBurbujaGeneral()}
- >
- <strong>¿ Tienes un proyecto en mente?</strong>
- <span>
- Cotizar proyecto personalizado <FiArrowUpRight size={14} />
- </span>
- </button>
- </Reveal>
- </Slide>
-
+  {/* CTA final oscuro */}
+  <Reveal delay={280}>
+    <button
+      type="button"
+      className="servicios-cta-final"
+      onClick={() => abrirBurbujaGeneral()}
+    >
+      <strong>¿Tienes un proyecto en mente?</strong>
+      <span>
+        Cotizar proyecto personalizado <FiArrowUpRight size={14} />
+      </span>
+    </button>
+  </Reveal>
+</Slide>
 {/* ============ 4. HISTORIA · MISIÓN · GARANTÍA ============ */}
 <Pilares />
 {/* ============ 5. CÓMO TRABAJAMOS ============ */}
@@ -827,63 +807,72 @@ Especialidades
 </section>
  
 
- {/* ============ 7. PROCESO ============ */}
- <Slide id="proceso" className="slide-proceso">
- <Reveal as="span" className="kicker">06 — Nuestro proceso</Reveal>
- <Reveal as="h2" className="display" delay={80}>
- Cuatro pasos simples, un resultado impecable.
- </Reveal>
+{/* ============ 7. PROCESO ============ */}
+<Slide id="proceso" className="slide-proceso">
+  <Reveal as="span" className="kicker">06 — Nuestro proceso</Reveal>
+  <Reveal as="h2" className="display" delay={80}>
+    Cuatro pasos simples, un resultado impecable.
+  </Reveal>
 
- <div className="pasos">
- <Reveal className="paso" delay={120}>
- <span className="paso-num">01</span>
- <h3>Consultoría</h3>
- <p>Escuchamos tu proyecto y medimos cada espacio.</p>
- </Reveal>
- <Reveal className="paso" delay={200}>
- <span className="paso-num">02</span>
- <h3>Propuesta</h3>
- <p>Cotizamos con materiales y tiempos reales.</p>
- </Reveal>
- <Reveal className="paso" delay={280}>
- <span className="paso-num">03</span>
- <h3>Fabricación</h3>
- <p>Producimos con control de calidad en cada etapa.</p>
- </Reveal>
- <Reveal className="paso" delay={360}>
- <span className="paso-num">04</span>
- <h3>Instalación</h3>
- <p>Entrega e instalación por equipo certificado.</p>
- </Reveal>
- </div>
- </Slide>
+  <div className="pasos">
+    <div className="paso">
+      <Reveal as="span" className="paso-num" delay={120}>01</Reveal>
+      <Reveal as="h3" delay={160}>Asesoría y planeación</Reveal>
+      <Reveal as="p" delay={200}>
+        Cuéntanos tu proyecto. Revisamos tus necesidades, medidas, ubicación y características para definir la solución adecuada, y realizamos la medición en sitio.
+      </Reveal>
+    </div>
 
- {/* ============ 8. VALORES ============ */}
- <Slide id="valores" className="slide-valores">
- <Reveal as="span" className="kicker center">07 — Lo que nos define</Reveal>
- <Reveal as="h2" className="display center" delay={80}>
- Nuestros valores
- </Reveal>
+    <div className="paso">
+      <Reveal as="span" className="paso-num" delay={200}>02</Reveal>
+      <Reveal as="h3" delay={240}>Cotización</Reveal>
+      <Reveal as="p" delay={280}>
+        Preparamos la cotización de acuerdo con el proyecto.
+      </Reveal>
+    </div>
 
- <div className="valores-grid">
- <Reveal className="valor" delay={120}>
- <div className="valor-icon"><FiShield size={22} /></div>
- <h3>Calidad garantizada</h3>
- <p>Cada producto pasa por control riguroso antes de salir.</p>
- </Reveal>
- <Reveal className="valor" delay={200}>
- <div className="valor-icon"><FiTool size={22} /></div>
- <h3>Precisión técnica</h3>
- <p>Fabricación a medida con tolerancias mínimas.</p>
- </Reveal>
- <Reveal className="valor" delay={280}>
- <div className="valor-icon"><FiClock size={22} /></div>
- <h3>Compromiso</h3>
- <p>Cumplimos tiempos de entrega sin sacrificar acabados.</p>
- </Reveal>
- </div>
- </Slide>
+    <div className="paso">
+      <Reveal as="span" className="paso-num" delay={280}>03</Reveal>
+      <Reveal as="h3" delay={320}>Fabricación a medida</Reveal>
+      <Reveal as="p" delay={360}>
+        Fabricamos cada proyecto de acuerdo con las especificaciones definidas, cuidando funcionalidad, estética y calidad.
+      </Reveal>
+    </div>
 
+    <div className="paso">
+      <Reveal as="span" className="paso-num" delay={360}>04</Reveal>
+      <Reveal as="h3" delay={400}>Instalación profesional</Reveal>
+      <Reveal as="p" delay={440}>
+        Instalamos con orden, limpieza y atención al detalle para entregar resultados funcionales, duraderos y con acabados impecables.
+      </Reveal>
+    </div>
+  </div>
+</Slide>
+{/* ============ 8. VALORES ============ */}
+<Slide id="valores" className="slide-valores">
+  <Reveal as="span" className="kicker center">07 — Lo que nos define</Reveal>
+  <Reveal as="h2" className="display center" delay={80}>
+    Nuestros valores
+  </Reveal>
+
+  <div className="valores-grid">
+    <Reveal className="valor" delay={120}>
+      <div className="valor-icon"><FiShield size={22} /></div>
+      <h3>Calidad</h3>
+      <p>En cada solución, material y detalle.</p>
+    </Reveal>
+    <Reveal className="valor" delay={200}>
+      <div className="valor-icon"><FiTool size={22} /></div>
+      <h3>Compromiso</h3>
+      <p>Cumplir lo que ofrecemos y responder por cada proyecto.</p>
+    </Reveal>
+    <Reveal className="valor" delay={280}>
+      <div className="valor-icon"><FiClock size={22} /></div>
+      <h3>Confianza</h3>
+      <p>Construir relaciones duraderas a través de resultados y respaldo.</p>
+    </Reveal>
+  </div>
+</Slide>
  {/* ============ 9. PROYECTOS ============ */}
  <Slide id="proyectos" className="slide-proyectos">
  <Reveal as="span" className="kicker">08 — Proyectos</Reveal>

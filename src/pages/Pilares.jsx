@@ -133,15 +133,15 @@ export default function Pilares() {
 
   return (
     <Slide id="pilares" className="slide-pilares">
-      <Reveal as="span" className="kicker center" delay={40}>
+      <Reveal as="span" className="kicker center" delay={190}>
         Pilares que nos definen
       </Reveal>
 
-      <Reveal as="h2" className="display center" delay={80}>
+      <Reveal as="h2" className="display center" delay={0}>
         Historia · Misión · Garantía
       </Reveal>
 
-      <Reveal as="p" className="servicios-sub dysplay center" delay={140}>
+      <Reveal as="p" className="servicios-sub dysplay center" delay={0}>
         De dónde venimos → Qué nos mueve → Qué respaldamos
       </Reveal>
 
