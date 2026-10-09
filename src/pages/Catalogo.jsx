@@ -323,26 +323,27 @@ export default function Catalogo({ interactivo = false }) {
 
   return (
     <div className="catalogo-container">
-
-      {/* Buscador */}
-      <div className="catalogo-buscador">
-        <FaSearch className="catalogo-buscador-icon" />
-        <input
-          type="text"
-          placeholder="Buscar producto..."
-          value={busqueda}
-          onChange={(e) => setBusqueda(e.target.value)}
-        />
-        {busqueda && (
-          <button
-            className="catalogo-buscador-clear"
-            onClick={() => setBusqueda('')}
-            aria-label="Limpiar búsqueda"
-          >
-            <FaTimes />
-          </button>
-        )}
-      </div>
+{interactivo && (
+  <div className="catalogo-buscador">
+    {/* Buscador - Ahora sí es válido dentro de la etiqueta */}
+    <FaSearch className="catalogo-buscador-icon" />
+    <input
+      type="text"
+      placeholder="Buscar producto..."
+      value={busqueda}
+      onChange={(e) => setBusqueda(e.target.value)}
+    />
+    {busqueda && (
+      <button
+        className="catalogo-buscador-clear"
+        onClick={() => setBusqueda('')}
+        aria-label="Limpiar búsqueda"
+      >
+        <FaTimes />
+      </button>
+    )}
+  </div>
+)}
 
       {/* Filtros por categoría (se ocultan al buscar) */}
       {!busqueda && (
