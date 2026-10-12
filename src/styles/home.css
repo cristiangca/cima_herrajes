@@ -1050,7 +1050,11 @@
   text-decoration: none;
   cursor: pointer;
 }
-
+.servicio-destacado-trigger {
+  all: unset;
+  display: contents;
+  cursor: pointer;
+}
 .servicio-card-link:hover {
   text-decoration: none;
   color: inherit;

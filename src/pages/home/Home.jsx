@@ -695,8 +695,15 @@ const cerrarMenu = () => setMenuOpen(false)
     })}
   </div>
 
-  {/* Card horizontal destacada */}
-  <Reveal className="servicio-destacado" delay={200}>
+
+{/* Card horizontal destacada */}
+<Reveal className="servicio-destacado" delay={200}>
+  <button
+    type="button"
+    className="servicio-destacado-trigger"
+    onClick={() => abrirBurbujaGeneral()}
+    aria-label={`Cotizar ${SERVICIO_DESTACADO.titulo}`}
+  >
     <div className="servicio-destacado-media">
       <img src={SERVICIO_DESTACADO.img} alt={SERVICIO_DESTACADO.titulo} loading="lazy" />
     </div>
@@ -705,15 +712,11 @@ const cerrarMenu = () => setMenuOpen(false)
       <h3>{SERVICIO_DESTACADO.titulo}</h3>
       <p>{SERVICIO_DESTACADO.texto}</p>
     </div>
-    <Link
-      to={{}}
-      className="servicio-destacado-arrow"
-      aria-label={SERVICIO_DESTACADO.titulo}
-    >
+    <span className="servicio-destacado-arrow" aria-hidden="true">
       <FiArrowRight size={22} />
-    </Link>
-  </Reveal>
-
+    </span>
+  </button>
+</Reveal>
   {/* CTA final oscuro */}
   <Reveal delay={280}>
     <button
@@ -733,7 +736,7 @@ const cerrarMenu = () => setMenuOpen(false)
 {/* ============ 5. CÓMO TRABAJAMOS ============ */}
 <Slide id="como-trabajamos" className="slide-hacemos">
   <div className="split">
-    <Reveal className="split-media">
+    <Reveal className="split-media" delay={280}>
       <img
         src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
         alt="Taller Cima Herrajes"
