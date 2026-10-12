@@ -5,6 +5,26 @@ import { FaWhatsapp, FaSearch, FaTimes, FaShareAlt } from 'react-icons/fa';
 import { useServicioActivo } from './catalago/ServicioActivoContext';
 import inteligente from '../assets/inteligente.png';
 import sifon from '../assets/sifon.jpg';
+import d_ventana from '../assets/domotica/vidrio.png';
+import d_cerradura from '../assets/domotica/cerradura.png';
+import d_perciana from '../assets/domotica/percianas.png';
+import d_luces from '../assets/domotica/luces.png';
+// muebles
+import m_botiquines from '../assets/muebles/botiquines_espejo.jpg';
+import m_closet from '../assets/muebles/closet.jpg';
+import m_aluminio from '../assets/muebles/muebles_aluminio.jpg';
+import m_bano from '../assets/muebles/muebles_bano.jpg';
+import m_cocina from '../assets/muebles/muebles_cocina.jpg';
+import m_repisas from '../assets/muebles/repisas_libreros_vidrio.jpg';
+import m_vestidores from '../assets/muebles/vestidores_integrales.jpg';
+// acabados
+import acab_aluminio from '../assets/acabados/acabados_aluminio.jpg';
+import acab_vidrio from '../assets/acabados/acabados_vidrio.jpg';
+import celosias from '../assets/acabados/celosias_louvers_aluminio.jpg';
+import lambrines from '../assets/acabados/lambrines_decorativos.jpg';
+import acm from '../assets/acabados/paneles_acm.jpg';
+import revestimientos from '../assets/acabados/revestimientos.jpg';
+import vidrio_pintado from '../assets/acabados/vidrio_pintado.jpg';
 const NUMERO_WHATSAPP = "521234567890";
 
 // ===== CATEGORÍAS =====
@@ -219,44 +239,44 @@ export const CATEGORIAS = [
     ]
 },
   {
-    "TITULO": "Muebles Personalizados",
-    "slug": "muebles-personalizados",
-    "productos": [
-      { "id": "mue-bano", "TITULO": "Muebles de Baño", "slug": "muebles-bano", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-cocina", "TITULO": "Muebles de Cocina", "slug": "muebles-cocina", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-closets", "TITULO": "Closets", "slug": "closets", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-aluminio", "TITULO": "Muebles de Aluminio", "slug": "muebles-aluminio", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-repisas", "TITULO": "Repisas y Libreros de Vidrio", "slug": "repisas-libreros", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-vestidores", "TITULO": "Vestidores Integrales", "slug": "vestidores", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "mue-botiquines", "TITULO": "Botiquines con Espejo", "slug": "botiquines", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" }
-    ]
-  },
+  "TITULO": "Muebles Personalizados",
+  "slug": "muebles-personalizados",
+  "productos": [
+    { "id": "mue-bano", "TITULO": "Muebles de Baño", "slug": "muebles-bano", "img": m_bano },
+    { "id": "mue-cocina", "TITULO": "Muebles de Cocina", "slug": "muebles-cocina", "img": m_cocina },
+    { "id": "mue-closets", "TITULO": "Closets", "slug": "closets", "img": m_closet },
+    { "id": "mue-aluminio", "TITULO": "Muebles de Aluminio", "slug": "muebles-aluminio", "img": m_aluminio },
+    { "id": "mue-repisas", "TITULO": "Repisas y Libreros de Vidrio", "slug": "repisas-libreros", "img": m_repisas },
+    { "id": "mue-vestidores", "TITULO": "Vestidores Integrales", "slug": "vestidores", "img": m_vestidores },
+    { "id": "mue-botiquines", "TITULO": "Botiquines con Espejo", "slug": "botiquines", "img": m_botiquines }
+  ]
+},
   {
     "TITULO": "Domótica",
     "slug": "domotica",
     "productos": [
       { "id": "dom-persianas", "TITULO": "Domótica para Persianas", "slug": "persianas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
       { "id": "dom-puertas", "TITULO": "Domótica para Puertas", "slug": "puertas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "dom-iluminacion", "TITULO": "Domótica para Iluminación", "slug": "iluminacion", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "dom-cerraduras", "TITULO": "Cerraduras Inteligentes", "slug": "cerraduras-inteligentes", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "dom-smart-glass", "TITULO": "Control para Vidrio Inteligente", "slug": "smart-glass", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
+      { "id": "dom-iluminacion", "TITULO": "Domótica para Iluminación", "slug": "iluminacion", "img": d_luces },
+      { "id": "dom-cerraduras", "TITULO": "Cerraduras Inteligentes", "slug": "cerraduras-inteligentes", "img": d_cerradura },
+      { "id": "dom-smart-glass", "TITULO": "Control para Vidrio Inteligente", "slug": "smart-glass", "img": d_ventana },
       { "id": "dom-motores", "TITULO": "Motores Automatizados", "slug": "motores-automatizados", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "dom-sensores", "TITULO": "Sensores y Control Inteligente", "slug": "sensores-control", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" }
+      { "id": "dom-sensores", "TITULO": "Sensores y Control Inteligente", "slug": "sensores-control", "img": d_perciana }
     ]
   },
-  {
-    "TITULO": "Acabados Arquitectónicos",
-    "slug": "acabados-arquitectonicos",
-    "productos": [
-      { "id": "acab-aluminio", "TITULO": "Acabados en Aluminio", "slug": "aluminio", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-vidrio", "TITULO": "Acabados en Vidrio", "slug": "vidrio", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-revestimientos", "TITULO": "Revestimientos", "slug": "revestimientos", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-acm", "TITULO": "Paneles Compuestos de Aluminio (ACM)", "slug": "paneles-acm", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-vidrio-lacado", "TITULO": "Revestimientos en Vidrio Pintado", "slug": "vidrio-lacado", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-celosias", "TITULO": "Celosías y Louvers de Aluminio", "slug": "celosias-louvers", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "acab-lambrines", "TITULO": "Lambrines Decorativos", "slug": "lambrines-decorativos", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" }
-    ]
-  }
+ {
+  "TITULO": "Acabados Arquitectónicos",
+  "slug": "acabados-arquitectonicos",
+  "productos": [
+    { "id": "acab-aluminio", "TITULO": "Acabados en Aluminio", "slug": "aluminio", "img": acab_aluminio },
+    { "id": "acab-vidrio", "TITULO": "Acabados en Vidrio", "slug": "vidrio", "img": acab_vidrio },
+    { "id": "acab-revestimientos", "TITULO": "Revestimientos", "slug": "revestimientos", "img": revestimientos },
+    { "id": "acab-acm", "TITULO": "Paneles Compuestos de Aluminio (ACM)", "slug": "paneles-acm", "img": acm },
+    { "id": "acab-vidrio-lacado", "TITULO": "Revestimientos en Vidrio Pintado", "slug": "vidrio-lacado", "img": vidrio_pintado },
+    { "id": "acab-celosias", "TITULO": "Celosías y Louvers de Aluminio", "slug": "celosias-louvers", "img": celosias },
+    { "id": "acab-lambrines", "TITULO": "Lambrines Decorativos", "slug": "lambrines-decorativos", "img": lambrines }
+  ]
+}
 ];
 // ===== COLORES LED DISPONIBLES =====
 const COLORES_LED = [

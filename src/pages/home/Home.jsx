@@ -825,23 +825,23 @@ const cerrarMenu = () => setMenuOpen(false)
 <Slide id="proceso" className="slide-proceso">
   <Reveal as="span" className="kicker">06 — Nuestro proceso</Reveal>
   <Reveal as="h2" className="display" delay={80}>
-    Cuatro pasos simples, un resultado impecable.
+    Cuatro pasos para lograr un resultado impecable.
   </Reveal>
 
   <div className="pasos">
     <div className="paso">
       <Reveal as="span" className="paso-num" delay={120}>01</Reveal>
-      <Reveal as="h3" delay={160}>Asesoría y planeación</Reveal>
+      <Reveal as="h3" delay={160}>Asesoría y medición</Reveal>
       <Reveal as="p" delay={200}>
-        Cuéntanos tu proyecto. Revisamos tus necesidades, medidas, ubicación y características para definir la solución adecuada, y realizamos la medición en sitio.
+        Conocemos tu proyecto, revisamos tus requerimientos y realizamos las mediciones en sitio para definir la mejor solución.
       </Reveal>
     </div>
 
     <div className="paso">
       <Reveal as="span" className="paso-num" delay={200}>02</Reveal>
-      <Reveal as="h3" delay={240}>Cotización</Reveal>
+      <Reveal as="h3" delay={240}>Cotización y propuesta</Reveal>
       <Reveal as="p" delay={280}>
-        Preparamos la cotización de acuerdo con el proyecto.
+        Preparamos una cotización detallada de acuerdo con las medidas, especificaciones y características de tu proyecto.
       </Reveal>
     </div>
 
@@ -849,15 +849,15 @@ const cerrarMenu = () => setMenuOpen(false)
       <Reveal as="span" className="paso-num" delay={280}>03</Reveal>
       <Reveal as="h3" delay={320}>Fabricación a medida</Reveal>
       <Reveal as="p" delay={360}>
-        Fabricamos cada proyecto de acuerdo con las especificaciones definidas, cuidando funcionalidad, estética y calidad.
+        Fabricamos cada proyecto con materiales de calidad, precisión y atención a cada detalle.
       </Reveal>
     </div>
 
     <div className="paso">
       <Reveal as="span" className="paso-num" delay={360}>04</Reveal>
-      <Reveal as="h3" delay={400}>Instalación profesional</Reveal>
+      <Reveal as="h3" delay={400}>Instalación y entrega</Reveal>
       <Reveal as="p" delay={440}>
-        Instalamos con orden, limpieza y atención al detalle para entregar resultados funcionales, duraderos y con acabados impecables.
+        Realizamos la instalación con profesionalismo y cuidado, garantizando un resultado funcional, limpio y con excelentes acabados.
       </Reveal>
     </div>
   </div>
