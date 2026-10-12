@@ -2,14 +2,14 @@
 import { createContext, useContext, useState, useCallback, useMemo } from 'react';
 import { SERVICIO_A_CATEGORIAS } from './map-servicios-categorias.jsx';
 
-const ServicioActivoContext = createContext(null);
+const ServicioActivoContext = createContext({ servicioActivo: null, limpiarServicio: () => {} });
 
 export function ServicioActivoProvider({ children }) {
   const [servicioActivo, setServicioActivo] = useState(null);
 
-  const activarServicio = useCallback((slugServicio) => {
+  const activarServicio = useCallback((slugServicio, titulo) => {
     const categorias = SERVICIO_A_CATEGORIAS[slugServicio] || [];
-    setServicioActivo({ slug: slugServicio, categorias });
+    setServicioActivo({ slug: slugServicio, titulo, categorias });
   }, []);
 
   const limpiarServicio = useCallback(() => setServicioActivo(null), []);

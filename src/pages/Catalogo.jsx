@@ -1,11 +1,10 @@
 import { useState, useMemo, useCallback, useEffect, useDeferredValue, memo } from 'react';
 import '../styles/catalogo.css';
-import imagen from '../assets/ventana.png';
-import imagen2 from '../assets/barandal.png';
-import imagen3 from '../assets/baño.png';
+
 import { FaWhatsapp, FaSearch, FaTimes, FaShareAlt } from 'react-icons/fa';
 import { useServicioActivo } from './catalago/ServicioActivoContext';
-
+import inteligente from '../assets/inteligente.png';
+import sifon from '../assets/sifon.jpg';
 const NUMERO_WHATSAPP = "521234567890";
 
 // ===== CATEGORÍAS =====
@@ -42,7 +41,7 @@ export const CATEGORIAS = [
     { id: "v-vasista", TITULO: "Vasista", slug: "vasista", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/5-vasista.webp" },
     { id: "v-batiente", TITULO: "Batiente", slug: "batiente", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/6-batiente.webp" },
     { id: "v-combinada", TITULO: "Combinada", slug: "combinada", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/7-combinada.webp" },
-    { id: "v-guillotina", TITULO: "Guillotina", slug: "guillotina", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/8-guillotina.webp" },
+    { id: "v-sifon", TITULO: "Sifón", slug: "sifon", img: sifon },
     { id: "v-oscilobatiente", TITULO: "Oscilobatiente", slug: "oscilobatiente", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/9-oscilobatiente.webp" },
     { id: "v-pivotante", TITULO: "Pivotante", slug: "pivotante", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/10-pivotante.webp" },
     { id: "v-plegable", TITULO: "Plegable", slug: "plegable", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/11-plegable.webp" },
@@ -94,8 +93,8 @@ export const CATEGORIAS = [
 }
   ,
  {
-  TITULO: "Canceles",
-  slug: "canceles",
+  TITULO: "Ventanales",
+  slug: "ventanales",
   productos: [
     { id: "c-fijo", TITULO: "Fijo", slug: "fijo", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/1-fijo.webp" },
     { id: "c-fijo-corredizo", TITULO: "Fijo Corredizo", slug: "fijo-corredizo", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/2-fijo-corredizo.webp" },
@@ -109,8 +108,8 @@ export const CATEGORIAS = [
   ]
 },
 {
-  TITULO: "Mamparas",
-  slug: "mamparas",
+  TITULO: "Canceles de Baño",
+  slug: "canceles-de-bano",
   productos: [
     { id: "m-frontal", TITULO: "Frontal", slug: "frontal", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/1-frontal.webp" },
     { id: "m-rectangular", TITULO: "Rectangular", slug: "rectangular", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/2-rectangular.webp" },
@@ -152,6 +151,7 @@ export const CATEGORIAS = [
     { id: "p-de-seguridad", TITULO: "De Seguridad", slug: "de-seguridad", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/3-de-seguridad.webp" },
     { id: "p-reflectiva", TITULO: "Reflectiva", slug: "reflectiva", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/4-reflectiva.webp" },
     { id: "p-para-oficina", TITULO: "Para Oficina", slug: "para-oficina", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/5-para-oficina.webp" },
+    {id: "p-inteligente", TITULO: "Inteligente", slug: "inteligente", img: inteligente},
     { id: "p-decorativa", TITULO: "Decorativa", slug: "decorativa", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/6-decorativa.webp" },
     { id: "p-control-solar", TITULO: "Control Solar", slug: "control-solar", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/7-control-solar.webp" }
   ]
@@ -193,32 +193,31 @@ export const CATEGORIAS = [
     { id: "ps-ultra", TITULO: "Ultra", slug: "ultra", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/ultra.webp" }
   ]
 },
-  {
-    "TITULO": "Cubiertas",
-    "slug": "cubiertas",
-    "productos": [
-      { "id": "cub-vidrio", "TITULO": "Cubiertas de Vidrio", "slug": "vidrio", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-bano", "TITULO": "Cubiertas de Baño", "slug": "bano", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-cocina", "TITULO": "Cubiertas de Cocina", "slug": "cocina", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-mesas", "TITULO": "Cubiertas para Mesas", "slug": "mesas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-templado", "TITULO": "Cubiertas de Vidrio Templado", "slug": "templado", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-lacobel", "TITULO": "Cubiertas de Cristal Pintado", "slug": "cristal-pintado", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "cub-repisas", "TITULO": "Cubiertas y Repisas", "slug": "repisas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" }
-    ]
-  },
+{
+  "TITULO": "Cubiertas",
+  "slug": "cubiertas",
+  "productos": [
+    { "id": "cub-vidrio", "TITULO": "Cubiertas de Vidrio", "slug": "vidrio", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/1-comedor.webp" },
+    { "id": "cub-bano", "TITULO": "Cubiertas de Baño", "slug": "bano", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/2-escritorio.webp" },
+    { "id": "cub-cocina", "TITULO": "Cubiertas de Cocina", "slug": "cocina", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/3-cuadrado.webp" },
+    { "id": "cub-mesas", "TITULO": "Cubiertas para Mesas", "slug": "mesas", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/4-rectangular.webp" },
+    { "id": "cub-templado", "TITULO": "Cubiertas de Vidrio Templado", "slug": "templado", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/5-circular.webp" },
+    { "id": "cub-lacobel", "TITULO": "Cubiertas de Cristal Pintado", "slug": "cristal-pintado", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/6-esmerilado.webp" },
+    { "id": "cub-repisas", "TITULO": "Cubiertas y Repisas", "slug": "repisas", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/7-personalizada.webp" },
+    { "id": "cub-entrepano", "TITULO": "Cubiertas Para Entrepaño", "slug": "entrepano", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/8-para-entrepano.webp" }
+  ]
+},
   {
     "TITULO": "Estructuras",
     "slug": "estructuras",
     "productos": [
-      { "id": "est-aluminio", "TITULO": "Estructuras de Aluminio", "slug": "aluminio", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-vidrio", "TITULO": "Estructuras de Vidrio", "slug": "vidrio", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-techos-domos", "TITULO": "Techos y Domos", "slug": "techos-domos", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-pergolas", "TITULO": "Pérgolas de Aluminio y Vidrio", "slug": "pergolas", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-tragaluces", "TITULO": "Tragaluces y Marquesinas", "slug": "tragaluces", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-fachadas", "TITULO": "Fachadas Integrales", "slug": "fachadas", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-      { "id": "est-solarios", "TITULO": "Solarios de Vidrio", "slug": "solarios", "img": "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" }
+      { "id": "est-domo", "TITULO": "Domo", "slug": "domo", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/1-domo.webp" },
+      { "id": "est-pergola", "TITULO": "Pérgola", "slug": "pergola", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/2-pergola.webp" },
+      { "id": "est-techo", "TITULO": "Techo", "slug": "techo", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/3-techo.webp" },
+      { "id": "est-cerramiento", "TITULO": "Cerramiento", "slug": "cerramiento", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/4-cerramiento.webp" },
+      { "id": "est-policarbonato", "TITULO": "De Policarbonato", "slug": "de-policarbonato", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/5-de-policarbonato.webp" }
     ]
-  },
+},
   {
     "TITULO": "Muebles Personalizados",
     "slug": "muebles-personalizados",
@@ -259,11 +258,22 @@ export const CATEGORIAS = [
     ]
   }
 ];
-
+// ===== COLORES LED DISPONIBLES =====
+const COLORES_LED = [
+  { id: 'led-blanco-calido', nombre: 'Blanco Cálido', hex: '#FFD9A0' },
+  { id: 'led-blanco-frio',   nombre: 'Blanco Frío',   hex: '#E8F4FF' },
+  { id: 'led-luz-dia',       nombre: 'Luz Día',       hex: '#FFFFFF' },
+  { id: 'led-ambar',         nombre: 'Ámbar',         hex: '#FFB347' },
+  { id: 'led-rgb',           nombre: 'RGB',           hex: 'linear-gradient(90deg,#FF0000,#FFD700,#00FF00,#00BFFF,#8A2BE2)' },
+  { id: 'led-azul',          nombre: 'Azul',          hex: '#4FC3F7' },
+];
 // Índice plano precalculado para búsquedas rápidas
 const PRODUCTOS_FLAT = CATEGORIAS.flatMap((cat) =>
   cat.productos.map((prod) => ({ ...prod, categoriaPadre: cat.TITULO, categoriaSlug: cat.slug }))
 );
+const PRODUCTOS_POR_CATEGORIA = new Map(CATEGORIAS.map((cat) => [
+  cat.slug, PRODUCTOS_FLAT.filter((producto) => producto.categoriaSlug === cat.slug)
+]));
 
 // ===== Item memoizado =====
 const CatalogoItem = memo(function CatalogoItem({
@@ -272,12 +282,13 @@ const CatalogoItem = memo(function CatalogoItem({
   return (
     <div className={`catalogo-item ${destacado ? 'destacado-azul' : ''}`}>
       <div className="catalogo-img-wrapper" onClick={() => onOpenModal(producto)}>
-        <img src={producto.img} alt={producto.TITULO} loading="lazy" />
+        <img src={producto.img} alt={producto.TITULO} loading="lazy" decoding="async" />
       </div>
       <h2>{producto.TITULO}</h2>
-      {producto.categoriaPadre && (
+      {destacado && <span className="catalogo-recomendado">De interés para tu servicio</span>}
+      {/* {producto.categoriaPadre && (
         <span className="categoria-tag">{producto.categoriaPadre}</span>
-      )}
+      )} */}
       {interactivo && (
         <div className="catalogo-item-acciones">
           <a
@@ -323,19 +334,21 @@ export default function Catalogo({ interactivo = false }) {
     if (primera) setCategoriaSeleccionada(primera);
     setBusqueda('');
     const el = document.getElementById('que-hacemos');
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    if (el) el.scrollIntoView({
+      behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth',
+      block: 'start'
+    });
   }, [servicioActivo]);
 
   // Productos de la categoría activa
   const productosCategoria = useMemo(() => {
-    const cat = CATEGORIAS.find((c) => c.slug === categoriaSeleccionada);
-    return cat ? cat.productos : [];
+    return PRODUCTOS_POR_CATEGORIA.get(categoriaSeleccionada) || [];
   }, [categoriaSeleccionada]);
 
   // Búsqueda sobre el índice plano
   const productosVisibles = useMemo(() => {
     if (!busquedaDiferida.trim()) return productosCategoria;
-    const q = busquedaDiferida.toLowerCase();
+    const q = busquedaDiferida.trim().toLowerCase();
     return PRODUCTOS_FLAT.filter((p) => p.TITULO.toLowerCase().includes(q));
   }, [busquedaDiferida, productosCategoria]);
 
@@ -369,8 +382,7 @@ export default function Catalogo({ interactivo = false }) {
 
   const setCategoria = useCallback((slug) => {
     setCategoriaSeleccionada(slug);
-    if (servicioActivo) limpiarServicio();
-  }, [servicioActivo, limpiarServicio]);
+  }, []);
 
   // Categorías relacionadas al servicio activo (para resaltar)
   const categoriasDestacadas = useMemo(
@@ -380,6 +392,12 @@ export default function Catalogo({ interactivo = false }) {
 
   return (
     <div className="catalogo-container">
+      <div className="catalogo-servicio-aviso" role="status" aria-live="polite">
+        {servicioActivo && <>
+          <p>Opciones en azul para: <strong>{servicioActivo.titulo || servicioActivo.slug}</strong></p>
+          <button type="button" onClick={limpiarServicio}>Quitar recomendaciones</button>
+        </>}
+      </div>
       {interactivo && (
         <div className="catalogo-buscador">
           <FaSearch className="catalogo-buscador-icon" />
@@ -404,6 +422,9 @@ export default function Catalogo({ interactivo = false }) {
             return (
               <button
                 key={cat.slug}
+                type="button"
+                aria-pressed={categoriaSeleccionada === cat.slug}
+                aria-label={`${cat.TITULO}${relacionada ? ', de interés para el servicio seleccionado' : ''}`}
                 className={`catalogo-filtro ${categoriaSeleccionada === cat.slug ? 'active' : ''} ${relacionada ? 'relacionada-azul' : ''}`}
                 onClick={() => setCategoria(cat.slug)}
               >
@@ -414,27 +435,45 @@ export default function Catalogo({ interactivo = false }) {
         </div>
       )}
 
-      <div className="catalogo-grid">
-        {productosVisibles.map((producto) => {
-          const destacado = servicioActivo && (
-            producto.categoriaSlug
-              ? categoriasDestacadas.has(producto.categoriaSlug)
-              : categoriasDestacadas.has(categoriaSeleccionada)
-          );
-          return (
-            <CatalogoItem
-              key={producto.id}
-              producto={producto}
-              interactivo={interactivo}
-              onOpenModal={abrirModal}
-              onWhatsApp={obtenerEnlaceWhatsApp}
-              onCompartir={compartirProducto}
-              onVerProducto={irAProducto}
-              destacado={destacado}
+     <div className="catalogo-grid">
+  {categoriaSeleccionada === 'espejos-led-touch' && !busqueda && (
+    <div className="catalogo-colores-led">
+      <h3 className="catalogo-colores-led-titulo">Colores LED disponibles</h3>
+      <div className="catalogo-colores-led-lista">
+        {COLORES_LED.map((color) => (
+          <div key={color.id} className="catalogo-color-led-item" title={color.nombre}>
+            <span
+              className="catalogo-color-led-swatch"
+              style={{ background: color.hex }}
+              aria-hidden="true"
             />
-          );
-        })}
+            <span className="catalogo-color-led-nombre">{color.nombre}</span>
+          </div>
+        ))}
       </div>
+    </div>
+  )}
+
+  {productosVisibles.map((producto) => {
+    const destacado = servicioActivo && (
+      producto.categoriaSlug
+        ? categoriasDestacadas.has(producto.categoriaSlug)
+        : categoriasDestacadas.has(categoriaSeleccionada)
+    );
+    return (
+      <CatalogoItem
+        key={producto.id}
+        producto={producto}
+        interactivo={interactivo}
+        onOpenModal={abrirModal}
+        onWhatsApp={obtenerEnlaceWhatsApp}
+        onCompartir={compartirProducto}
+        onVerProducto={irAProducto}
+        destacado={destacado}
+      />
+    );
+  })}
+</div>
 
       {productoModal && (
         <div className="catalogo-modal-overlay" onClick={cerrarModal}>

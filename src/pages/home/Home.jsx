@@ -21,7 +21,7 @@ import especiales from '../../assets/especiales.png'
 import Catalogo from '../Catalogo'
 import soporte from '../../assets/soporte.png'
 import Pilares from '../Pilares'
-import { ServicioActivoProvider } from '../catalago/ServicioActivoContext'
+import { ServicioActivoProvider, useServicioActivo } from '../catalago/ServicioActivoContext'
 
 // ============================================================
 // UTILIDAD WHATSAPP
@@ -438,6 +438,11 @@ const REFERIDOS = [
 // HOME
 // ============================================================
 export default function Home() {
+ return <ServicioActivoProvider><HomeContenido /></ServicioActivoProvider>
+}
+
+function HomeContenido() {
+ const { activarServicio } = useServicioActivo()
  // Estado de la burbuja de WhatsApp
  const [whatsappOpen, setWhatsappOpen] = useState(false)
  const [mensajeWhatsapp, setMensajeWhatsapp] = useState('')
@@ -491,7 +496,6 @@ const [menuOpen, setMenuOpen] = useState(false)
 // Cierra el menú al hacer click en un link
 const cerrarMenu = () => setMenuOpen(false)
  return (
-    <ServicioActivoProvider>
  <div className="landing">
  <ScrollIndicator />
  <header className={`landing-header ${menuOpen ? 'open' : ''}`}>
@@ -667,7 +671,10 @@ const cerrarMenu = () => setMenuOpen(false)
       <a
         href="#que-hacemos"
         className="servicio-card-link"
-        onClick={() => setServicioActivo(s.slug)}
+        onClick={(event) => {
+          event.preventDefault()
+          activarServicio(s.slug, s.titulo)
+        }}
       >
       
             <div className="servicio-card-media">
@@ -699,7 +706,7 @@ const cerrarMenu = () => setMenuOpen(false)
       <p>{SERVICIO_DESTACADO.texto}</p>
     </div>
     <Link
-      to={`/servicios/${SERVICIO_DESTACADO.slug}`}
+      to={{}}
       className="servicio-destacado-arrow"
       aria-label={SERVICIO_DESTACADO.titulo}
     >
@@ -1043,6 +1050,5 @@ const cerrarMenu = () => setMenuOpen(false)
  </button>
  </div>
  </div>
- </ServicioActivoProvider>
  )
 }
