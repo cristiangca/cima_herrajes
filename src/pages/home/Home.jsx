@@ -13,7 +13,8 @@ import {
 import { FaWhatsapp } from 'react-icons/fa'
 import '../../styles/home.css'
 import logo from '../../assets/cima.jpg'
-import banner from '../../assets/hero-2.png'
+import banner from '../../assets/hero.png'
+import edificio from '../../assets/Edificio.png'
 import canceleria from '../../assets/baño.png'
 import barandales from '../../assets/barandal.png'
 import ventanales from '../../assets/ventana.png'
@@ -21,6 +22,7 @@ import especiales from '../../assets/especiales.png'
 import Catalogo from '../Catalogo'
 import soporte from '../../assets/soporte.png'
 import Pilares from '../Pilares'
+
 import { ServicioActivoProvider, useServicioActivo } from '../catalago/ServicioActivoContext'
 
 // ============================================================
@@ -399,9 +401,9 @@ const SERVICIO_DESTACADO = {
 
 const PROYECTOS = [
  {
- tipo: 'Residencial',
- nombre: 'Torre Alameda',
- img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1400&q=80',
+ tipo: 'corporativo',
+ nombre: 'Gravase',
+ img: edificio,
  large: true
  },
  {
