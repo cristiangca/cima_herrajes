@@ -77,9 +77,10 @@ function HomeContenido() {
       <ServiciosInicio abrirBurbujaGeneral={abrirBurbujaGeneral} />
       <Pilares />
       <ComoTrabajamos />
-      <CatalogoInicio />
-      <Proceso />
-      <Valores />
+ {/* <CatalogoInicio />   // Componente que muestra el catálogo inicial */}
+      {/* <Proceso />          // Componente que describe el proceso de trabajo */}
+      {/* <Valores />          // Componente que presenta los valores de la empresa */}
+    
       <Proyectos />
       <Testimonios />
       <Contacto />

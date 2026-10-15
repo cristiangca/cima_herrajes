@@ -31,7 +31,7 @@ export default function Encabezado() {
   <nav className={`landing-nav ${menuOpen ? 'open' : ''}`}>
     <a href="#inicio"    onClick={() => setMenuOpen(false)}>Inicio</a>
     <a href="#nosotros"  onClick={() => setMenuOpen(false)}>Nosotros</a>
-    <a href="#servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
+    <a href="/servicios" onClick={() => setMenuOpen(false)}>Servicios</a>
     <a href="#proyectos" onClick={() => setMenuOpen(false)}>Proyectos</a>
     <a href="#referidos" onClick={() => setMenuOpen(false)}>Testimonios</a>
     <a href="#contacto"  onClick={() => setMenuOpen(false)}>Contacto</a>
