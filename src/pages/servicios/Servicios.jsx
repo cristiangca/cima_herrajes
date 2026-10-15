@@ -3,7 +3,7 @@ import '../../styles/home.css'
 import './servicios.css'
 import DetalleProducto from './DetalleProducto'
 import Catalogo from '../Catalogo'
-import ComoTrabajamos from '../inicio/componentes/comoTrabajamos.jsx'
+import ComoTrabajamos from '../inicio/componentes/ComoTrabajamos'
 import Proceso from '../inicio/componentes/Proceso.jsx'
 import Valores from '../inicio/componentes/Valores.jsx'
 
@@ -19,7 +19,7 @@ export default function Servicios() {
       <div>
 <Encabezado/>
  <Proceso /> 
-      <ComoTrabajamos /> 
+      <ComoTrabajamos/> 
         <Catalogo interactivo={false} />
 <Valores/>
       </div>
