@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { FaWhatsapp, FaShareAlt, FaArrowLeft } from 'react-icons/fa'
-import { CATEGORIAS } from '../Catalogo'
+import { CATEGORIAS } from '../../contenido/catalogo'
 import '../../styles/catalogo.css'
 
-const NUMERO_WHATSAPP = "521234567890"; // Mismo número que en Catalogo
+import { CONTACTO } from '../../contenido/sitio'
+const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 export default function DetalleProducto({ idproductos }) {
   let productoEncontrado = null
@@ -56,7 +57,7 @@ export default function DetalleProducto({ idproductos }) {
         await navigator.clipboard.writeText(url);
         alert('Enlace copiado al portapapeles');
       }
-    } catch (err) {
+    } catch {
       // Cancelado por el usuario
     }
   };

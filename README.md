@@ -1,16 +1,40 @@
-# React + Vite
+# CIMA Herrajes — sitio web de estadías
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Sitio para presentar servicios y productos de CIMA Herrajes y solicitar cotizaciones por WhatsApp.
 
-Currently, two official plugins are available:
+Para el personal de la empresa: consultar [el manual de mantenimiento](docs/MANUAL.md) y [la lista de entrega](docs/ENTREGA.md).
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Ejecutar y verificar
 
-## React Compiler
+Instalar Node.js con npm y abrir una terminal en la carpeta del proyecto:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```sh
+npm ci
+npm run dev
+```
 
-## Expanding the ESLint configuration
+Abrir la dirección indicada en la terminal. Ctrl+C detiene el servidor.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- `npm run lint`: revisión del código.
+- `npm run build`: genera la carpeta publicable `dist`.
+- `npm run preview`: permite revisar la compilación localmente.
+
+Conservar `package-lock.json` para reproducir las dependencias. No editar `dist`: se regenera en cada compilación.
+
+## Organización
+
+| Ubicación | Función |
+| --- | --- |
+| src/contenido/sitio.js | Contacto y textos de portada |
+| src/contenido/inicio.js | Servicios, proyectos, testimonios e imágenes de inicio |
+| src/contenido/catalogo.js | Categorías y productos |
+| src/styles/tema.css | Colores generales de inicio |
+| src/styles/ | Estilos de inicio, catálogo y pilares |
+| src/pages/ | Páginas y comportamiento |
+| src/components/ | Componentes compartidos |
+| src/assets/ | Imágenes locales |
+| public/ | Archivos públicos, iconos y redirecciones |
+| src/App.jsx | Rutas del sitio |
+| index.html | Idioma, título, descripción y analítica |
+
+Usa React, Vite y React Router. No incluye servidor, base de datos ni panel funcional para subir productos. Los cambios requieren editar archivos, compilar y publicar. Rutas: /, /catalogo, /servicios y /servicios/:idproductos.
