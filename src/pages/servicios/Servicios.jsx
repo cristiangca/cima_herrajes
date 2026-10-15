@@ -6,6 +6,7 @@ import Catalogo from '../Catalogo'
 import ComoTrabajamos from '../inicio/componentes/comoTrabajamos.jsx'
 import Proceso from '../inicio/componentes/Proceso.jsx'
 import Valores from '../inicio/componentes/Valores.jsx'
+
 import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 
 
@@ -17,6 +18,7 @@ export default function Servicios() {
     return (
       <div>
 <Encabezado/>
+ <Proceso /> 
       {/*  <ComoTrabajamos /> */}
         <Catalogo interactivo={false} />
 <Valores/>
