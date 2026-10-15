@@ -1,18 +1,7 @@
 /* ============================================================
    BASE
    ============================================================ */
-:root {
-  --accent: #2563eb;
-  --accent-hover: #1d4ed8;
-  --ink: #0f172a;
-  --ink-soft: #1e293b;
-  --muted: #64748b;
-  --muted-soft: #94a3b8;
-  --line: #e2e8f0;
-  --bg-soft: #fafbfc;
-  --green: #25d366;
-  --green-hover: #1ebe5b;
-}
+
 
 .landing {
   background: #fff;

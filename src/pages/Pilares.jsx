@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion as Motion, AnimatePresence } from "framer-motion"
 import { FiArrowLeft, FiArrowRight } from "react-icons/fi"
 import "../styles/pilares.css"
 
@@ -182,7 +182,7 @@ export default function Pilares() {
 
         <div className="esencia-stage">
           <AnimatePresence mode="wait" custom={direction}>
-            <motion.article
+            <Motion.article
               key={pilar.id}
               custom={direction}
               variants={variants}
@@ -222,12 +222,12 @@ export default function Pilares() {
               ))}
 
               {pilar.cierre && <p className="esencia-cierre">{pilar.cierre}</p>}
-            </motion.article>
+            </Motion.article>
           </AnimatePresence>
         </div>
 
         <div className="esencia-progreso">
-          <motion.span
+          <Motion.span
             className="esencia-progreso-bar"
             animate={{ width: `${((index + 1) / total) * 100}%` }}
             transition={{ type: "spring", stiffness: 200, damping: 30 }}
