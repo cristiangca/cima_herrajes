@@ -6,7 +6,7 @@ export default function Proceso() {
 <Slide id="proceso" className="slide-proceso">
   <Reveal as="span" className="kicker">06 — Nuestro proceso</Reveal>
   <Reveal as="h2" className="display" delay={80}>
-    Cuatro pasos para lograr un resultado impecable.
+    Cuatro pasos simples, un resultado impecable.
   </Reveal>
 
   <div className="pasos">
