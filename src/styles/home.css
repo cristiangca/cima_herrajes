@@ -1,14 +1,280 @@
 /* ============================================================
    BASE
    ============================================================ */
+servicio
+ .servicios-especialidades {
+  max-width: 1400px;
+  margin: 120px auto;
+  padding: 0 40px;
+}
 
+.servicios-especialidades-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
 
+.servicios-especialidades-header span {
+  display: block;
+  margin-bottom: 12px;
+  color: #2563eb; /* Azul más vibrante y moderno */
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.servicios-especialidades-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.servicios-especialidades-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.especialidad-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px -2px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.especialidad-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+  border-color: #e2e8f0;
+}
+
+/* Contenedor de imagen para efecto zoom sin desbordamiento */
+.especialidad-img-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.especialidad-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.especialidad-card:hover img {
+  transform: scale(1.06); /* Zoom sutil y elegante al hacer hover */
+}
+
+.especialidad-card span {
+  display: block;
+  margin: 24px 24px 8px;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.especialidad-card h3 {
+  margin: 0 24px 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: -0.01em;
+}
+
+.especialidad-card p {
+  margin: 0 24px 28px;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1; /* Asegura que la altura interna se distribuya de forma uniforme */
+}
+
+/* --- Media Queries Responsivas --- */
+@media (max-width: 1200px) {
+  .servicios-especialidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicios-especialidades {
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .servicios-especialidades-header {
+    margin-bottom: 40px;
+  }
+
+  .servicios-especialidades-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .especialidad-img-container {
+    height: 200px;
+  }
+}
+.servicios-especialidades-header span {
+  display: block;
+  margin-bottom: 12px;
+  color: #1d4ed8; /* Azul más oscuro y con mayor contraste (Blue 700) */
+  font-size: 0.85rem;
+  .especialidad-action {
+  margin: 0 24px 28px;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s ease;
+}
+
+.especialidad-card:hover .especialidad-action {
+  gap: 10px; /* Efecto sutil de desplazamiento en la flecha al hacer hover */
+}
+  font-weight: 800; /* Más peso para mejor lectura */
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+ aquie 
 .landing {
   background: #fff;
   color: var(--ink);
   font-family: system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+}
+.landing-nav-highlight {
+  position: relative;
+  color: #2563eb !important;
+  font-weight: 600;
+}
+.servicios-beneficios {
+  max-width: 1200px;
+  margin: 5rem auto;
+  padding: 0 2rem;
+}
+
+.servicios-beneficios__header {
+  text-align: center;
+  max-width: 700px;
+  margin: 0 auto 3rem;
+}
+
+.servicios-beneficios__header span {
+  display: block;
+  margin-bottom: 1rem;
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  color: #3b82f6;
+}
+
+.servicios-beneficios__header h2 {
+  margin-bottom: 1rem;
+
+  font-size: clamp(2rem, 3vw, 3rem);
+  font-weight: 800;
+  color: #0f172a;
+}
+
+.servicios-beneficios__header p {
+  color: #64748b;
+  line-height: 1.7;
+}
+
+.servicios-beneficios__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+}
+
+.servicios-beneficios__grid article {
+  padding: 2rem;
+  background: #fff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+
+  transition: all 0.3s ease;
+}
+
+.servicios-beneficios__grid article:hover {
+  transform: translateY(-4px);
+
+  border-color: #3b82f6;
+
+  box-shadow: 0 16px 40px rgba(59, 130, 246, 0.08);
+}
+
+.servicios-beneficios__grid h3 {
+  margin-bottom: 0.75rem;
+  color: #0f172a;
+  font-size: 1.1rem;
+}
+
+.servicios-beneficios__grid p {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .servicios-beneficios__grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+.landing-nav-highlight::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+
+  width: 100%;
+  height: 2px;
+
+  background: #2563eb;
+  border-radius: 999px;
+
+  opacity: .8;
+  transition: all .25s ease;
+}
+
+.landing-nav-highlight:hover {
+  color: #1d4ed8 !important;
+}
+
+.landing-nav-highlight:hover::after {
+  height: 3px;
+  opacity: 1;
+}
+.landing-nav-highlight-inactivo {
+  color: #2563eb !important;
+  font-weight: 600;
+
+  padding: 0.45rem 0.8rem;
+  border-radius: 8px;
+
+  background: rgba(37, 99, 235, 0.06);
+
+  transition: all 0.25s ease;
+}
+
+.landing-nav-highlight-inactivo:hover {
+  background: rgba(37, 99, 235, 0.12);
 }
 
 /* ============================================================
