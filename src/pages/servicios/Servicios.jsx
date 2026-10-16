@@ -77,8 +77,8 @@ export default function Servicios() {
            <br/>
             <br/>
   <div className="servicios-especialidades-header">
-    <span>ESPECIALIDADES Y HERRAJES</span>
-    <h2>Soluciones en vidrio, aluminio y acero</h2>
+    <span>01- ESPECIALIDADES</span>
+    <h2>Fabricamos e instalamos, soluciones a medida para cada proyecto </h2>
   </div>
   <Catalogo interactivo={false} />
 </div>
