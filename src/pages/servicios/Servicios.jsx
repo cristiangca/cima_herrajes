@@ -6,9 +6,11 @@ import Catalogo from '../Catalogo'
 import ComoTrabajamos from '../inicio/componentes/ComoTrabajamos'
 import Proceso from '../inicio/componentes/Proceso.jsx'
 import Valores from '../inicio/componentes/Valores.jsx'
+import IndicadorScroll from '../inicio/componentes/IndicadorScroll.jsx'
 import { useEffect, useState } from 'react'
 import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 import WhatsAppFlotante from '../inicio/componentes/WhatsAppFlotante.jsx'
+import FooterServicios from './FooterServicios.jsx'
 import { abrirWhatsApp, mensajeGeneral } from '../inicio/utilidades/whatsapp'
 
 export default function Servicios() {
@@ -188,6 +190,9 @@ export default function Servicios() {
           enviarWhatsApp={enviarWhatsApp}
           abrirBurbujaGeneral={abrirBurbujaGeneral}
         />
+        <IndicadorScroll />
+                <FooterServicios />
+
       </div>
     )
   }
