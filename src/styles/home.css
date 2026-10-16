@@ -147,6 +147,246 @@ servicio
   letter-spacing: 3px;
   text-transform: uppercase;
 }
+/* --- Contenedor principal de la sección de especialidades --- */
+.servicios-especialidades {
+  max-width: 1400px;
+  margin: 100px auto;
+  padding: 0 40px;
+}
+
+.servicios-especialidades-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.servicios-especialidades-header span {
+  display: block;
+  margin-bottom: 12px;
+  color: #1d4ed8;
+  font-size: 0.85rem;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+.servicios-especialidades-header h2 {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: #0f172a;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+/* Grid de las 4 soluciones */
+.servicios-especialidades-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 28px;
+}
+
+.especialidad-card {
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1px solid #f1f5f9;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.02);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.especialidad-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px -15px rgba(15, 23, 42, 0.12);
+  border-color: #e2e8f0;
+}
+
+.especialidad-img-container {
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  position: relative;
+}
+
+.especialidad-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.especialidad-card:hover img {
+  transform: scale(1.06);
+}
+
+.especialidad-card span {
+  display: block;
+  margin: 24px 24px 8px;
+  color: #2563eb;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.especialidad-card h3 {
+  margin: 0 24px 12px;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.especialidad-card p {
+  margin: 0 24px 16px;
+  color: #64748b;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Llamada a la acción dentro de la tarjeta */
+.especialidad-cta {
+  margin: 0 24px 24px;
+  color: #2563eb;
+  font-weight: 700;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: gap 0.3s ease;
+}
+
+.especialidad-card:hover .especialidad-cta {
+  gap: 12px;
+}
+
+
+/* --- SEPARADORES CLAVE PARA QUE NO SE AMONTONEN LOS COMPONENTES --- */
+
+/* Inserta un respiro visual grande entre cada sección importada */
+div > section + section, 
+div > div.servicios-especialidades + *,
+div > [class*="proceso"], 
+div > [class*="trabajamos"], 
+div > [class*="valores"] {
+  margin-top: 120px !important;
+  margin-bottom: 120px !important;
+}
+
+/* Separador específico para el contenedor de valores y el footer */
+.servicios-valores-wrapper {
+  margin: 120px auto 140px auto !important;
+  padding: 0 40px;
+  max-width: 1400px;
+}
+
+
+/* --- Media Queries Responsivas --- */
+@media (max-width: 1200px) {
+  .servicios-especialidades-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+}
+
+@media (max-width: 768px) {
+  .servicios-especialidades {
+    margin: 60px auto;
+    padding: 0 20px;
+  }
+
+  .servicios-especialidades-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .servicios-valores-wrapper {
+    margin: 60px auto 80px auto !important;
+    padding: 0 20px;
+  }
+}
+/* --- Contenedor del Dropdown --- */
+.landing-nav-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.landing-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.dropdown-icon.rotate {
+  transform: rotate(180deg);
+}
+
+/* Submenú flotante */
+.landing-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 210px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 10px 0;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e2e8f0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(10px);
+  transition: all 0.25s ease;
+  z-index: 1000;
+}
+
+.landing-dropdown-menu.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.landing-dropdown-menu a {
+  display: block;
+  padding: 10px 20px;
+  color: #334155;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.landing-dropdown-menu a:hover {
+  background-color: #f1f5f9;
+  color: #2563eb;
+}
+
+/* Adaptación para dispositivos móviles */
+@media (max-width: 768px) {
+  .landing-nav-dropdown {
+    width: 100%;
+  }
+
+  .landing-dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    padding-left: 16px;
+    display: none;
+    background: transparent;
+  }
+
+  .landing-dropdown-menu.show {
+    display: block;
+  }
+}
  aquie 
 .landing {
   background: #fff;

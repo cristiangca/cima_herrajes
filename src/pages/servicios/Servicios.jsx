@@ -9,6 +9,7 @@ import Valores from '../inicio/componentes/Valores.jsx'
 import { useEffect, useState } from 'react'
 import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 import WhatsAppFlotante from '../inicio/componentes/WhatsAppFlotante.jsx'
+import { abrirWhatsApp, mensajeGeneral } from '../inicio/utilidades/whatsapp'
 
 export default function Servicios() {
   const { idproductos } = useParams()
@@ -16,7 +17,14 @@ export default function Servicios() {
   const [mensajeWhatsapp, setMensajeWhatsapp] = useState('')
 
   const abrirBurbujaGeneral = () => {
-    setMensajeWhatsapp(mensajeGeneral())
+    setMensajeWhatsapp('Hola, me interesa solicitar una cotización general de sus servicios y productos.')
+    setWhatsappOpen(true)
+  }
+
+  // Función para cotizar una solución específica por WhatsApp al hacer clic en las tarjetas
+  const cotizarSolucion = (nombreSolucion) => {
+    const mensaje = `Hola, me interesa obtener más información y cotizar sobre sus *${nombreSolucion}*.`
+    setMensajeWhatsapp(mensaje)
     setWhatsappOpen(true)
   }
 
@@ -58,9 +66,23 @@ export default function Servicios() {
     return (
       <div>
         <Encabezado />
-        <Catalogo interactivo={false} />
 
-        <section className="servicios-especialidades">
+        {/* Sección: Catálogo interactivo */}
+       <div id="catalogo">
+        <br/>
+         <br/>
+          <br/>
+           <br/>
+            <br/>
+  <div className="servicios-especialidades-header">
+    <span>ESPECIALIDADES Y HERRAJES</span>
+    <h2>Soluciones en vidrio, aluminio y acero</h2>
+  </div>
+  <Catalogo interactivo={false} />
+</div>
+
+        {/* Sección: Tus soluciones / Especialidades */}
+        <section id="soluciones" className="servicios-especialidades">
           <div className="servicios-especialidades-header">
             <span>NUESTRAS SOLUCIONES</span>
             <h2>Diseñamos espacios funcionales y modernos</h2>
@@ -68,7 +90,7 @@ export default function Servicios() {
 
           <div className="servicios-especialidades-grid">
 
-            <article className="especialidad-card">
+            <article className="especialidad-card" onClick={() => cotizarSolucion('Soluciones Residenciales')}>
               <div className="especialidad-img-container">
                 <img 
                   src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
@@ -81,9 +103,12 @@ export default function Servicios() {
                 Ventanas, puertas, canceles y barandales diseñados para elevar la
                 estética y funcionalidad de tu hogar.
               </p>
+              <div className="especialidad-cta">
+                Cotizar proyecto &rarr;
+              </div>
             </article>
 
-            <article className="especialidad-card">
+            <article className="especialidad-card" onClick={() => cotizarSolucion('Soluciones Comerciales')}>
               <div className="especialidad-img-container">
                 <img 
                   src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
@@ -96,9 +121,12 @@ export default function Servicios() {
                 Fachadas, accesos, divisiones y sistemas de aluminio para oficinas,
                 locales y espacios corporativos.
               </p>
+              <div className="especialidad-cta">
+                Cotizar proyecto &rarr;
+              </div>
             </article>
 
-            <article className="especialidad-card">
+            <article className="especialidad-card" onClick={() => cotizarSolucion('Proyectos Arquitectónicos')}>
               <div className="especialidad-img-container">
                 <img 
                   src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" 
@@ -111,9 +139,12 @@ export default function Servicios() {
                 Colaboramos con arquitectos y desarrolladores para crear proyectos a
                 medida con acabados premium.
               </p>
+              <div className="especialidad-cta">
+                Cotizar proyecto &rarr;
+              </div>
             </article>
 
-            <article className="especialidad-card">
+            <article className="especialidad-card" onClick={() => cotizarSolucion('Sistemas de Automatización')}>
               <div className="especialidad-img-container">
                 <img 
                   src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80" 
@@ -126,14 +157,28 @@ export default function Servicios() {
                 Integración de sistemas automatizados para accesos, puertas, cortinas y
                 soluciones inteligentes.
               </p>
+              <div className="especialidad-cta">
+                Cotizar proyecto &rarr;
+              </div>
             </article>
 
           </div>
         </section>
 
-        <Proceso /> 
-        <ComoTrabajamos /> 
-        <Valores />
+        {/* Sección: Proceso de trabajo */}
+        <div id="proceso">
+          <Proceso /> 
+        </div>
+
+        {/* Sección: Cómo trabajamos */}
+        <div id="como-trabajamos">
+          <ComoTrabajamos /> 
+        </div>
+
+        {/* Sección: Garantía y valores */}
+        <div id="valores" className="servicios-valores-wrapper">
+          <Valores />
+        </div>
 
         <WhatsAppFlotante
           whatsappOpen={whatsappOpen}
