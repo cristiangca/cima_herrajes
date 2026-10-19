@@ -7,6 +7,7 @@ import { useServicioActivo } from './catalogo/ServicioActivoContext';
 import { CATEGORIAS } from '../contenido/catalogo'
 import { CONTACTO } from '../contenido/sitio'
 import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
+import { imagenConAcabado } from '../contenido/acabadosVentanas'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 // ===== COLORES LED DISPONIBLES =====
@@ -105,7 +106,7 @@ export default function Catalogo({ interactivo = false }) {
     : (['ventanas', 'ventanales'].includes(productoEnlace?.categoriaSlug) ? acabadoEnlace?.nombre : null);
   const productoModal = productoEnlace ? { ...productoEnlace,
     img: productoEnlace.luces ? productoEnlace.luces[luzEnlace ? colorEnlace : 'blanco-calido']
-      : productoEnlace.imgDetalle || productoEnlace.img } : null;
+      : imagenConAcabado(productoEnlace, acabadoEnlace?.id, productoEnlace.imgDetalle || productoEnlace.img) } : null;
   const busquedaDiferida = useDeferredValue(busqueda);
 
   // Cuando se activa un servicio, selecciona su primera categoría y hace scroll
@@ -293,7 +294,9 @@ export default function Catalogo({ interactivo = false }) {
 
   {productosVisibles.map((original) => {
     const luz = luzSeleccionada.replace('led-', '') || 'blanco-calido';
-    const producto = original.luces ? { ...original, luz, img: original.luces[luz] } : original;
+    const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
+    const producto = original.luces ? { ...original, luz, img: original.luces[luz] }
+      : { ...original, img: imagenConAcabado(original, acabado?.id) };
     const destacado = servicioActivo && (
       producto.categoriaSlug
         ? categoriasDestacadas.has(producto.categoriaSlug)
