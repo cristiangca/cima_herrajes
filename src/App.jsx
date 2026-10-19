@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
+import Afiliados from './pages/Afiliados.jsx'
 import Home from './pages/inicio/Home.jsx'
 import Servicios from './pages/servicios/Servicios.jsx'
 import Catalogo from './pages/Catalogo.jsx'
@@ -23,6 +24,7 @@ export default function App() {
     <Route path="/servicios" element={<Servicios />} />
     <Route path="/servicios/:idproductos" element={<Servicios />} />
     <Route path="/proyectos" element={<ProyectosRecientes />} />
+    <Route path="/afiliado" element={<Afiliados />} />
     <Route path="/catalogo" element={<Catalogo interactivo />} />
     <Route path="*" element={<section><h1>Página no encontrada</h1><Link to="/">Volver al inicio</Link></section>} />
   </Routes></main>

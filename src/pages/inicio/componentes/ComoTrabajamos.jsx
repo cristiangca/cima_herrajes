@@ -1,3 +1,4 @@
+import fotoTrabajo from '../../../assets/como-trabajamos-azul.png'
 import { FiTool, FiShield, FiUsers, FiEdit3 } from 'react-icons/fi'
 import Slide from './Slide'
 import Reveal from './Reveal'
@@ -8,8 +9,8 @@ export default function ComoTrabajamos() {
   <div className="split">
     <Reveal className="split-media" delay={280}>
       <img
-        src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&w=1200&q=80"
-        alt="Taller Cima Herrajes"
+        src={fotoTrabajo}
+        alt="Toma de medidas de una ventana sobre una mesa con herramientas azules"
       />
     </Reveal>
 

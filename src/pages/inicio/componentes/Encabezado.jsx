@@ -132,6 +132,7 @@ export default function Encabezado() {
             </div>
           ))}
         </div>
+        {/* <Link to="/afiliado" onClick={cerrarMenus}>Afiliados</Link> */}
         <Link to={location.pathname === '/proyectos' ? '/proyectos#referidos' : '/#referidos'} onClick={cerrarMenus}>Testimonios</Link>
         <Link to={location.pathname === '/proyectos' ? '/proyectos#contacto' : '/#contacto'} onClick={cerrarMenus}>Contacto</Link>
 

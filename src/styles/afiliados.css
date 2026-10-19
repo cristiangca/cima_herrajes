@@ -1,0 +1,63 @@
+.pagina-afiliados { color: #0f172a; }
+.afiliados-portada { max-width: 1200px; margin: auto; padding: 150px 24px 64px; display: grid; grid-template-columns: 1.2fr 1fr; gap: 64px; align-items: center; }
+.afiliados-portada h1 { font-size: clamp(2.5rem,4.5vw,4.1rem); line-height: 1.08; letter-spacing: -.04em; margin: 22px 0; }
+.afiliados-portada p { color: #64748b; line-height: 1.8; margin-bottom: 24px; }
+.afiliados-beneficio { background: #eff6ff; border: 1px solid #dbeafe; border-radius: 24px; padding: 36px; }
+.afiliados-beneficio > svg { color: #2563eb; margin-bottom: 24px; }
+.afiliados-beneficio > span { display: block; color: #2563eb; font-size: .78rem; }
+.afiliados-beneficio h2 { font-size: 1.8rem; margin: 14px 0; line-height: 1.2; }
+.afiliados-beneficio small { display: block; font-size: .76rem; color: #475569; line-height: 1.7; }
+.afiliados-pasos { max-width: 1200px; margin: auto; padding: 12px 24px 72px; display: grid; grid-template-columns: repeat(3,1fr); gap: 32px; }
+.afiliados-pasos article { border-top: 1px solid #e2e8f0; padding-top: 24px; }
+.afiliados-pasos article > span { color: #2563eb; font-size: .8rem; font-weight: 600; }
+.afiliados-pasos h2 { font-size: 1.1rem; margin: 16px 0 12px; }
+.afiliados-pasos p,.afiliados-intro p { color: #64748b; font-size: .9rem; line-height: 1.8; }
+.afiliados-registro { background: #f8fafc; padding: 64px max(24px,calc((100vw - 1152px)/2)); display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
+.afiliados-intro h2 { font-size: clamp(1.8rem,3vw,2.5rem); line-height: 1.2; letter-spacing: -.025em; margin: 20px 0; }
+.afiliados-ayuda { margin-top: 32px; padding: 24px; border: 1px solid #e2e8f0; border-radius: 16px; }
+.afiliados-ayuda svg { color: #2563eb; }
+.afiliados-formulario,.afiliados-resumen { background: white; padding: 32px; border-radius: 20px; border: 1px solid #e2e8f0; min-width: 0; }
+.afiliados-formulario[hidden] { display: none; }
+.afiliados-formulario fieldset { border: 0; margin: 0 0 28px; padding: 0; min-width: 0; }
+.afiliados-formulario legend { font-size: 1.05rem; font-weight: 700; margin-bottom: 20px; }
+.afiliados-formulario label { display: flex; flex-direction: column; gap: 8px; font-size: .83rem; font-weight: 500; margin-bottom: 18px; }
+.afiliados-formulario input:not([type=checkbox]),.afiliados-formulario select,.afiliados-formulario textarea { width: 100%; min-width: 0; box-sizing: border-box; border: 1px solid #cbd5e1; background: #fff; border-radius: 10px; padding: 12px; color: #0f172a; font: inherit; font-size: 16px; min-height: 46px; }
+.afiliados-formulario textarea { resize: vertical; }
+.afiliados-formulario :is(input,select,textarea):focus-visible { outline: 2px solid #2563eb; outline-offset: 2px; }
+.afiliados-dos-campos { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 16px; }
+.afiliados-formulario .afiliados-consentimiento { flex-direction: row; align-items: start; font-size: .76rem; font-weight: 400; line-height: 1.65; color: #475569; }
+.afiliados-consentimiento input { margin: 4px 0 0; flex-shrink: 0; width: 18px; height: 18px; accent-color: #2563eb; }
+.afiliados-resumen > svg { color: #2563eb; }
+.afiliados-resumen h3 { margin: 16px 0 24px; }
+.afiliados-resumen dl > div { border-bottom: 1px solid #e2e8f0; padding: 12px 0; }
+.afiliados-resumen dt { color: #64748b; font-size: .75rem; }
+.afiliados-resumen dd { margin: 6px 0 0; font-size: .9rem; overflow-wrap: anywhere; white-space: pre-wrap; }
+.afiliados-resumen-acciones { display: flex; flex-wrap: wrap; align-items: center; gap: 16px; margin-top: 24px; }
+.afiliados-editar { padding: 10px; background: transparent; border: 0; color: #475569; text-decoration: underline; cursor: pointer; font: inherit; font-size: .8rem; }
+.afiliados-resumen > p { font-size: .8rem; color: #475569; line-height: 1.7; margin-top: 20px; }
+@media(max-width:900px) { .afiliados-portada { gap: 32px; padding-top: 120px; } .afiliados-registro { grid-template-columns: 1fr; gap: 24px; } }
+@media(max-width:650px) { .afiliados-portada,.afiliados-pasos { grid-template-columns: 1fr; } .afiliados-portada { padding-top: 110px; } .afiliados-beneficio { padding: 26px; } .afiliados-pasos { gap: 24px; padding-bottom: 48px; } .afiliados-formulario,.afiliados-resumen { padding: 22px; } .afiliados-dos-campos { grid-template-columns: 1fr; gap: 0; } }
+
+.afiliados-beneficio-visual { padding: 0; overflow: hidden; background: #fff; }
+.afiliados-foto-trabajo { display: block; width: 100%; height: 255px; object-fit: cover; object-position: center 46%; }
+.afiliados-beneficio-contenido { padding: 26px 30px 30px; background: #eff6ff; }
+.afiliados-beneficio-contenido > svg { color: #2563eb; margin-bottom: 12px; }
+.afiliados-beneficio-contenido > span { display: block; font-size: .76rem; color: #2563eb; }
+.afiliados-beneficio-contenido h2 { font-size: 1.6rem; }
+.afiliados-inspiracion { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 28px; }
+.afiliados-inspiracion img { width: 100%; height: 160px; object-fit: cover; border-radius: 12px; }
+.afiliados-inspiracion > span { grid-column: 1/-1; color: #64748b; font-size: .78rem; line-height: 1.7; }
+.afiliados-confianza { display: flex; gap: 12px; align-items: start; padding: 20px 0; margin-top: 12px; border-top: 1px solid #e2e8f0; }
+.afiliados-confianza > svg { color: #2563eb; flex-shrink: 0; margin-top: 2px; }
+.afiliados-confianza strong { font-size: .9rem; }
+.afiliados-confianza p { margin: 6px 0 0; font-size: .8rem; }
+.afiliados-preferencias { border-top: 1px solid #e2e8f0; padding-top: 22px; }
+.afiliados-consentimiento small { display: block; font-size: .72rem; color: #64748b; margin-top: 4px; line-height: 1.6; }
+.afiliados-olvidar { border: 0; background: none; padding: 0; color: #64748b; text-decoration: underline; font: inherit; font-size: .75rem; margin: -6px 0 18px 26px; cursor: pointer; }
+.afiliados-condiciones { border: 1px solid #e2e8f0; border-radius: 10px; margin: 0 0 20px; padding: 14px; }
+.afiliados-condiciones summary { cursor: pointer; font-size: .8rem; font-weight: 600; color: #334155; }
+.afiliados-condiciones ul { padding-left: 18px; color: #64748b; font-size: .76rem; line-height: 1.8; margin: 14px 0 0; }
+.afiliados-condiciones li + li { margin-top: 10px; }
+.afiliados-condiciones a { color: #2563eb; overflow-wrap: anywhere; }
+.afiliados-recordatorio { font-size: .73rem; color: #64748b; line-height: 1.7; margin-bottom: 20px; }
+@media(max-width:650px) { .afiliados-foto-trabajo { height: 220px; } .afiliados-beneficio-contenido { padding: 24px; } .afiliados-inspiracion img { height: 135px; } }
