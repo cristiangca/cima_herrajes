@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react'
 import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 import WhatsAppFlotante from '../inicio/componentes/WhatsAppFlotante.jsx'
 import FooterServicios from './FooterServicios.jsx'
-import { abrirWhatsApp, mensajeGeneral } from '../inicio/utilidades/whatsapp'
+import { abrirWhatsApp } from '../inicio/utilidades/whatsapp'
 
 export default function Servicios() {
   const { idproductos } = useParams()
@@ -71,11 +71,6 @@ export default function Servicios() {
 
         {/* Sección: Catálogo interactivo */}
        <div id="catalogo">
-        <br/>
-         <br/>
-          <br/>
-           <br/>
-            <br/>
   <div className="servicios-especialidades-header">
     <span>01- ESPECIALIDADES</span>
     <h2>Diseñamos, fabricamos e instalamos soluciones a medida para cada proyecto. </h2>
@@ -86,7 +81,7 @@ export default function Servicios() {
         {/* Sección: Tus soluciones / Especialidades */}
         <section id="soluciones" className="servicios-especialidades">
           <div className="servicios-especialidades-header">
-            <span>NUESTRAS SOLUCIONES</span>
+            <span>02- NUESTRAS SOLUCIONES</span>
             <h2>Diseñamos espacios funcionales y modernos</h2>
           </div>
 
@@ -168,17 +163,17 @@ export default function Servicios() {
         </section>
 
         {/* Sección: Proceso de trabajo */}
-        <div id="proceso">
+        <div>
           <Proceso /> 
         </div>
 
         {/* Sección: Cómo trabajamos */}
-        <div id="como-trabajamos">
+        <div>
           <ComoTrabajamos /> 
         </div>
 
         {/* Sección: Garantía y valores */}
-        <div id="valores" className="servicios-valores-wrapper">
+        <div className="servicios-valores-wrapper">
           <Valores />
         </div>
 

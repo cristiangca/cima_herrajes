@@ -6,14 +6,14 @@ import { abrirWhatsApp, mensajeGeneral } from '../utilidades/whatsapp'
 
 export default function Encabezado() {
   const [menuOpen, setMenuOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
+  const [dropdownOpen, setDropdownOpen] = useState(null)
   const dropdownRef = useRef(null)
   const location = useLocation()
 
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setDropdownOpen(false)
+        setDropdownOpen(null)
       }
     }
     document.addEventListener('mousedown', handleClickOutside)
@@ -22,7 +22,7 @@ export default function Encabezado() {
 
   const cerrarMenus = () => {
     setMenuOpen(false)
-    setDropdownOpen(false)
+    setDropdownOpen(null)
   }
 
   const esPaginaServicios = location.pathname.startsWith('/servicios')
@@ -50,59 +50,41 @@ export default function Encabezado() {
         </Link>
         
         {/* Cambiado "Nosotros" por "Especialidades" */}
-        <a href="#soluciones" onClick={cerrarMenus}>
+        <Link to="/servicios#catalogo" onClick={cerrarMenus}>
           Especialidades
-        </a>
+        </Link>
 
-        {/* Dropdown "Qué hacemos" reestructurado */}
-        <div
-          className={`landing-nav-dropdown ${dropdownOpen ? 'active' : ''}`}
-          ref={dropdownRef}
-          onMouseEnter={() => setDropdownOpen(true)}
-          onMouseLeave={() => setDropdownOpen(false)}
-        >
-          <Link
-            to="/servicios"
-            className={`landing-dropdown-trigger ${esPaginaServicios ? 'landing-nav-highlight' : ''}`}
-            onClick={() => {
-              if (window.innerWidth <= 768) {
-                setDropdownOpen((v) => !v)
-              } else {
-                cerrarMenus()
-              }
-            }}
-          >
-            Qué hacemos <FiChevronDown className={`dropdown-icon ${dropdownOpen ? 'rotate' : ''}`} size={16} />
-          </Link>
-
-          <div className={`landing-dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-            <a href="/servicios#catalogo" onClick={cerrarMenus}>
-              Catálogo interactivo
-            </a>
-            <a href="/servicios#soluciones" onClick={cerrarMenus}>
-              Tus soluciones
-            </a>
-            <a href="/servicios#proceso" onClick={cerrarMenus}>
-              Proceso de trabajo
-            </a>
-            <a href="/servicios#como-trabajamos" onClick={cerrarMenus}>
-              Cómo trabajamos
-            </a>
-            <a href="/servicios#valores" onClick={cerrarMenus}>
-              Garantía y valores
-            </a>
-          </div>
+        <div ref={dropdownRef} className="landing-nav-submenus">
+          {[
+            { id: 'servicios', titulo: 'Qué hacemos', enlaces: [
+              ['/servicios#catalogo', 'Especialidades'],
+              ['/servicios#soluciones', 'Nuestras soluciones'],
+              ['/servicios#proceso', 'Proceso de trabajo'],
+              ['/servicios#como-trabajamos', 'Cómo trabajamos'],
+              ['/servicios#valores', 'Garantía y valores'],
+            ] },
+            { id: 'proyectos', titulo: 'Proyectos', enlaces: [
+              ['/#proyectos', 'Proyectos destacados'],
+              ['/proyectos#recientes', 'Proyectos recientes'],
+            ] },
+          ].map(({ id, titulo, enlaces }) => (
+            <div key={id} className={`landing-nav-dropdown ${dropdownOpen === id ? 'active' : ''}`}
+              onMouseEnter={() => { if (window.matchMedia('(min-width: 901px)').matches) setDropdownOpen(id) }}
+              onMouseLeave={() => setDropdownOpen(null)}
+              onKeyDown={(event) => { if (event.key === 'Escape') setDropdownOpen(null) }}>
+              <button type="button" className={`landing-dropdown-trigger ${id === 'servicios' && esPaginaServicios ? 'landing-nav-highlight' : ''}`}
+                aria-expanded={dropdownOpen === id} aria-controls={`submenu-${id}`}
+                onClick={() => setDropdownOpen(dropdownOpen === id ? null : id)}>
+                {titulo} <FiChevronDown className={`dropdown-icon ${dropdownOpen === id ? 'rotate' : ''}`} size={16} />
+              </button>
+              <div id={`submenu-${id}`} className={`landing-dropdown-menu ${dropdownOpen === id ? 'show' : ''}`}>
+                {enlaces.map(([to, texto]) => <Link key={to} to={to} onClick={cerrarMenus}>{texto}</Link>)}
+              </div>
+            </div>
+          ))}
         </div>
-
-        <a href="#proyectos" onClick={cerrarMenus}>
-          Proyectos
-        </a>
-        <a href="#referidos" onClick={cerrarMenus}>
-          Testimonios
-        </a>
-        <a href="#contacto" onClick={cerrarMenus}>
-          Contacto
-        </a>
+        <Link to={location.pathname === '/proyectos' ? '/proyectos#referidos' : '/#referidos'} onClick={cerrarMenus}>Testimonios</Link>
+        <Link to={location.pathname === '/proyectos' ? '/proyectos#contacto' : '/#contacto'} onClick={cerrarMenus}>Contacto</Link>
 
         <button
           type="button"

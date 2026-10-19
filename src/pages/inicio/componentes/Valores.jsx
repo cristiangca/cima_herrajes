@@ -5,7 +5,7 @@ import Reveal from './Reveal'
 export default function Valores() {
   return (
 <Slide id="valores" className="slide-valores">
-  <Reveal as="span" className="kicker center">07 — Lo que nos define</Reveal>
+  <Reveal as="span" className="kicker center">05- Garantía y valores</Reveal>
   <Reveal as="h2" className="display center" delay={80}>
     Nuestros valores
   </Reveal>

@@ -9,7 +9,7 @@ export default function ServiciosInicio({ abrirBurbujaGeneral }) {
   const { activarServicio } = useServicioActivo()
   return (
     <Slide id="servicios" className="slide-servicios">
-      <Reveal as="span" className="kicker center">NUESTROS SERVICIOS</Reveal>
+      <Reveal as="span" className="kicker center">02- NUESTROS SERVICIOS</Reveal>
       <Reveal as="h2" className="display center" delay={80}>
         Especialidades
       </Reveal>
@@ -24,9 +24,9 @@ export default function ServiciosInicio({ abrirBurbujaGeneral }) {
           return (
             <Reveal key={s.slug} className="servicio-card" delay={delay}>
               <Link
-                to="/servicios"
+                to="/servicios#catalogo"
                 className="servicio-card-link"
-                onClick={(event) => {
+                onClick={() => {
                   activarServicio(s.slug, s.titulo)
                 }}
               >

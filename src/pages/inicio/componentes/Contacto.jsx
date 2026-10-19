@@ -4,10 +4,10 @@ import { abrirWhatsApp, mensajeGeneral } from '../utilidades/whatsapp'
 import Slide from './Slide'
 import Reveal from './Reveal'
 
-export default function Contacto() {
+export default function Contacto({ etiqueta = '06- Hablemos' }) {
   return (
 <Slide id="contacto" className="slide-cierre">
- <Reveal as="span" className="kicker center">10 — Hablemos</Reveal>
+ <Reveal as="span" className="kicker center">{etiqueta}</Reveal>
  <Reveal as="h2" className="display center" delay={80}>
  ¿Tienes un proyecto en mente?
  </Reveal>

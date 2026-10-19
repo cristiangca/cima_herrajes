@@ -4,7 +4,7 @@ import Reveal from './Reveal'
 export default function Proceso() {
   return (
 <Slide id="proceso" className="slide-proceso">
-  <Reveal as="span" className="kicker">06 — Nuestro proceso</Reveal>
+  <Reveal as="span" className="kicker">03- Proceso de trabajo</Reveal>
   <Reveal as="h2" className="display" delay={80}>
     Cuatro pasos simples, un resultado impecable.
   </Reveal>

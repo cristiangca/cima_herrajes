@@ -134,7 +134,7 @@ export default function Pilares() {
   return (
     <Slide id="pilares" className="slide-pilares">
       <Reveal as="span" className="kicker center" delay={190}>
-        Pilares que nos definen
+        03- Pilares que nos definen
       </Reveal>
 
       <Reveal as="h2" className="display center" delay={0}>

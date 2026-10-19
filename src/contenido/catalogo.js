@@ -1,3 +1,4 @@
+import { imagenesEspejo } from './espejos'
 // Productos y categorías. Conservar id y slug para mantener los enlaces.
 import inteligente from '../assets/inteligente.png';
 import sifon from '../assets/sifon.jpg';
@@ -146,16 +147,16 @@ export const CATEGORIAS = [
   TITULO: "Espejos LED Touch",
   slug: "espejos-led-touch",
   productos: [
-    { id: "elt-allegro", TITULO: "Allegro", slug: "allegro", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/1-allegro.webp" },
-    { id: "elt-halo", TITULO: "Halo", slug: "halo", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/2-halo.webp" },
-    { id: "elt-resplandor", TITULO: "Resplandor", slug: "resplandor", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/3-resplandor.webp" },
-    { id: "elt-lumin", TITULO: "Lumin", slug: "lumin", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/4-lumin.webp" },
-    { id: "elt-allegro-circular", TITULO: "Allegro Circular", slug: "allegro-circular", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/5-allegro-circular.webp" },
-    { id: "elt-ovalado-halo", TITULO: "Ovalado Halo", slug: "ovalado-halo", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/6-ovalado-halo.webp" },
-    { id: "elt-ovalado-resplandor", TITULO: "Ovalado Resplandor", slug: "ovalado-resplandor", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/7-ovalado-resplandor.webp" },
-    { id: "elt-ovalado-allegro", TITULO: "Ovalado Allegro", slug: "ovalado-allegro", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/8-ovalado-allegro.webp" },
-    { id: "elt-halo-circular", TITULO: "Halo Circular", slug: "halo-circular", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/9-halo-circular.webp" },
-    { id: "elt-resplandor-circular", TITULO: "Resplandor Circular", slug: "resplandor-circular", img: "https://blir.com.mx/assets/img/shop/individuales/espejos-led-touch/10-resplandor-circular.webp" }
+    { id: "elt-allegro", TITULO: "Allegro", slug: "allegro", img: imagenesEspejo("allegro")["blanco-calido"], luces: imagenesEspejo("allegro") },
+    { id: "elt-halo", TITULO: "Halo", slug: "halo", img: imagenesEspejo("halo")["blanco-calido"], luces: imagenesEspejo("halo") },
+    { id: "elt-resplandor", TITULO: "Resplandor", slug: "resplandor", img: imagenesEspejo("resplandor")["blanco-calido"], luces: imagenesEspejo("resplandor") },
+    { id: "elt-lumin", TITULO: "Lumin", slug: "lumin", img: imagenesEspejo("lumin")["blanco-calido"], luces: imagenesEspejo("lumin") },
+    { id: "elt-allegro-circular", TITULO: "Allegro Circular", slug: "allegro-circular", img: imagenesEspejo("allegro-circular")["blanco-calido"], luces: imagenesEspejo("allegro-circular") },
+    { id: "elt-ovalado-halo", TITULO: "Ovalado Halo", slug: "ovalado-halo", img: imagenesEspejo("ovalado-halo")["blanco-calido"], luces: imagenesEspejo("ovalado-halo") },
+    { id: "elt-ovalado-resplandor", TITULO: "Ovalado Resplandor", slug: "ovalado-resplandor", img: imagenesEspejo("ovalado-resplandor")["blanco-calido"], luces: imagenesEspejo("ovalado-resplandor") },
+    { id: "elt-ovalado-allegro", TITULO: "Ovalado Allegro", slug: "ovalado-allegro", img: imagenesEspejo("ovalado-allegro")["blanco-calido"], luces: imagenesEspejo("ovalado-allegro") },
+    { id: "elt-halo-circular", TITULO: "Halo Circular", slug: "halo-circular", img: imagenesEspejo("halo-circular")["blanco-calido"], luces: imagenesEspejo("halo-circular") },
+    { id: "elt-resplandor-circular", TITULO: "Resplandor Circular", slug: "resplandor-circular", img: imagenesEspejo("resplandor-circular")["blanco-calido"], luces: imagenesEspejo("resplandor-circular") }
   ]
 },
  {

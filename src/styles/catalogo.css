@@ -804,3 +804,14 @@
   border: 1px solid #cbd5e0;
   flex-shrink: 0;
 }
+.catalogo-acabado { cursor: pointer; font-family: inherit; transition: border-color 0.2s, box-shadow 0.2s; }
+.catalogo-acabado[aria-pressed="true"] { border-color: #2563eb; box-shadow: 0 0 0 2px #2563eb; }
+.catalogo-acabado:focus-visible { outline: 2px solid #2563eb; outline-offset: 4px; }
+
+/* Fundido de luz exclusivo de los espejos LED. */
+.catalogo-espejo-luces { display: grid; overflow: hidden; aspect-ratio: 1; isolation: isolate; }
+.catalogo-espejo-luces img { grid-area: 1 / 1; width: 100%; height: 100%; object-fit: cover; }
+.catalogo-espejo-luces .espejo-luz-base { z-index: 0; }
+.catalogo-espejo-luces .espejo-luz-capa { z-index: 1; opacity: 0; transition: opacity 650ms ease-in-out; }
+.catalogo-espejo-luces .espejo-luz-capa.encendida { opacity: 1; }
+@media (prefers-reduced-motion: reduce) { .catalogo-espejo-luces .espejo-luz-capa { transition: none; } }

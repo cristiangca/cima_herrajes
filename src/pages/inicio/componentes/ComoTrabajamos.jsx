@@ -15,7 +15,7 @@ export default function ComoTrabajamos() {
 
     <div className="split-text">
       <Reveal as="span" className="kicker" delay={80}>
-        04 — Cómo trabajamos
+        04- Cómo trabajamos
       </Reveal>
 
       <Reveal as="h2" delay={140}>

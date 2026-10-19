@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import '../../styles/home.css'
-import { ServicioActivoProvider } from '../catalogo/ServicioActivoContext'
+
 import Pilares from '../Pilares'
 import { abrirWhatsApp, mensajeGeneral } from './utilidades/whatsapp'
 import Encabezado from './componentes/Encabezado'
@@ -20,7 +20,7 @@ import WhatsAppFlotante from './componentes/WhatsAppFlotante'
 import BarraMovil from './componentes/BarraMovil'
 
 export default function Home() {
-  return <ServicioActivoProvider><HomeContenido /></ServicioActivoProvider>
+  return <HomeContenido />
 }
 
 function HomeContenido() {

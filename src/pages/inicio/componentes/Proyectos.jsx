@@ -7,7 +7,7 @@ import Reveal from './Reveal'
 export default function Proyectos() {
   return (
 <Slide id="proyectos" className="slide-proyectos">
- <Reveal as="span" className="kicker">08 — Proyectos</Reveal>
+ <Reveal as="span" className="kicker">04- Proyectos</Reveal>
  <Reveal as="h2" className="display" delay={80}>Trabajos destacados</Reveal>
 
  <div className="proyectos-grid">

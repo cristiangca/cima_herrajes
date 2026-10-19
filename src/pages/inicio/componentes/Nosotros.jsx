@@ -6,7 +6,7 @@ export default function Nosotros() {
 <Slide id="nosotros" className="slide-sobre-nosotros">
   <div className="about-content">
     <Reveal as="span" className="about-label" delay={80}>
-      Sobre nosotros
+      01- Sobre nosotros
     </Reveal>
 
     <Reveal as="h2" className="about-title" delay={160}>
