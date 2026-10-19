@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom'
+import { useParams, useNavigate } from 'react-router-dom'
 import '../../styles/home.css'
 import './servicios.css'
 import DetalleProducto from './DetalleProducto'
@@ -12,9 +12,13 @@ import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 import WhatsAppFlotante from '../inicio/componentes/WhatsAppFlotante.jsx'
 import FooterServicios from './FooterServicios.jsx'
 import { abrirWhatsApp } from '../inicio/utilidades/whatsapp'
+import { useServicioActivo } from '../catalogo/ServicioActivoContext'
+import { FOTOS_PROYECTO } from '../../contenido/fotos-proyecto'
 
 export default function Servicios() {
   const { idproductos } = useParams()
+  const navigate = useNavigate()
+  const { activarServicio } = useServicioActivo()
   const [whatsappOpen, setWhatsappOpen] = useState(false)
   const [mensajeWhatsapp, setMensajeWhatsapp] = useState('')
 
@@ -23,11 +27,9 @@ export default function Servicios() {
     setWhatsappOpen(true)
   }
 
-  // Función para cotizar una solución específica por WhatsApp al hacer clic en las tarjetas
-  const cotizarSolucion = (nombreSolucion) => {
-    const mensaje = `Hola, me interesa obtener más información y cotizar sobre sus *${nombreSolucion}*.`
-    setMensajeWhatsapp(mensaje)
-    setWhatsappOpen(true)
+  const verSolucion = (slug, titulo) => {
+    activarServicio(slug, titulo)
+    navigate('/servicios#catalogo')
   }
 
   // Enviar mensaje y cerrar burbuja
@@ -87,10 +89,10 @@ export default function Servicios() {
 
           <div className="servicios-especialidades-grid">
 
-            <article className="especialidad-card" onClick={() => cotizarSolucion('Soluciones Residenciales')}>
+            <article className="especialidad-card">
               <div className="especialidad-img-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=800&q=80" 
+                  src={FOTOS_PROYECTO.residencial}
                   alt="Soluciones residenciales - Ventanas y Canceles" 
                 />
               </div>
@@ -100,15 +102,15 @@ export default function Servicios() {
                 Ventanas, puertas, canceles y barandales diseñados para elevar la
                 estética y funcionalidad de tu hogar.
               </p>
-              <div className="especialidad-cta">
-                Cotizar proyecto &rarr;
-              </div>
+              <button type="button" className="especialidad-cta" onClick={() => verSolucion('residencial', 'Soluciones residenciales')} aria-label="Ver productos relacionados: Soluciones residenciales">
+                Ver productos relacionados &rarr;
+              </button>
             </article>
 
-            <article className="especialidad-card" onClick={() => cotizarSolucion('Soluciones Comerciales')}>
+            <article className="especialidad-card">
               <div className="especialidad-img-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=800&q=80" 
+                  src={FOTOS_PROYECTO.comercial}
                   alt="Soluciones comerciales - Fachadas y accesos" 
                 />
               </div>
@@ -118,15 +120,15 @@ export default function Servicios() {
                 Fachadas, accesos, divisiones y sistemas de aluminio para oficinas,
                 locales y espacios corporativos.
               </p>
-              <div className="especialidad-cta">
-                Cotizar proyecto &rarr;
-              </div>
+              <button type="button" className="especialidad-cta" onClick={() => verSolucion('comercial', 'Soluciones comerciales')} aria-label="Ver productos relacionados: Soluciones comerciales">
+                Ver productos relacionados &rarr;
+              </button>
             </article>
 
-            <article className="especialidad-card" onClick={() => cotizarSolucion('Proyectos Arquitectónicos')}>
+            <article className="especialidad-card">
               <div className="especialidad-img-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=800&q=80" 
+                  src={FOTOS_PROYECTO.arquitectonico}
                   alt="Proyectos arquitectónicos a medida" 
                 />
               </div>
@@ -136,15 +138,15 @@ export default function Servicios() {
                 Colaboramos con arquitectos y desarrolladores para crear proyectos a
                 medida con acabados premium.
               </p>
-              <div className="especialidad-cta">
-                Cotizar proyecto &rarr;
-              </div>
+              <button type="button" className="especialidad-cta" onClick={() => verSolucion('arquitectonico', 'Proyectos arquitectónicos')} aria-label="Ver productos relacionados: Proyectos arquitectónicos">
+                Ver productos relacionados &rarr;
+              </button>
             </article>
 
-            <article className="especialidad-card" onClick={() => cotizarSolucion('Sistemas de Automatización')}>
+            <article className="especialidad-card">
               <div className="especialidad-img-container">
                 <img 
-                  src="https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=800&q=80" 
+                  src={FOTOS_PROYECTO.automatizacion}
                   alt="Automatización y sistemas de domótica" 
                 />
               </div>
@@ -154,9 +156,9 @@ export default function Servicios() {
                 Integración de sistemas automatizados para accesos, puertas, cortinas y
                 soluciones inteligentes.
               </p>
-              <div className="especialidad-cta">
-                Cotizar proyecto &rarr;
-              </div>
+              <button type="button" className="especialidad-cta" onClick={() => verSolucion('domotica', 'Automatización')} aria-label="Ver productos relacionados: Automatización">
+                Ver productos relacionados &rarr;
+              </button>
             </article>
 
           </div>

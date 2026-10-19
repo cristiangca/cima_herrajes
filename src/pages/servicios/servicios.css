@@ -2428,3 +2428,9 @@ body {
   margin: 0;
   max-width: 46ch;
 }
+/* Toda la tarjeta activa la selección mediante un botón accesible. */
+.especialidad-card { position: relative; }
+button.especialidad-cta { border: 0; background: transparent; font-family: inherit; text-align: left; cursor: pointer; }
+button.especialidad-cta::after { content: ''; position: absolute; inset: 0; border-radius: 20px; }
+button.especialidad-cta:focus-visible { outline: none; }
+button.especialidad-cta:focus-visible::after { outline: 3px solid #2563eb; outline-offset: 4px; }
