@@ -3,11 +3,15 @@ import { FiX, FiMenu, FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
 import { Link, useLocation } from 'react-router-dom'
 import { logo } from '../../../contenido/inicio'
 import { abrirWhatsApp, mensajeGeneral } from '../utilidades/whatsapp'
+import '../../../styles/navigation.css'
 
 export default function Encabezado() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [dropdownOpen, setDropdownOpen] = useState(null)
   const dropdownRef = useRef(null)
+  const headerRef = useRef(null)
+  const burgerRef = useRef(null)
+  const [esMovil, setEsMovil] = useState(() => window.matchMedia('(max-width: 1024px)').matches)
   const location = useLocation()
 
   useEffect(() => {
@@ -25,10 +29,47 @@ export default function Encabezado() {
     setDropdownOpen(null)
   }
 
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 1024px)');
+    const actualizar = () => {
+      setEsMovil(media.matches);
+      setMenuOpen(false);
+      setDropdownOpen(null);
+    };
+    media.addEventListener('change', actualizar);
+    return () => media.removeEventListener('change', actualizar);
+  }, []);
+
+  useEffect(() => {
+    if (!esMovil || !menuOpen) return;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    const teclado = event => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+        setDropdownOpen(null);
+        burgerRef.current?.focus();
+      }
+      if (event.key === 'Tab') {
+        const elementos = [...headerRef.current.querySelectorAll('a[href], button')]
+          .filter(elemento => elemento.getClientRects().length && getComputedStyle(elemento).visibility !== 'hidden');
+        const primero = elementos[0];
+        const ultimo = elementos[elementos.length - 1];
+        if (event.shiftKey && document.activeElement === primero) { event.preventDefault(); ultimo?.focus(); }
+        else if (!event.shiftKey && document.activeElement === ultimo) { event.preventDefault(); primero?.focus(); }
+      }
+    };
+    document.addEventListener('keydown', teclado);
+    return () => {
+      document.body.style.overflow = overflow;
+      document.removeEventListener('keydown', teclado);
+    };
+  }, [esMovil, menuOpen]);
+
   const esPaginaServicios = location.pathname.startsWith('/servicios')
 
   return (
-    <header className={`landing-header ${menuOpen ? 'open' : ''}`}>
+    <header ref={headerRef} className={`landing-header ${menuOpen ? 'open' : ''}`}>
       <Link to="/" className="landing-brand" onClick={cerrarMenus}>
         <img src={logo} alt="Cima Herrajes" />
         <span>CIMA HERRAJES</span>
@@ -37,6 +78,8 @@ export default function Encabezado() {
       <button
         type="button"
         className="landing-burger"
+        ref={burgerRef}
+        aria-controls="navegacion-principal"
         onClick={() => setMenuOpen((v) => !v)}
         aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
         aria-expanded={menuOpen}
@@ -44,7 +87,7 @@ export default function Encabezado() {
         {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
       </button>
 
-      <nav className={`landing-nav ${menuOpen ? 'open' : ''}`}>
+      <nav id="navegacion-principal" aria-label="Navegación principal" inert={esMovil && !menuOpen ? true : undefined} className={`landing-nav ${menuOpen ? 'open' : ''}`}>
         <Link to="/" onClick={cerrarMenus}>
           Inicio
         </Link>
@@ -69,8 +112,8 @@ export default function Encabezado() {
             ] },
           ].map(({ id, titulo, enlaces }) => (
             <div key={id} className={`landing-nav-dropdown ${dropdownOpen === id ? 'active' : ''}`}
-              onMouseEnter={() => { if (window.matchMedia('(min-width: 901px)').matches) setDropdownOpen(id) }}
-              onMouseLeave={() => setDropdownOpen(null)}
+              onMouseEnter={() => { if (window.matchMedia('(min-width: 1025px)').matches) setDropdownOpen(id) }}
+              onMouseLeave={() => { if (!esMovil) setDropdownOpen(null) }}
               onKeyDown={(event) => { if (event.key === 'Escape') setDropdownOpen(null) }}>
               <div className="landing-dropdown-heading">
                 <Link to={id === 'servicios' ? '/servicios' : '/proyectos'}
@@ -83,7 +126,7 @@ export default function Encabezado() {
                   <FiChevronDown className={`dropdown-icon ${dropdownOpen === id ? 'rotate' : ''}`} size={16} />
                 </button>
               </div>
-              <div id={`submenu-${id}`} className={`landing-dropdown-menu ${dropdownOpen === id ? 'show' : ''}`}>
+              <div id={`submenu-${id}`} inert={dropdownOpen !== id ? true : undefined} className={`landing-dropdown-menu ${dropdownOpen === id ? 'show' : ''}`}>
                 {enlaces.map(([to, texto]) => <Link key={to} to={to} onClick={cerrarMenus}>{texto}</Link>)}
               </div>
             </div>
