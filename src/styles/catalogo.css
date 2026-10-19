@@ -815,3 +815,18 @@
 .catalogo-espejo-luces .espejo-luz-capa { z-index: 1; opacity: 0; transition: opacity 650ms ease-in-out; }
 .catalogo-espejo-luces .espejo-luz-capa.encendida { opacity: 1; }
 @media (prefers-reduced-motion: reduce) { .catalogo-espejo-luces .espejo-luz-capa { transition: none; } }
+
+button.catalogo-img-wrapper { display: block; width: 100%; padding: 0; border: 0; background: transparent; cursor: zoom-in; text-align: inherit; }
+button.catalogo-img-wrapper:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
+.catalogo-ampliacion { max-width: 1000px; max-height: 94dvh; overflow: auto; padding: 40px 20px 20px; }
+.catalogo-ampliacion > img { display: block; width: 100%; max-height: 72dvh; object-fit: contain; }
+.catalogo-ampliacion h2 { font-size: 1.15rem; margin: 8px 0; }
+.catalogo-modal-color { font-size: .9rem; color: #475569; margin: 8px 0 0; }
+.catalogo-ampliacion .catalogo-modal-close { min-width: 32px; min-height: 32px; }
+
+.catalogo-modal-color { display: flex; justify-content: center; }
+.catalogo-modal-capsula { display: inline-flex; padding: .4rem .85rem; }
+
+.catalogo-modal-cotizar { display: inline-flex; align-items: center; gap: 6px; margin-top: 16px; padding: 6px 10px; border: 0; border-radius: 999px; background: transparent; color: #64748b; font-family: inherit; font-size: .78rem; cursor: pointer; transition: color .2s, background .2s; }
+.catalogo-modal-cotizar:hover { color: #166534; background: #f0fdf4; }
+.catalogo-modal-cotizar:focus-visible { outline: 2px solid #2563eb; outline-offset: 3px; }

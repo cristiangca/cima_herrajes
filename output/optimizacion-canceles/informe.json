@@ -1,0 +1,266 @@
+[
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/1-frontal.webp",
+    "original_bytes": 1748238,
+    "original_size": [
+      4436,
+      6654
+    ],
+    "tarjeta": {
+      "bytes": 31098,
+      "size": [
+        427,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 128978,
+      "size": [
+        933,
+        1400
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/2-rectangular.webp",
+    "original_bytes": 2740190,
+    "original_size": [
+      3376,
+      6000
+    ],
+    "tarjeta": {
+      "bytes": 15436,
+      "size": [
+        360,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 81988,
+      "size": [
+        788,
+        1400
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/3-cuadrada.webp",
+    "original_bytes": 408402,
+    "original_size": [
+      2158,
+      3324
+    ],
+    "tarjeta": {
+      "bytes": 43966,
+      "size": [
+        415,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 178686,
+      "size": [
+        909,
+        1400
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/4-escuadra.webp",
+    "original_bytes": 494530,
+    "original_size": [
+      5986,
+      3991
+    ],
+    "tarjeta": {
+      "bytes": 21598,
+      "size": [
+        640,
+        427
+      ]
+    },
+    "detalle": {
+      "bytes": 90666,
+      "size": [
+        1400,
+        933
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/5-curva.webp",
+    "original_bytes": 600506,
+    "original_size": [
+      7360,
+      4912
+    ],
+    "tarjeta": {
+      "bytes": 12436,
+      "size": [
+        640,
+        427
+      ]
+    },
+    "detalle": {
+      "bytes": 60220,
+      "size": [
+        1400,
+        934
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/6-de-lujo.webp",
+    "original_bytes": 806162,
+    "original_size": [
+      7270,
+      4864
+    ],
+    "tarjeta": {
+      "bytes": 17216,
+      "size": [
+        640,
+        428
+      ]
+    },
+    "detalle": {
+      "bytes": 67220,
+      "size": [
+        1400,
+        937
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/7-para-banera.webp",
+    "original_bytes": 480574,
+    "original_size": [
+      4000,
+      6000
+    ],
+    "tarjeta": {
+      "bytes": 11604,
+      "size": [
+        427,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 51806,
+      "size": [
+        933,
+        1400
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/8-panel-fijo.webp",
+    "original_bytes": 337708,
+    "original_size": [
+      2624,
+      3936
+    ],
+    "tarjeta": {
+      "bytes": 17964,
+      "size": [
+        427,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 76106,
+      "size": [
+        933,
+        1400
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/9-abatible.webp",
+    "original_bytes": 13006,
+    "original_size": [
+      512,
+      852
+    ],
+    "tarjeta": {
+      "bytes": 8178,
+      "size": [
+        385,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 14834,
+      "size": [
+        512,
+        852
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/10-corrediza.webp",
+    "original_bytes": 32958,
+    "original_size": [
+      564,
+      821
+    ],
+    "tarjeta": {
+      "bytes": 20828,
+      "size": [
+        440,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 37130,
+      "size": [
+        564,
+        821
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/11-con-aluminio.webp",
+    "original_bytes": 36148,
+    "original_size": [
+      453,
+      624
+    ],
+    "tarjeta": {
+      "bytes": 35080,
+      "size": [
+        453,
+        624
+      ]
+    },
+    "detalle": {
+      "bytes": 41176,
+      "size": [
+        453,
+        624
+      ]
+    }
+  },
+  {
+    "url": "https://blir.com.mx/assets/img/shop/individuales/mamparas/12-tradicionales.webp",
+    "original_bytes": 33178,
+    "original_size": [
+      750,
+      937
+    ],
+    "tarjeta": {
+      "bytes": 17450,
+      "size": [
+        512,
+        640
+      ]
+    },
+    "detalle": {
+      "bytes": 38114,
+      "size": [
+        750,
+        937
+      ]
+    }
+  }
+]

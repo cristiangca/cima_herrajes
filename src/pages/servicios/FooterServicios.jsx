@@ -1,9 +1,10 @@
 import { Link } from 'react-router-dom'
 import { FiArrowUpRight, FiPhone, FiMail, FiMapPin } from 'react-icons/fi'
-import { FaWhatsapp, FaInstagram, FaFacebookF } from 'react-icons/fa'
+import { FaWhatsapp } from 'react-icons/fa'
 import  logo  from '../../assets/cima.jpg' // Ajusta la ruta de tu logo si es necesario
 import { abrirWhatsApp, mensajeGeneral } from '../inicio/utilidades/whatsapp'
 import './footerservicios.css'
+import { CONTACTO } from '../../contenido/sitio'
 
 export default function FooterServicios() {
   return (
@@ -20,12 +21,6 @@ export default function FooterServicios() {
             Fabricación e instalación profesional de cancelería, aluminio, cristal templado y sistemas inteligentes para transformar tus espacios con elegancia y seguridad.
           </p>
           <div className="footer-socials">
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-              <FaFacebookF size={18} />
-            </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <FaInstagram size={18} />
-            </a>
             <button 
               type="button" 
               onClick={() => abrirWhatsApp(mensajeGeneral(), 'footer-social')}
@@ -62,8 +57,9 @@ export default function FooterServicios() {
         {/* Columna 4: Contacto directo */}
         <div className="footer-col footer-contact-col">
           <h3>Contacto Directo</h3>
-          <p><FiMapPin size={16} /> Jalisco, México</p>
-          <p><FiPhone size={16} /> Cotizaciones y Asesoría</p>
+          <p><FiMapPin size={16} /> {CONTACTO.direccion}, {CONTACTO.ubicacion}</p>
+          <p><FiPhone size={16} /> <a href={`tel:+${CONTACTO.whatsapp}`}>{CONTACTO.telefonoVisible}</a></p>
+          <p><FiMail size={16} /> <a href={`mailto:${CONTACTO.correo}`}>{CONTACTO.correo}</a></p>
           
           <button 
             type="button" 

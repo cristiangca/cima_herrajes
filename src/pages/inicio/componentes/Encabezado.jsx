@@ -72,11 +72,17 @@ export default function Encabezado() {
               onMouseEnter={() => { if (window.matchMedia('(min-width: 901px)').matches) setDropdownOpen(id) }}
               onMouseLeave={() => setDropdownOpen(null)}
               onKeyDown={(event) => { if (event.key === 'Escape') setDropdownOpen(null) }}>
-              <button type="button" className={`landing-dropdown-trigger ${id === 'servicios' && esPaginaServicios ? 'landing-nav-highlight' : ''}`}
-                aria-expanded={dropdownOpen === id} aria-controls={`submenu-${id}`}
-                onClick={() => setDropdownOpen(dropdownOpen === id ? null : id)}>
-                {titulo} <FiChevronDown className={`dropdown-icon ${dropdownOpen === id ? 'rotate' : ''}`} size={16} />
-              </button>
+              <div className="landing-dropdown-heading">
+                <Link to={id === 'servicios' ? '/servicios' : '/proyectos'}
+                  className={`landing-dropdown-trigger ${id === 'servicios' && esPaginaServicios ? 'landing-nav-highlight' : ''}`}
+                  onClick={cerrarMenus}>{titulo}</Link>
+                <button type="button" className="landing-dropdown-toggle"
+                  aria-label={`${dropdownOpen === id ? 'Cerrar' : 'Abrir'} submenú de ${titulo}`}
+                  aria-expanded={dropdownOpen === id} aria-controls={`submenu-${id}`}
+                  onClick={() => setDropdownOpen(dropdownOpen === id ? null : id)}>
+                  <FiChevronDown className={`dropdown-icon ${dropdownOpen === id ? 'rotate' : ''}`} size={16} />
+                </button>
+              </div>
               <div id={`submenu-${id}`} className={`landing-dropdown-menu ${dropdownOpen === id ? 'show' : ''}`}>
                 {enlaces.map(([to, texto]) => <Link key={to} to={to} onClick={cerrarMenus}>{texto}</Link>)}
               </div>

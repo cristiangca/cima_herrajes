@@ -73,7 +73,7 @@ export default function DetalleProducto({ idproductos }) {
         {/* Imagen */}
         <div className="detalle-img-wrapper">
           <img
-            src={productoEncontrado.img}
+            src={productoEncontrado.imgDetalle || productoEncontrado.img}
             alt={productoEncontrado.TITULO}
             loading="lazy"
           />

@@ -6,14 +6,14 @@ import Catalogo from './pages/Catalogo.jsx'
 import ProyectosRecientes from './pages/ProyectosRecientes.jsx'
 
 function NavegacionSecciones() {
-  const { pathname, hash, key } = useLocation()
+  const { pathname, hash } = useLocation()
   useEffect(() => {
     const frame = requestAnimationFrame(() => {
       if (hash) document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView({ block: 'start' })
       else window.scrollTo(0, 0)
     })
     return () => cancelAnimationFrame(frame)
-  }, [pathname, hash, key])
+  }, [pathname, hash])
   return null
 }
 

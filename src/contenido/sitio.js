@@ -1,9 +1,10 @@
-// Confirmar estos datos con la empresa antes de publicar.
+// Datos de contacto de Cima Herrajes.
 export const CONTACTO = {
   whatsapp: '523315342519', // País + número, sin espacios ni signo +.
   telefonoVisible: '+52 33 1534 2519',
-  correo: 'hola@cimaherrajes.mx',
-  ubicacion: 'Tu ciudad, México', // Pendiente de confirmar.
+  correo: 'cimaherrajes@gmail.com',
+  ubicacion: 'Guadalajara, Jalisco',
+  direccion: 'Av. Francisco Mina 33B',
 }
 export const PORTADA = {
   titulo: 'Soluciones para proyectos arquitectónicos de alto nivel.',

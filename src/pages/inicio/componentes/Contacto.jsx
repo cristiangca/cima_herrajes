@@ -34,7 +34,7 @@ export default function Contacto({ etiqueta = '06- Hablemos' }) {
  <FiMapPin size={18} />
  <div>
  <span>Ubicación</span>
- <strong>{CONTACTO.ubicacion}</strong>
+ <strong>{CONTACTO.direccion}, {CONTACTO.ubicacion}</strong>
  </div>
  </Reveal>
  </div>

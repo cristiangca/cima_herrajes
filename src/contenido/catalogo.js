@@ -1,3 +1,4 @@
+import { imagenCancelBano } from './canceles-bano'
 import { imagenesEspejo } from './espejos'
 // Productos y categorías. Conservar id y slug para mantener los enlaces.
 import inteligente from '../assets/inteligente.png';
@@ -128,18 +129,18 @@ export const CATEGORIAS = [
   TITULO: "Canceles de Baño",
   slug: "canceles-de-bano",
   productos: [
-    { id: "m-frontal", TITULO: "Frontal", slug: "frontal", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/1-frontal.webp" },
-    { id: "m-rectangular", TITULO: "Rectangular", slug: "rectangular", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/2-rectangular.webp" },
-    { id: "m-cuadrada", TITULO: "Cuadrada", slug: "cuadrada", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/3-cuadrada.webp" },
-    { id: "m-escuadra", TITULO: "Escuadra", slug: "escuadra", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/4-escuadra.webp" },
-    { id: "m-curva", TITULO: "Curva", slug: "curva", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/5-curva.webp" },
-    { id: "m-de-lujo", TITULO: "De Lujo", slug: "de-lujo", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/6-de-lujo.webp" },
-    { id: "m-para-banera", TITULO: "Para Bañera", slug: "para-banera", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/7-para-banera.webp" },
-    { id: "m-panel-fijo", TITULO: "Panel Fijo", slug: "panel-fijo", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/8-panel-fijo.webp" },
-    { id: "m-abatible", TITULO: "Abatible", slug: "abatible", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/9-abatible.webp" },
-    { id: "m-corrediza", TITULO: "Corrediza", slug: "corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/10-corrediza.webp" },
-    { id: "m-con-aluminio", TITULO: "Con Aluminio", slug: "con-aluminio", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/11-con-aluminio.webp" },
-    { id: "m-tradicionales", TITULO: "Tradicionales", slug: "tradicionales", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas/12-tradicionales.webp" }
+    { id: "m-frontal", TITULO: "Frontal", slug: "frontal", img: imagenCancelBano("1-frontal"), imgDetalle: imagenCancelBano("1-frontal", "detalle") },
+    { id: "m-rectangular", TITULO: "Rectangular", slug: "rectangular", img: imagenCancelBano("2-rectangular"), imgDetalle: imagenCancelBano("2-rectangular", "detalle") },
+    { id: "m-cuadrada", TITULO: "Cuadrada", slug: "cuadrada", img: imagenCancelBano("3-cuadrada"), imgDetalle: imagenCancelBano("3-cuadrada", "detalle") },
+    { id: "m-escuadra", TITULO: "Escuadra", slug: "escuadra", img: imagenCancelBano("4-escuadra"), imgDetalle: imagenCancelBano("4-escuadra", "detalle") },
+    { id: "m-curva", TITULO: "Curva", slug: "curva", img: imagenCancelBano("5-curva"), imgDetalle: imagenCancelBano("5-curva", "detalle") },
+    { id: "m-de-lujo", TITULO: "De Lujo", slug: "de-lujo", img: imagenCancelBano("6-de-lujo"), imgDetalle: imagenCancelBano("6-de-lujo", "detalle") },
+    { id: "m-para-banera", TITULO: "Para Bañera", slug: "para-banera", img: imagenCancelBano("7-para-banera"), imgDetalle: imagenCancelBano("7-para-banera", "detalle") },
+    { id: "m-panel-fijo", TITULO: "Panel Fijo", slug: "panel-fijo", img: imagenCancelBano("8-panel-fijo"), imgDetalle: imagenCancelBano("8-panel-fijo", "detalle") },
+    { id: "m-abatible", TITULO: "Abatible", slug: "abatible", img: imagenCancelBano("9-abatible"), imgDetalle: imagenCancelBano("9-abatible", "detalle") },
+    { id: "m-corrediza", TITULO: "Corrediza", slug: "corrediza", img: imagenCancelBano("10-corrediza"), imgDetalle: imagenCancelBano("10-corrediza", "detalle") },
+    { id: "m-con-aluminio", TITULO: "Con Aluminio", slug: "con-aluminio", img: imagenCancelBano("11-con-aluminio"), imgDetalle: imagenCancelBano("11-con-aluminio", "detalle") },
+    { id: "m-tradicionales", TITULO: "Tradicionales", slug: "tradicionales", img: imagenCancelBano("12-tradicionales"), imgDetalle: imagenCancelBano("12-tradicionales", "detalle") }
   ]
 }
   ,

@@ -1,10 +1,12 @@
 import { useState, useMemo, useCallback, useEffect, useDeferredValue, memo } from 'react';
 import '../styles/catalogo.css';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { FaWhatsapp, FaSearch, FaTimes, FaShareAlt } from 'react-icons/fa';
 import { useServicioActivo } from './catalogo/ServicioActivoContext';
 import { CATEGORIAS } from '../contenido/catalogo'
 import { CONTACTO } from '../contenido/sitio'
+import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 // ===== COLORES LED DISPONIBLES =====
@@ -46,9 +48,9 @@ const CatalogoItem = memo(function CatalogoItem({
 }) {
   return (
     <div className={`catalogo-item ${destacado ? 'destacado-azul' : ''}`}>
-      <div className="catalogo-img-wrapper" onClick={() => onOpenModal(producto)}>
+      <button type="button" className="catalogo-img-wrapper" aria-label={`Ampliar ${producto.TITULO}`} onClick={() => onOpenModal(producto)}>
         <>{producto.luces ? <ImagenEspejo producto={producto} /> : <img src={producto.img} alt={producto.TITULO} loading="lazy" decoding="async" />}</>
-      </div>
+      </button>
       <h2>{producto.TITULO}</h2>
       {/* {producto.categoriaPadre && (
         <span className="categoria-tag">{producto.categoriaPadre}</span>
@@ -76,7 +78,7 @@ const CatalogoItem = memo(function CatalogoItem({
       )}
       {interactivo && (
         <button className="btn-ver-producto" onClick={(e) => onVerProducto(producto, e)}>
-          Ver producto →
+          Ampliar imagen →
         </button>
       )}
     </div>
@@ -86,12 +88,24 @@ const CatalogoItem = memo(function CatalogoItem({
 export default function Catalogo({ interactivo = false }) {
   const { servicioActivo, limpiarServicio } = useServicioActivo();
 
-  const [categoriaSeleccionada, setCategoriaSeleccionada] = useState('puertas');
+  const location = useLocation();
+  const navigate = useNavigate();
+  const parametros = new URLSearchParams(location.search);
+  const productoEnlace = PRODUCTOS_FLAT.find(producto => producto.id === parametros.get('producto'));
+  const colorEnlace = parametros.get('color');
+  const [categoriaBase, setCategoriaSeleccionada] = useState('puertas');
+  const categoriaSeleccionada = productoEnlace?.categoriaSlug || categoriaBase;
   const [busqueda, setBusqueda] = useState('');
   const [acabadoSeleccionado, setAcabadoSeleccionado] = useState('');
   const [luzSeleccionada, setLuzSeleccionada] = useState('');
   const esVentana = ['ventanas', 'ventanales'].includes(categoriaSeleccionada);
-  const [productoModal, setProductoModal] = useState(null);
+  const luzEnlace = COLORES_LED.find(color => color.id === 'led-' + colorEnlace);
+  const acabadoEnlace = ACABADOS_ALUMINIO.find(color => color.id === colorEnlace);
+  const colorModal = productoEnlace?.luces ? (luzEnlace?.nombre || 'Blanco Cálido')
+    : (['ventanas', 'ventanales'].includes(productoEnlace?.categoriaSlug) ? acabadoEnlace?.nombre : null);
+  const productoModal = productoEnlace ? { ...productoEnlace,
+    img: productoEnlace.luces ? productoEnlace.luces[luzEnlace ? colorEnlace : 'blanco-calido']
+      : productoEnlace.imgDetalle || productoEnlace.img } : null;
   const busquedaDiferida = useDeferredValue(busqueda);
 
   // Cuando se activa un servicio, selecciona su primera categoría y hace scroll
@@ -127,9 +141,22 @@ export default function Catalogo({ interactivo = false }) {
     return `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
   }, [esVentana, acabadoSeleccionado, categoriaSeleccionada, luzSeleccionada]);
 
+  const rutaProducto = useCallback((producto) => {
+    const params = new URLSearchParams(location.search);
+    params.set('producto', producto.id);
+    params.delete('color');
+    if (producto.luces) params.set('color', producto.luz || 'blanco-calido');
+    else if (['ventanas', 'ventanales'].includes(producto.categoriaSlug)) {
+      const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
+      if (acabado) params.set('color', acabado.id);
+    }
+    return { pathname: location.pathname, search: '?' + params.toString(), hash: location.hash };
+  }, [location.pathname, location.search, location.hash, acabadoSeleccionado]);
+
   const obtenerUrlProducto = useCallback((producto) => {
-    return `${window.location.origin}/servicios/${producto.id}`;
-  }, []);
+    const ruta = rutaProducto(producto);
+    return window.location.origin + ruta.pathname + ruta.search + ruta.hash;
+  }, [rutaProducto]);
 
   const compartirProducto = useCallback(async (producto, e) => {
     if (e) { e.preventDefault(); e.stopPropagation(); }
@@ -141,13 +168,35 @@ export default function Catalogo({ interactivo = false }) {
     } catch { /* cancelado */ }
   }, [obtenerUrlProducto]);
 
-  const irAProducto = useCallback((producto, e) => {
-    if (e) e.stopPropagation();
-    window.location.href = `/servicios/${producto.id}`;
-  }, []);
+  const abrirModal = useCallback((producto) => {
+    setCategoriaSeleccionada(producto.categoriaSlug);
+    navigate(rutaProducto(producto));
+  }, [navigate, rutaProducto]);
+  const irAProducto = useCallback((producto, event) => {
+    event?.stopPropagation();
+    abrirModal(producto);
+  }, [abrirModal]);
+  const cerrarModal = useCallback(() => {
+    const params = new URLSearchParams(location.search);
+    params.delete('producto');
+    params.delete('color');
+    if (productoEnlace) {
+      setCategoriaSeleccionada(productoEnlace.categoriaSlug);
+      if (productoEnlace.luces) setLuzSeleccionada(luzEnlace?.id || 'led-blanco-calido');
+      if (acabadoEnlace) setAcabadoSeleccionado(acabadoEnlace.nombre);
+    }
+    navigate({ pathname: location.pathname, search: params.toString() ? '?' + params.toString() : '', hash: location.hash }, { replace: true });
+  }, [navigate, location.pathname, location.search, location.hash, productoEnlace, luzEnlace, acabadoEnlace]);
 
-  const abrirModal = useCallback((p) => setProductoModal(p), []);
-  const cerrarModal = useCallback(() => setProductoModal(null), []);
+  const modalAbierto = Boolean(productoEnlace);
+  useEffect(() => {
+    if (!modalAbierto) return;
+    const anterior = document.activeElement;
+    const overflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    document.querySelector('.catalogo-modal-close')?.focus();
+    return () => { document.body.style.overflow = overflow; anterior?.focus(); };
+  }, [modalAbierto]);
 
   const setCategoria = useCallback((slug) => {
     setCategoriaSeleccionada(slug);
@@ -267,25 +316,36 @@ export default function Catalogo({ interactivo = false }) {
 
       {productoModal && (
         <div className="catalogo-modal-overlay" onClick={cerrarModal}>
-          <div className="catalogo-modal" onClick={(e) => e.stopPropagation()}>
+          <div className="catalogo-modal catalogo-ampliacion" role="dialog" aria-modal="true" aria-labelledby="titulo-ampliacion"
+            onClick={(e) => e.stopPropagation()}
+            onKeyDown={(event) => {
+              if (event.key === 'Escape') { event.stopPropagation(); cerrarModal(); }
+              if (event.key === 'Tab') {
+                const botones = event.currentTarget.querySelectorAll('button, a[href]');
+                const primero = botones[0];
+                const ultimo = botones[botones.length - 1];
+                if (event.shiftKey && document.activeElement === primero) { event.preventDefault(); ultimo?.focus(); }
+                else if (!event.shiftKey && document.activeElement === ultimo) { event.preventDefault(); primero?.focus(); }
+              }
+            }}>
             <button className="catalogo-modal-close" onClick={cerrarModal} aria-label="Cerrar">
               <FaTimes />
             </button>
             <img src={productoModal.img} alt={productoModal.TITULO} />
-            <h2>{productoModal.TITULO}</h2>
-            {interactivo && (
-              <div className="catalogo-modal-acciones">
-                <a href={obtenerEnlaceWhatsApp(productoModal.TITULO)} target="_blank" rel="noopener noreferrer" className="btn-accion btn-whatsapp">
-                  <FaWhatsapp /> Cotizar por WhatsApp
-                </a>
-                <button className="btn-accion btn-compartir" onClick={(e) => compartirProducto(productoModal, e)}>
-                  <FaShareAlt /> Compartir
-                </button>
-                <button className="btn-accion btn-ver-producto" onClick={(e) => irAProducto(productoModal, e)}>
-                  Ver producto completo →
-                </button>
-              </div>
-            )}
+            <h2 id="titulo-ampliacion">{productoModal.TITULO}</h2>
+            {colorModal && <div className="catalogo-modal-color">
+              <span className="catalogo-color-led-item catalogo-modal-capsula">
+                <span className="catalogo-color-led-swatch" style={{ background: productoEnlace.luces ? (luzEnlace || COLORES_LED[0]).hex : acabadoEnlace.hex }} aria-hidden="true" />
+                <span>Color: <strong>{colorModal}</strong></span>
+              </span>
+            </div>}
+            <button type="button" className="catalogo-modal-cotizar" onClick={() => {
+              const enlace = window.location.origin + location.pathname + location.search + location.hash;
+              const color = colorModal ? `\nColor: ${colorModal}` : '';
+              abrirWhatsApp(`Hola Cima Herrajes, me gustaría cotizar este modelo: ${productoModal.TITULO}.${color}\nEnlace: ${enlace}`, 'modal-producto');
+            }}>
+              <FaWhatsapp size={14} aria-hidden="true" /> Cotizar este modelo
+            </button>
           </div>
         </div>
       )}

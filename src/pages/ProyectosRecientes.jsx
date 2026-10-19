@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { FiArrowUpRight, FiCheck, FiLayers, FiTool } from 'react-icons/fi'
+import { FiArrowUpRight, FiPlus } from 'react-icons/fi'
 import Encabezado from './inicio/componentes/Encabezado'
 import PiePagina from './inicio/componentes/PiePagina'
 import Testimonios from './inicio/componentes/Testimonios'
@@ -55,14 +55,26 @@ export default function ProyectosRecientes() {
       <Link className="recientes-ver-destacados" to="/#proyectos">Ver proyectos destacados <FiArrowUpRight /></Link>
     </section>
     <Slide id="detalle-recientes" className="recientes-detalles">
-      <Reveal as="span" className="kicker center">02- En cada detalle</Reveal>
-      <Reveal as="h2" className="display center">De la primera idea a la instalación.</Reveal>
-      <div className="recientes-beneficios">
+      <Reveal as="span" className="kicker center">02- Preguntas frecuentes</Reveal>
+      <Reveal as="h2" className="display center">Resolvemos tus dudas antes de empezar.</Reveal>
+      <div className="recientes-preguntas">
         {[
-          [FiLayers, 'Diseño para tu espacio', 'Elegimos sistemas, materiales y acabados según lo que necesitas.'],
-          [FiTool, 'Fabricación a medida', 'Convertimos la propuesta en piezas con medidas y detalles definidos para tu proyecto.'],
-          [FiCheck, 'Instalación y entrega', 'Cuidamos el montaje, el funcionamiento y los acabados del resultado final.'],
-        ].map(([Icono, titulo, texto]) => <Reveal key={titulo} className="recientes-beneficio"><Icono size={25} /><h3>{titulo}</h3><p>{texto}</p></Reveal>)}
+          ['¿Qué necesito para solicitar una cotización?', 'Cuéntanos qué quieres instalar o renovar, comparte tu ubicación, medidas aproximadas y, si tienes, fotografías del espacio o una referencia. Con esa información podemos orientarte sobre el siguiente paso.'],
+          ['¿Puedo cotizar si todavía no tengo las medidas?', 'Sí. Puedes empezar con fotografías y una descripción de lo que necesitas. Para definir la fabricación, revisaremos contigo las medidas y los detalles del espacio.'],
+          ['¿Me ayudan a elegir el material y el acabado?', 'Sí. Te asesoramos sobre opciones de aluminio, vidrio, sistemas de apertura y acabados según el uso, el espacio y lo que buscas para tu proyecto.'],
+          ['¿También realizan la instalación?', 'Sí, Cima Herrajes diseña, fabrica e instala. Al solicitar tu propuesta, revisamos el alcance del trabajo y los detalles necesarios para el montaje.'],
+          ['¿Cuánto tarda un proyecto y qué garantía tiene?', 'El plazo depende de las medidas, los materiales y el tipo de instalación. Antes de aprobar tu propuesta, solicita el tiempo estimado y las condiciones de garantía que correspondan a tu proyecto.'],
+          ['¿Atienden en mi zona?', 'Compártenos tu ciudad y colonia por WhatsApp para confirmar la cobertura y la disponibilidad para tu ubicación.'],
+        ].map(([pregunta, respuesta]) => <details key={pregunta} className="recientes-pregunta">
+          <summary>{pregunta}<FiPlus size={20} aria-hidden="true" /></summary>
+          <p>{respuesta}</p>
+        </details>)}
+      </div>
+      <div className="recientes-preguntas-contacto">
+        <p>¿Tu proyecto necesita una respuesta más específica?</p>
+        <button type="button" className="reciente-cotizar" onClick={() => abrirWhatsApp('Hola Cima Herrajes, tengo una duda sobre mi proyecto. ¿Me pueden asesorar?', 'preguntas-recientes')}>
+          Resolver mi duda por WhatsApp <FiArrowUpRight size={16} />
+        </button>
       </div>
     </Slide>
     <Testimonios etiqueta="03- Testimonios" />

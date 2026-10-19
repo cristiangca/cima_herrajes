@@ -60,7 +60,7 @@ export default function Pilares() {
       titulo: 'Nuestra historia',
       lead: 'De dónde venimos',
       parrafos: [
-        'CH nace en Guadalajara con el propósito de elevar la calidad en los proyectos de construcción, ofreciendo soluciones funcionales, estéticas y hechas a la medida de cada espacio.',
+        'Cima Herrajes nace en Guadalajara con el propósito de elevar la calidad en los proyectos de construcción, ofreciendo soluciones funcionales, estéticas y hechas a la medida de cada espacio.',
         'Desde nuestros inicios hemos cuidado cada etapa del proyecto: desde la asesoría y toma de medidas hasta la fabricación e instalación final. Esta forma de trabajar nos ha permitido participar en proyectos residenciales, comerciales y arquitectónicos, manteniendo altos estándares de calidad, orden y compromiso.',
         'Nuestra trayectoria ha crecido junto con la confianza de nuestros clientes, respaldada por la precisión en cada ejecución.',
       ],
@@ -83,10 +83,10 @@ export default function Pilares() {
       lead: 'Qué respaldamos',
       destacada: true,
       parrafos: [
-        'En CH sabemos que la calidad de un proyecto se demuestra en el resultado final. Por eso, cada solución que entregamos está respaldada por la calidad de nuestros materiales, la precisión en su ejecución y el cuidado de cada detalle.',
+        'En Cima Herrajes sabemos que la calidad de un proyecto se demuestra en el resultado final. Por eso, cada solución que entregamos está respaldada por la calidad de nuestros materiales, la precisión en su ejecución y el cuidado de cada detalle.',
         'Nuestro sello representa una forma de hacer las cosas en la que el cliente puede confiar: lo que ofrecemos, lo cumplimos; lo que hacemos, lo respaldamos.',
       ],
-      cierre: 'CH es sinónimo de calidad, cumplimiento y confianza en cada proyecto.',
+      cierre: 'Cima Herrajes es sinónimo de calidad, cumplimiento y confianza en cada proyecto.',
     },
   ]
 
@@ -206,7 +206,7 @@ export default function Pilares() {
                 {pilar.destacada && (
                   <div className="esencia-sello">
                     <div className="esencia-sello-inner">
-                      <span className="esencia-sello-ch">CH</span>
+                      <span className="esencia-sello-ch esencia-sello-marca">Cima Herrajes</span>
                       <span className="esencia-sello-text">
                         SELLO DE<br />GARANTÍA
                       </span>
