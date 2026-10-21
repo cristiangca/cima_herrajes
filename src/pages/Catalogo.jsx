@@ -1,4 +1,5 @@
 import { useState, useMemo, useCallback, useEffect, useDeferredValue, memo } from 'react';
+import { createPortal } from 'react-dom';
 import '../styles/catalogo.css';
 import { useLocation, useNavigate } from 'react-router-dom';
 
@@ -7,23 +8,10 @@ import { useServicioActivo } from './catalogo/ServicioActivoContext';
 import { CATEGORIAS } from '../contenido/catalogo'
 import { CONTACTO } from '../contenido/sitio'
 import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
+import { imagenConAcabado } from '../contenido/acabadosVentanas'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
-// ===== COLORES LED DISPONIBLES =====
-const COLORES_LED = [
-  { id: 'led-blanco-calido', nombre: 'Blanco Cálido', hex: '#FFD9A0' },
-  { id: 'led-blanco-frio',   nombre: 'Blanco Frío',   hex: '#E8F4FF' },
-  { id: 'led-luz-dia',       nombre: 'Luz Día',       hex: '#FFFFFF' },
-  { id: 'led-ambar',         nombre: 'Ámbar',         hex: '#FFB347' },
-  { id: 'led-azul',          nombre: 'Azul',          hex: '#4FC3F7' },
-];
-const ACABADOS_ALUMINIO = [
-  { id: 'negro', nombre: 'Negro', hex: '#222222' },
-  { id: 'blanco', nombre: 'Blanco', hex: '#ffffff' },
-  { id: 'natural-gris', nombre: 'Natural / gris', hex: '#b9bdc1' },
-  { id: 'champagne', nombre: 'Champagne', hex: '#c5b898' },
-  { id: 'gris-europa', nombre: 'Gris Europa', hex: '#656a70' },
-];
+import { COLORES_LED, ACABADOS_ALUMINIO } from '../contenido/opcionesCatalogo'
 // Índice plano precalculado para búsquedas rápidas
 const PRODUCTOS_FLAT = CATEGORIAS.flatMap((cat) =>
   cat.productos.map((prod) => ({ ...prod, categoriaPadre: cat.TITULO, categoriaSlug: cat.slug }))
@@ -105,7 +93,7 @@ export default function Catalogo({ interactivo = false }) {
     : (['ventanas', 'ventanales'].includes(productoEnlace?.categoriaSlug) ? acabadoEnlace?.nombre : null);
   const productoModal = productoEnlace ? { ...productoEnlace,
     img: productoEnlace.luces ? productoEnlace.luces[luzEnlace ? colorEnlace : 'blanco-calido']
-      : productoEnlace.imgDetalle || productoEnlace.img } : null;
+      : imagenConAcabado(productoEnlace, acabadoEnlace?.id, productoEnlace.imgDetalle || productoEnlace.img) } : null;
   const busquedaDiferida = useDeferredValue(busqueda);
 
   // Cuando se activa un servicio, selecciona su primera categoría y hace scroll
@@ -293,7 +281,9 @@ export default function Catalogo({ interactivo = false }) {
 
   {productosVisibles.map((original) => {
     const luz = luzSeleccionada.replace('led-', '') || 'blanco-calido';
-    const producto = original.luces ? { ...original, luz, img: original.luces[luz] } : original;
+    const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
+    const producto = original.luces ? { ...original, luz, img: original.luces[luz] }
+      : { ...original, img: imagenConAcabado(original, acabado?.id) };
     const destacado = servicioActivo && (
       producto.categoriaSlug
         ? categoriasDestacadas.has(producto.categoriaSlug)
@@ -314,7 +304,7 @@ export default function Catalogo({ interactivo = false }) {
   })}
 </div>
 
-      {productoModal && (
+      {productoModal && createPortal(
         <div className="catalogo-modal-overlay" onClick={cerrarModal}>
           <div className="catalogo-modal catalogo-ampliacion" role="dialog" aria-modal="true" aria-labelledby="titulo-ampliacion"
             onClick={(e) => e.stopPropagation()}
@@ -331,7 +321,11 @@ export default function Catalogo({ interactivo = false }) {
             <button className="catalogo-modal-close" onClick={cerrarModal} aria-label="Cerrar">
               <FaTimes />
             </button>
-            <img src={productoModal.img} alt={productoModal.TITULO} />
+            <div className="catalogo-modal-media">
+              <img src={productoModal.img} alt={productoModal.TITULO} />
+            </div>
+            <div className="catalogo-modal-info">
+            <span className="catalogo-modal-etiqueta">{productoEnlace.categoriaPadre}</span>
             <h2 id="titulo-ampliacion">{productoModal.TITULO}</h2>
             {colorModal && <div className="catalogo-modal-color">
               <span className="catalogo-color-led-item catalogo-modal-capsula">
@@ -339,15 +333,20 @@ export default function Catalogo({ interactivo = false }) {
                 <span>Color: <strong>{colorModal}</strong></span>
               </span>
             </div>}
+            <p className="catalogo-modal-ayuda">¿Te interesa este modelo? Consulta disponibilidad, medidas y precio con nuestro equipo.</p>
+            </div>
+            <div className="catalogo-modal-consulta">
             <button type="button" className="catalogo-modal-cotizar" onClick={() => {
               const enlace = window.location.origin + location.pathname + location.search + location.hash;
               const color = colorModal ? `\nColor: ${colorModal}` : '';
               abrirWhatsApp(`Hola Cima Herrajes, me gustaría cotizar este modelo: ${productoModal.TITULO}.${color}\nEnlace: ${enlace}`, 'modal-producto');
             }}>
-              <FaWhatsapp size={14} aria-hidden="true" /> Cotizar este modelo
+              <FaWhatsapp size={20} aria-hidden="true" /> Consultar por WhatsApp
             </button>
+            <p>Enviaremos el modelo y el acabado seleccionado en tu consulta.</p>
+            </div>
           </div>
-        </div>
+        </div>, document.body
       )}
     </div>
   );

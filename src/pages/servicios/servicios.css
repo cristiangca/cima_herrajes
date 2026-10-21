@@ -2434,3 +2434,14 @@ button.especialidad-cta { border: 0; background: transparent; font-family: inher
 button.especialidad-cta::after { content: ''; position: absolute; inset: 0; border-radius: 20px; }
 button.especialidad-cta:focus-visible { outline: none; }
 button.especialidad-cta:focus-visible::after { outline: 3px solid #2563eb; outline-offset: 4px; }
+
+/* Las cuatro soluciones permanecen en una fila a cualquier ancho. */
+#soluciones .servicios-especialidades-grid { display: grid; grid-template-columns: none; grid-auto-flow: column; grid-auto-columns: minmax(240px, 1fr); gap: 24px; overflow-x: auto; overscroll-behavior-x: contain; scroll-snap-type: x mandatory; scroll-padding-inline: 4px; padding: 12px 4px 24px; scrollbar-width: thin; scrollbar-color: #94a3b8 #f1f5f9; }
+#soluciones .especialidad-card { min-width: 0; scroll-snap-align: start; }
+#soluciones .especialidad-img-container { flex-shrink: 0; }
+#soluciones .especialidad-cta { min-height: 44px; }
+.soluciones-deslizar { display: none; color: #475569; text-align: center; font-size: .85rem; margin: 0 0 12px; }
+@media (max-width: 1200px) {
+  #soluciones .servicios-especialidades-grid { grid-auto-columns: clamp(240px, 75vw, 300px); gap: 16px; }
+  .soluciones-deslizar { display: block; }
+}

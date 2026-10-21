@@ -3,7 +3,7 @@ import { FiArrowUpRight, FiUsers, FiGift, FiCheckCircle, FiLock } from 'react-ic
 import Encabezado from './inicio/componentes/Encabezado'
 import PiePagina from './inicio/componentes/PiePagina'
 import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
-import fotoTrabajo from '../assets/como-trabajamos-azul.png'
+import fotoTrabajo from '../assets/inicio/como-trabajamos-azul.png'
 import { FOTOS_PROYECTO } from '../contenido/fotos-proyecto'
 import { CONTACTO } from '../contenido/sitio'
 import '../styles/home.css'

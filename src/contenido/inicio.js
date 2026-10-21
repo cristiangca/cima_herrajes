@@ -1,12 +1,16 @@
+import imagenLocal0 from '../assets/inicio/photo-1600585154340-be6161a56a0c-1000.jpg'
+import imagenLocal1 from '../assets/inicio/photo-1558002038-1055907df827-1000.jpg'
+import imagenLocal2 from '../assets/inicio/photo-1503387762-592deb58ef4e-900.jpg'
+import imagenLocal3 from '../assets/inicio/photo-1497366216548-37526070297c-900.jpg'
 // Contenido editable de inicio.
-import logo from '../assets/cima.jpg'
-import banner from '../assets/hero.png'
-import edificio from '../assets/Edificio.png'
-import canceleria from '../assets/baño.png'
-import barandales from '../assets/barandal.png'
-import ventanales from '../assets/ventana.png'
-import especiales from '../assets/especiales.png'
-import soporte from '../assets/soporte.png'
+import logo from '../assets/marca/cima.jpg'
+import banner from '../assets/inicio/hero.png'
+import edificio from '../assets/inicio/Edificio.png'
+import canceleria from '../assets/servicios/baño.png'
+import barandales from '../assets/servicios/barandal.png'
+import ventanales from '../assets/servicios/ventana.png'
+import especiales from '../assets/servicios/especiales.png'
+import soporte from '../assets/servicios/soporte.png'
 
 export { logo, banner }
 export const SERVICIOS = [
@@ -38,13 +42,13 @@ export const SERVICIOS = [
     titulo: 'Espejos, muebles y acabados arquitectónicos',
     texto: 'Soluciones de diseño y funcionalidad para hogares, baños, vestidores y exteriores.',
     slug: 'espejos-acabados',
-    img: 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1000&q=75'
+    img: imagenLocal0
   },
   {
     titulo: 'Domótica',
     texto: 'Automatización y control inteligente para espacios residenciales y comerciales.',
     slug: 'domotica',
-    img: 'https://images.unsplash.com/photo-1558002038-1055907df827?auto=format&fit=crop&w=1000&q=75'
+    img: imagenLocal1
   }
 ]
 
@@ -66,12 +70,12 @@ export const PROYECTOS = [
  {
  tipo: 'Comercial',
  nombre: 'Plaza Norte',
- img: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=900&q=80'
+ img: imagenLocal2
  },
  {
  tipo: 'Corporativo',
  nombre: 'Oficinas Vertex',
- img: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=80'
+ img: imagenLocal3
  }
 ]
 

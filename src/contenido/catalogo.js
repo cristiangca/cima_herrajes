@@ -1,8 +1,110 @@
+import imagenLocal0 from '../assets/catalogo/puertas/1-batiente.webp'
+import imagenLocal1 from '../assets/catalogo/puertas/2-variante-pivotante.webp'
+import imagenLocal2 from '../assets/catalogo/puertas/3-doble-templada.webp'
+import imagenLocal3 from '../assets/catalogo/puertas/4-corrediza.webp'
+import imagenLocal4 from '../assets/catalogo/puertas/5-pivotante.webp'
+import imagenLocal5 from '../assets/catalogo/puertas/6-templada.webp'
+import imagenLocal6 from '../assets/catalogo/puertas/7-corrediza-aerea-aluminio.webp'
+import imagenLocal7 from '../assets/catalogo/puertas/8-corrediza-aerea-cuadricula.webp'
+import imagenLocal8 from '../assets/catalogo/puertas/9-corrediza-aerea-templada.webp'
+import imagenLocal9 from '../assets/catalogo/puertas/10-plegable.webp'
+import imagenLocal10 from '../assets/catalogo/puertas/11-louver.webp'
+import imagenLocal11 from '../assets/catalogo/ventanas/1-doble-corrediza.webp'
+import imagenLocal12 from '../assets/catalogo/ventanas/2-fija-corrediza.webp'
+import imagenLocal13 from '../assets/catalogo/ventanas/3-fija.webp'
+import imagenLocal14 from '../assets/catalogo/ventanas/4-proyectable.webp'
+import imagenLocal15 from '../assets/catalogo/ventanas/5-vasista.webp'
+import imagenLocal16 from '../assets/catalogo/ventanas/6-batiente.webp'
+import imagenLocal17 from '../assets/catalogo/ventanas/7-combinada.webp'
+import imagenLocal18 from '../assets/catalogo/ventanas/9-oscilobatiente.webp'
+import imagenLocal19 from '../assets/catalogo/ventanas/10-pivotante.webp'
+import imagenLocal20 from '../assets/catalogo/ventanas/11-plegable.webp'
+import imagenLocal21 from '../assets/catalogo/ventanas/12-louver.webp'
+import imagenLocal22 from '../assets/catalogo/barandales/1-con-anclas.webp'
+import imagenLocal23 from '../assets/catalogo/barandales/2-con-chapetones.webp'
+import imagenLocal24 from '../assets/catalogo/barandales/3-con-herraje-y-pasamanos.webp'
+import imagenLocal25 from '../assets/catalogo/barandales/4-con-minipostes-y-pasamanos.webp'
+import imagenLocal26 from '../assets/catalogo/barandales/5-con-pasamanos.webp'
+import imagenLocal27 from '../assets/catalogo/barandales/6-con-pinzas-y-pasamanos.webp'
+import imagenLocal28 from '../assets/catalogo/barandales/7-con-postes-y-pasamanos.webp'
+import imagenLocal29 from '../assets/catalogo/barandales/8-de-acero-inoxidable.webp'
+import imagenLocal30 from '../assets/catalogo/barandales/9-empotrado.webp'
+import imagenLocal31 from '../assets/catalogo/barandales/10-empotrado-con-pasamanos.webp'
+import imagenLocal32 from '../assets/catalogo/barandales/11-cierre-con-pasamanos.webp'
+import imagenLocal33 from '../assets/catalogo/barandales/12-doble-barandal-empotrado.webp'
+import imagenLocal34 from '../assets/catalogo/barandales/13-de-alberca.webp'
+import imagenLocal35 from '../assets/catalogo/barandales/14-de-balcon.webp'
+import imagenLocal36 from '../assets/catalogo/barandales/15-de-hotel-con-pasamanos.webp'
+import imagenLocal37 from '../assets/catalogo/barandales/16-perimetral.webp'
+import imagenLocal38 from '../assets/catalogo/espejos/1-personalizado.webp'
+import imagenLocal39 from '../assets/catalogo/espejos/2-circular.webp'
+import imagenLocal40 from '../assets/catalogo/espejos/3-decorativo.webp'
+import imagenLocal41 from '../assets/catalogo/espejos/4-biselado.webp'
+import imagenLocal42 from '../assets/catalogo/espejos/5-media-luna.webp'
+import imagenLocal43 from '../assets/catalogo/espejos/6-ovalado-biselado.webp'
+import imagenLocal44 from '../assets/catalogo/espejos/7-ovo.webp'
+import imagenLocal45 from '../assets/catalogo/espejos/8-asimetrico.webp'
+import imagenLocal46 from '../assets/catalogo/espejos/9-con-marco-de-aluminio.webp'
+import imagenLocal47 from '../assets/catalogo/canceles/1-fijo.webp'
+import imagenLocal48 from '../assets/catalogo/canceles/2-fijo-corredizo.webp'
+import imagenLocal49 from '../assets/catalogo/canceles/3-doble-corredizo.webp'
+import imagenLocal50 from '../assets/catalogo/canceles/4-plegable.webp'
+import imagenLocal51 from '../assets/catalogo/canceles/5-combinado.webp'
+import imagenLocal52 from '../assets/catalogo/canceles/6-personalizado.webp'
+import imagenLocal53 from '../assets/catalogo/canceles/7-moderno.webp'
+import imagenLocal54 from '../assets/catalogo/canceles/8-moderno-triple-hoja.webp'
+import imagenLocal55 from '../assets/catalogo/canceles/9-mixtos.webp'
+import imagenLocal56 from '../assets/catalogo/peliculas/1-polarizada.webp'
+import imagenLocal57 from '../assets/catalogo/peliculas/2-esmerilada.webp'
+import imagenLocal58 from '../assets/catalogo/peliculas/3-de-seguridad.webp'
+import imagenLocal59 from '../assets/catalogo/peliculas/4-reflectiva.webp'
+import imagenLocal60 from '../assets/catalogo/peliculas/5-para-oficina.webp'
+import imagenLocal61 from '../assets/catalogo/peliculas/6-decorativa.webp'
+import imagenLocal62 from '../assets/catalogo/peliculas/7-control-solar.webp'
+import imagenLocal63 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-m1.webp'
+import imagenLocal64 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-m2.webp'
+import imagenLocal65 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-lux.webp'
+import imagenLocal66 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-arte.webp'
+import imagenLocal67 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-kids.webp'
+import imagenLocal68 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-scudo.webp'
+import imagenLocal69 from '../assets/catalogo/mamparas-sanitarias/modumex/leeder-curvas.webp'
+import imagenLocal70 from '../assets/catalogo/mamparas-sanitarias/modumex/superior-e.webp'
+import imagenLocal71 from '../assets/catalogo/mamparas-sanitarias/modumex/superior-lite.webp'
+import imagenLocal72 from '../assets/catalogo/mamparas-sanitarias/modumex/touchless-one.webp'
+import imagenLocal73 from '../assets/catalogo/mamparas-sanitarias/modumex/touch-less-s1.webp'
+import imagenLocal74 from '../assets/catalogo/mamparas-sanitarias/modumex/touch-less-s2.webp'
+import imagenLocal75 from '../assets/catalogo/mamparas-sanitarias/hegor/clasica.webp'
+import imagenLocal76 from '../assets/catalogo/mamparas-sanitarias/hegor/inoxidable.webp'
+import imagenLocal77 from '../assets/catalogo/mamparas-sanitarias/hegor/eleganza.webp'
+import imagenLocal78 from '../assets/catalogo/mamparas-sanitarias/hegor/premier.webp'
+import imagenLocal79 from '../assets/catalogo/mamparas-sanitarias/hegor/imperio.webp'
+import imagenLocal80 from '../assets/catalogo/puertas-sanitarias/tradicional/clasica.webp'
+import imagenLocal81 from '../assets/catalogo/puertas-sanitarias/tradicional/fijo-lateral.webp'
+import imagenLocal82 from '../assets/catalogo/puertas-sanitarias/tradicional/antepecho.webp'
+import imagenLocal83 from '../assets/catalogo/puertas-sanitarias/tradicional/rejilla.webp'
+import imagenLocal84 from '../assets/catalogo/puertas-sanitarias/tradicional/mirilla.webp'
+import imagenLocal85 from '../assets/catalogo/puertas-sanitarias/tradicional/holandesa.webp'
+import imagenLocal86 from '../assets/catalogo/puertas-sanitarias/tradicional/doble.webp'
+import imagenLocal87 from '../assets/catalogo/puertas-sanitarias/ultra.webp'
+import imagenLocal88 from '../assets/catalogo/cubiertas/1-comedor.webp'
+import imagenLocal89 from '../assets/catalogo/cubiertas/2-escritorio.webp'
+import imagenLocal90 from '../assets/catalogo/cubiertas/3-cuadrado.webp'
+import imagenLocal91 from '../assets/catalogo/cubiertas/4-rectangular.webp'
+import imagenLocal92 from '../assets/catalogo/cubiertas/5-circular.webp'
+import imagenLocal93 from '../assets/catalogo/cubiertas/6-esmerilado.webp'
+import imagenLocal94 from '../assets/catalogo/cubiertas/7-personalizada.webp'
+import imagenLocal95 from '../assets/catalogo/cubiertas/8-para-entrepano.webp'
+import imagenLocal96 from '../assets/catalogo/estructuras/1-domo.webp'
+import imagenLocal97 from '../assets/catalogo/estructuras/2-pergola.webp'
+import imagenLocal98 from '../assets/catalogo/estructuras/3-techo.webp'
+import imagenLocal99 from '../assets/catalogo/estructuras/4-cerramiento.webp'
+import imagenLocal100 from '../assets/catalogo/estructuras/5-de-policarbonato.webp'
+import imagenLocal101 from '../assets/domotica/percianas.png'
 import { imagenCancelBano } from './canceles-bano'
 import { imagenesEspejo } from './espejos'
 // Productos y categorías. Conservar id y slug para mantener los enlaces.
-import inteligente from '../assets/inteligente.png';
-import sifon from '../assets/sifon.jpg';
+import inteligente from '../assets/catalogo/inteligente.png';
+import sifon from '../assets/catalogo/sifon.jpg';
 import d_ventana from '../assets/domotica/vidrio.png';
 import d_cerradura from '../assets/domotica/cerradura.png';
 import d_perciana from '../assets/domotica/percianas.png';
@@ -31,17 +133,17 @@ export const CATEGORIAS = [
   TITULO: "Puertas",
   slug: "puertas",
   productos: [
-    { id: "p-batiente", TITULO: "Batiente", slug: "batiente", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/1-batiente.webp" },
-    { id: "p-variante-pivotante", TITULO: "Variante Pivotante", slug: "variante-pivotante", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/2-variante-pivotante.webp" },
-    { id: "p-doble-templada", TITULO: "Doble Templada", slug: "doble-templada", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/3-doble-templada.webp" },
-    { id: "p-corrediza", TITULO: "Corrediza", slug: "corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/4-corrediza.webp" },
-    { id: "p-pivotante", TITULO: "Pivotante", slug: "pivotante", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/5-pivotante.webp" },
-    { id: "p-templada", TITULO: "Templada", slug: "templada", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/6-templada.webp" },
-    { id: "p-corrediza-aerea-aluminio", TITULO: "Corrediza Aérea Aluminio", slug: "corrediza-aerea-aluminio", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/7-corrediza-aerea-aluminio.webp" },
-    { id: "p-corrediza-aerea-cuadricula", TITULO: "Corrediza Aérea Cuadrícula", slug: "corrediza-aerea-cuadricula", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/8-corrediza-aerea-cuadricula.webp" },
-    { id: "p-corrediza-aerea-templada", TITULO: "Corrediza Aérea Templada", slug: "corrediza-aerea-templada", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/9-corrediza-aerea-templada.webp" },
-    { id: "p-plegable", TITULO: "Plegable", slug: "plegable", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/10-plegable.webp" },
-    { id: "p-louver", TITULO: "Louver", slug: "louver", img: "https://blir.com.mx/assets/img/shop/individuales/puertas/11-louver.webp" }
+    { id: "p-batiente", TITULO: "Batiente", slug: "batiente", img: imagenLocal0 },
+    { id: "p-variante-pivotante", TITULO: "Variante Pivotante", slug: "variante-pivotante", img: imagenLocal1 },
+    { id: "p-doble-templada", TITULO: "Doble Templada", slug: "doble-templada", img: imagenLocal2 },
+    { id: "p-corrediza", TITULO: "Corrediza", slug: "corrediza", img: imagenLocal3 },
+    { id: "p-pivotante", TITULO: "Pivotante", slug: "pivotante", img: imagenLocal4 },
+    { id: "p-templada", TITULO: "Templada", slug: "templada", img: imagenLocal5 },
+    { id: "p-corrediza-aerea-aluminio", TITULO: "Corrediza Aérea Aluminio", slug: "corrediza-aerea-aluminio", img: imagenLocal6 },
+    { id: "p-corrediza-aerea-cuadricula", TITULO: "Corrediza Aérea Cuadrícula", slug: "corrediza-aerea-cuadricula", img: imagenLocal7 },
+    { id: "p-corrediza-aerea-templada", TITULO: "Corrediza Aérea Templada", slug: "corrediza-aerea-templada", img: imagenLocal8 },
+    { id: "p-plegable", TITULO: "Plegable", slug: "plegable", img: imagenLocal9 },
+    { id: "p-louver", TITULO: "Louver", slug: "louver", img: imagenLocal10 }
   ]
 }
 
@@ -51,19 +153,19 @@ export const CATEGORIAS = [
   TITULO: "Ventanas",
   slug: "ventanas",
   productos: [
-    { id: "v-corredizas", TITULO: "Corredizas", slug: "corredizas", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-doble-corrediza.webp" },
-    { id: "v-doble-corrediza", TITULO: "Doble Corrediza", slug: "doble-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/2-fija-corrediza.webp" },
-    { id: "v-fija-corrediza", TITULO: "Fija Corrediza", slug: "fija-corrediza", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/2-fija-corrediza.webp" },
-    { id: "v-fijas", TITULO: "Fijas", slug: "fijas", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/3-fija.webp" },
-    { id: "v-proyectable", TITULO: "Proyectable", slug: "proyectable", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/4-proyectable.webp" },
-    { id: "v-vasista", TITULO: "Vasista", slug: "vasista", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/5-vasista.webp" },
-    { id: "v-batiente", TITULO: "Batiente", slug: "batiente", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/6-batiente.webp" },
-    { id: "v-combinada", TITULO: "Combinada", slug: "combinada", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/7-combinada.webp" },
+    { id: "v-corredizas", TITULO: "Corredizas", slug: "corredizas", img: imagenLocal11 },
+    { id: "v-doble-corrediza", TITULO: "Doble Corrediza", slug: "doble-corrediza", img: imagenLocal12 },
+    { id: "v-fija-corrediza", TITULO: "Fija Corrediza", slug: "fija-corrediza", img: imagenLocal12 },
+    { id: "v-fijas", TITULO: "Fijas", slug: "fijas", img: imagenLocal13 },
+    { id: "v-proyectable", TITULO: "Proyectable", slug: "proyectable", img: imagenLocal14 },
+    { id: "v-vasista", TITULO: "Vasista", slug: "vasista", img: imagenLocal15 },
+    { id: "v-batiente", TITULO: "Batiente", slug: "batiente", img: imagenLocal16 },
+    { id: "v-combinada", TITULO: "Combinada", slug: "combinada", img: imagenLocal17 },
     { id: "v-sifon", TITULO: "Sifón", slug: "sifon", img: sifon },
-    { id: "v-oscilobatiente", TITULO: "Oscilobatiente", slug: "oscilobatiente", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/9-oscilobatiente.webp" },
-    { id: "v-pivotante", TITULO: "Pivotante", slug: "pivotante", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/10-pivotante.webp" },
-    { id: "v-plegable", TITULO: "Plegable", slug: "plegable", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/11-plegable.webp" },
-    { id: "v-louver", TITULO: "Louver", slug: "louver", img: "https://blir.com.mx/assets/img/shop/individuales/ventanas/12-louver.webp" }
+    { id: "v-oscilobatiente", TITULO: "Oscilobatiente", slug: "oscilobatiente", img: imagenLocal18 },
+    { id: "v-pivotante", TITULO: "Pivotante", slug: "pivotante", img: imagenLocal19 },
+    { id: "v-plegable", TITULO: "Plegable", slug: "plegable", img: imagenLocal20 },
+    { id: "v-louver", TITULO: "Louver", slug: "louver", img: imagenLocal21 }
   ]
 }
 ,
@@ -72,22 +174,22 @@ export const CATEGORIAS = [
   TITULO: "Barandales",
   slug: "barandales",
   productos: [
-    { id: "b-anclas", TITULO: "Con Anclas", slug: "con-anclas", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/1-con-anclas.webp" },
-    { id: "b-chapetones", TITULO: "Con Chapetones", slug: "con-chapetones", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/2-con-chapetones.webp" },
-    { id: "b-herraje-pasamanos", TITULO: "Con Herraje y Pasamanos", slug: "herraje-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/3-con-herraje-y-pasamanos.webp" },
-    { id: "b-minipostes-pasamanos", TITULO: "Con Minipostes y Pasamanos", slug: "minipostes-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/4-con-minipostes-y-pasamanos.webp" },
-    { id: "b-pasamanos", TITULO: "Con Pasamanos", slug: "con-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/5-con-pasamanos.webp" },
-    { id: "b-pinzas-pasamanos", TITULO: "Con Pinzas y Pasamanos", slug: "pinzas-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/6-con-pinzas-y-pasamanos.webp" },
-    { id: "b-postes-pasamanos", TITULO: "Con Postes y Pasamanos", slug: "postes-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/7-con-postes-y-pasamanos.webp" },
-    { id: "b-acero-inoxidable", TITULO: "De Acero Inoxidable", slug: "acero-inoxidable", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/8-de-acero-inoxidable.webp" },
-    { id: "b-empotrado", TITULO: "Empotrado", slug: "empotrado", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/9-empotrado.webp" },
-    { id: "b-empotrado-pasamanos", TITULO: "Empotrado con Pasamanos", slug: "empotrado-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/10-empotrado-con-pasamanos.webp" },
-    { id: "b-cierre-pasamanos", TITULO: "Cierre con Pasamanos", slug: "cierre-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/11-cierre-con-pasamanos.webp" },
-    { id: "b-doble-empotrado", TITULO: "Doble Barandal Empotrado", slug: "doble-empotrado", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/12-doble-barandal-empotrado.webp" },
-    { id: "b-alberca", TITULO: "De Alberca", slug: "alberca", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/13-de-alberca.webp" },
-    { id: "b-balcon", TITULO: "De Balcón", slug: "balcon", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/14-de-balcon.webp" },
-    { id: "b-hotel-pasamanos", TITULO: "De Hotel con Pasamanos", slug: "hotel-pasamanos", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/15-de-hotel-con-pasamanos.webp" },
-    { id: "b-perimetral", TITULO: "Perimetral", slug: "perimetral", img: "https://blir.com.mx/assets/img/shop/individuales/barandales/16-perimetral.webp" }
+    { id: "b-anclas", TITULO: "Con Anclas", slug: "con-anclas", img: imagenLocal22 },
+    { id: "b-chapetones", TITULO: "Con Chapetones", slug: "con-chapetones", img: imagenLocal23 },
+    { id: "b-herraje-pasamanos", TITULO: "Con Herraje y Pasamanos", slug: "herraje-pasamanos", img: imagenLocal24 },
+    { id: "b-minipostes-pasamanos", TITULO: "Con Minipostes y Pasamanos", slug: "minipostes-pasamanos", img: imagenLocal25 },
+    { id: "b-pasamanos", TITULO: "Con Pasamanos", slug: "con-pasamanos", img: imagenLocal26 },
+    { id: "b-pinzas-pasamanos", TITULO: "Con Pinzas y Pasamanos", slug: "pinzas-pasamanos", img: imagenLocal27 },
+    { id: "b-postes-pasamanos", TITULO: "Con Postes y Pasamanos", slug: "postes-pasamanos", img: imagenLocal28 },
+    { id: "b-acero-inoxidable", TITULO: "De Acero Inoxidable", slug: "acero-inoxidable", img: imagenLocal29 },
+    { id: "b-empotrado", TITULO: "Empotrado", slug: "empotrado", img: imagenLocal30 },
+    { id: "b-empotrado-pasamanos", TITULO: "Empotrado con Pasamanos", slug: "empotrado-pasamanos", img: imagenLocal31 },
+    { id: "b-cierre-pasamanos", TITULO: "Cierre con Pasamanos", slug: "cierre-pasamanos", img: imagenLocal32 },
+    { id: "b-doble-empotrado", TITULO: "Doble Barandal Empotrado", slug: "doble-empotrado", img: imagenLocal33 },
+    { id: "b-alberca", TITULO: "De Alberca", slug: "alberca", img: imagenLocal34 },
+    { id: "b-balcon", TITULO: "De Balcón", slug: "balcon", img: imagenLocal35 },
+    { id: "b-hotel-pasamanos", TITULO: "De Hotel con Pasamanos", slug: "hotel-pasamanos", img: imagenLocal36 },
+    { id: "b-perimetral", TITULO: "Perimetral", slug: "perimetral", img: imagenLocal37 }
   ]
 }
 
@@ -98,15 +200,15 @@ export const CATEGORIAS = [
   TITULO: "Espejos",
   slug: "espejos",
   productos: [
-    { id: "e-personalizado", TITULO: "Personalizado", slug: "personalizado", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/1-personalizado.webp" },
-    { id: "e-circular", TITULO: "Circular", slug: "circular", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/2-circular.webp" },
-    { id: "e-decorativo", TITULO: "Decorativo", slug: "decorativo", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/3-decorativo.webp" },
-    { id: "e-biselado", TITULO: "Biselado", slug: "biselado", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/4-biselado.webp" },
-    { id: "e-media-luna", TITULO: "Media Luna", slug: "media-luna", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/5-media-luna.webp" },
-    { id: "e-ovalado-biselado", TITULO: "Ovalado Biselado", slug: "ovalado-biselado", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/6-ovalado-biselado.webp" },
-    { id: "e-ovo", TITULO: "Ovo", slug: "ovo", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/7-ovo.webp" },
-    { id: "e-asimetrico", TITULO: "Asimétrico", slug: "asimetrico", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/8-asimetrico.webp" },
-    { id: "e-con-marco-de-aluminio", TITULO: "Con Marco de Aluminio", slug: "con-marco-de-aluminio", img: "https://blir.com.mx/assets/img/shop/individuales/espejos/9-con-marco-de-aluminio.webp" }
+    { id: "e-personalizado", TITULO: "Personalizado", slug: "personalizado", img: imagenLocal38 },
+    { id: "e-circular", TITULO: "Circular", slug: "circular", img: imagenLocal39 },
+    { id: "e-decorativo", TITULO: "Decorativo", slug: "decorativo", img: imagenLocal40 },
+    { id: "e-biselado", TITULO: "Biselado", slug: "biselado", img: imagenLocal41 },
+    { id: "e-media-luna", TITULO: "Media Luna", slug: "media-luna", img: imagenLocal42 },
+    { id: "e-ovalado-biselado", TITULO: "Ovalado Biselado", slug: "ovalado-biselado", img: imagenLocal43 },
+    { id: "e-ovo", TITULO: "Ovo", slug: "ovo", img: imagenLocal44 },
+    { id: "e-asimetrico", TITULO: "Asimétrico", slug: "asimetrico", img: imagenLocal45 },
+    { id: "e-con-marco-de-aluminio", TITULO: "Con Marco de Aluminio", slug: "con-marco-de-aluminio", img: imagenLocal46 }
   ]
 }
   ,
@@ -114,15 +216,15 @@ export const CATEGORIAS = [
   TITULO: "Ventanales",
   slug: "ventanales",
   productos: [
-    { id: "c-fijo", TITULO: "Fijo", slug: "fijo", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/1-fijo.webp" },
-    { id: "c-fijo-corredizo", TITULO: "Fijo Corredizo", slug: "fijo-corredizo", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/2-fijo-corredizo.webp" },
-    { id: "c-doble-corredizo", TITULO: "Doble Corredizo", slug: "doble-corredizo", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/3-doble-corredizo.webp" },
-    { id: "c-plegable", TITULO: "Plegable", slug: "plegable", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/4-plegable.webp" },
-    { id: "c-combinado", TITULO: "Combinado", slug: "combinado", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/5-combinado.webp" },
-    { id: "c-personalizado", TITULO: "Personalizado", slug: "personalizado", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/6-personalizado.webp" },
-    { id: "c-moderno", TITULO: "Moderno", slug: "moderno", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/7-moderno.webp" },
-    { id: "c-moderno-triple-hoja", TITULO: "Moderno Triple Hoja", slug: "moderno-triple-hoja", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/8-moderno-triple-hoja.webp" },
-    { id: "c-mixtos", TITULO: "Mixtos", slug: "mixtos", img: "https://blir.com.mx/assets/img/shop/individuales/canceles/9-mixtos.webp" }
+    { id: "c-fijo", TITULO: "Fijo", slug: "fijo", img: imagenLocal47 },
+    { id: "c-fijo-corredizo", TITULO: "Fijo Corredizo", slug: "fijo-corredizo", img: imagenLocal48 },
+    { id: "c-doble-corredizo", TITULO: "Doble Corredizo", slug: "doble-corredizo", img: imagenLocal49 },
+    { id: "c-plegable", TITULO: "Plegable", slug: "plegable", img: imagenLocal50 },
+    { id: "c-combinado", TITULO: "Combinado", slug: "combinado", img: imagenLocal51 },
+    { id: "c-personalizado", TITULO: "Personalizado", slug: "personalizado", img: imagenLocal52 },
+    { id: "c-moderno", TITULO: "Moderno", slug: "moderno", img: imagenLocal53 },
+    { id: "c-moderno-triple-hoja", TITULO: "Moderno Triple Hoja", slug: "moderno-triple-hoja", img: imagenLocal54 },
+    { id: "c-mixtos", TITULO: "Mixtos", slug: "mixtos", img: imagenLocal55 }
   ]
 },
 {
@@ -164,76 +266,76 @@ export const CATEGORIAS = [
   TITULO: "Películas",
   slug: "peliculas",
   productos: [
-    { id: "p-polarizada", TITULO: "Polarizada", slug: "polarizada", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/1-polarizada.webp" },
-    { id: "p-esmerilada", TITULO: "Esmerilada", slug: "esmerilada", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/2-esmerilada.webp" },
-    { id: "p-de-seguridad", TITULO: "De Seguridad", slug: "de-seguridad", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/3-de-seguridad.webp" },
-    { id: "p-reflectiva", TITULO: "Reflectiva", slug: "reflectiva", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/4-reflectiva.webp" },
-    { id: "p-para-oficina", TITULO: "Para Oficina", slug: "para-oficina", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/5-para-oficina.webp" },
+    { id: "p-polarizada", TITULO: "Polarizada", slug: "polarizada", img: imagenLocal56 },
+    { id: "p-esmerilada", TITULO: "Esmerilada", slug: "esmerilada", img: imagenLocal57 },
+    { id: "p-de-seguridad", TITULO: "De Seguridad", slug: "de-seguridad", img: imagenLocal58 },
+    { id: "p-reflectiva", TITULO: "Reflectiva", slug: "reflectiva", img: imagenLocal59 },
+    { id: "p-para-oficina", TITULO: "Para Oficina", slug: "para-oficina", img: imagenLocal60 },
     {id: "p-inteligente", TITULO: "Inteligente", slug: "inteligente", img: inteligente},
-    { id: "p-decorativa", TITULO: "Decorativa", slug: "decorativa", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/6-decorativa.webp" },
-    { id: "p-control-solar", TITULO: "Control Solar", slug: "control-solar", img: "https://blir.com.mx/assets/img/shop/individuales/peliculas/7-control-solar.webp" }
+    { id: "p-decorativa", TITULO: "Decorativa", slug: "decorativa", img: imagenLocal61 },
+    { id: "p-control-solar", TITULO: "Control Solar", slug: "control-solar", img: imagenLocal62 }
   ]
 },
  {
   TITULO: "Mamparas Sanitarias",
   slug: "mamparas-sanitarias",
   productos: [
-    { id: "ms-leeder-m1", TITULO: "Leeder M1", slug: "leeder-m1", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-m1.webp" },
-    { id: "ms-leeder-m2", TITULO: "Leeder M2", slug: "leeder-m2", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-m2.webp" },
-    { id: "ms-leeder-lux", TITULO: "Leeder LUX", slug: "leeder-lux", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-lux.webp" },
-    { id: "ms-leeder-arte", TITULO: "Leeder Arte", slug: "leeder-arte", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-arte.webp" },
-    { id: "ms-leeder-kids", TITULO: "Leeder Kids", slug: "leeder-kids", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-kids.webp" },
-    { id: "ms-leeder-scudo", TITULO: "Leeder Scudo", slug: "leeder-scudo", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-scudo.webp" },
-    { id: "ms-leeder-curvas", TITULO: "Leeder Curvas", slug: "leeder-curvas", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/leeder-curvas.webp" },
-    { id: "ms-superior-e", TITULO: "Superior E", slug: "superior-e", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/superior-e.webp" },
-    { id: "ms-superior-lite", TITULO: "Superior Lite", slug: "superior-lite", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/superior-lite.webp" },
-    { id: "ms-touchless-one", TITULO: "Touchless One", slug: "touchless-one", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/touchless-one.webp" },
-    { id: "ms-touch-less-s1", TITULO: "Touch-Less S1", slug: "touch-less-s1", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/touch-less-s1.webp" },
-    { id: "ms-touch-less-s2", TITULO: "Touch-Less S2", slug: "touch-less-s2", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/modumex/touch-less-s2.webp" },
-    { id: "ms-clasica", TITULO: "Clásica", slug: "clasica", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/hegor/clasica.webp" },
-    { id: "ms-acero-inoxidable", TITULO: "Acero Inoxidable", slug: "acero-inoxidable", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/hegor/inoxidable.webp" },
-    { id: "ms-eleganza", TITULO: "Eleganza", slug: "eleganza", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/hegor/eleganza.webp" },
-    { id: "ms-premier", TITULO: "Premier", slug: "premier", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/hegor/premier.webp" },
-    { id: "ms-imperio", TITULO: "Imperio", slug: "imperio", img: "https://blir.com.mx/assets/img/shop/individuales/mamparas-sanitarias/hegor/imperio.webp" }
+    { id: "ms-leeder-m1", TITULO: "Leeder M1", slug: "leeder-m1", img: imagenLocal63 },
+    { id: "ms-leeder-m2", TITULO: "Leeder M2", slug: "leeder-m2", img: imagenLocal64 },
+    { id: "ms-leeder-lux", TITULO: "Leeder LUX", slug: "leeder-lux", img: imagenLocal65 },
+    { id: "ms-leeder-arte", TITULO: "Leeder Arte", slug: "leeder-arte", img: imagenLocal66 },
+    { id: "ms-leeder-kids", TITULO: "Leeder Kids", slug: "leeder-kids", img: imagenLocal67 },
+    { id: "ms-leeder-scudo", TITULO: "Leeder Scudo", slug: "leeder-scudo", img: imagenLocal68 },
+    { id: "ms-leeder-curvas", TITULO: "Leeder Curvas", slug: "leeder-curvas", img: imagenLocal69 },
+    { id: "ms-superior-e", TITULO: "Superior E", slug: "superior-e", img: imagenLocal70 },
+    { id: "ms-superior-lite", TITULO: "Superior Lite", slug: "superior-lite", img: imagenLocal71 },
+    { id: "ms-touchless-one", TITULO: "Touchless One", slug: "touchless-one", img: imagenLocal72 },
+    { id: "ms-touch-less-s1", TITULO: "Touch-Less S1", slug: "touch-less-s1", img: imagenLocal73 },
+    { id: "ms-touch-less-s2", TITULO: "Touch-Less S2", slug: "touch-less-s2", img: imagenLocal74 },
+    { id: "ms-clasica", TITULO: "Clásica", slug: "clasica", img: imagenLocal75 },
+    { id: "ms-acero-inoxidable", TITULO: "Acero Inoxidable", slug: "acero-inoxidable", img: imagenLocal76 },
+    { id: "ms-eleganza", TITULO: "Eleganza", slug: "eleganza", img: imagenLocal77 },
+    { id: "ms-premier", TITULO: "Premier", slug: "premier", img: imagenLocal78 },
+    { id: "ms-imperio", TITULO: "Imperio", slug: "imperio", img: imagenLocal79 }
   ]
 },
  {
   TITULO: "Puertas Sanitarias",
   slug: "puertas-sanitarias",
   productos: [
-    { id: "ps-clasica", TITULO: "Clásica", slug: "clasica", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/clasica.webp" },
-    { id: "ps-con-fijo-lateral", TITULO: "Con Fijo Lateral", slug: "con-fijo-lateral", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/fijo-lateral.webp" },
-    { id: "ps-con-antepecho", TITULO: "Con Antepecho", slug: "con-antepecho", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/antepecho.webp" },
-    { id: "ps-con-rejilla", TITULO: "Con Rejilla", slug: "con-rejilla", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/rejilla.webp" },
-    { id: "ps-con-mirilla", TITULO: "Con Mirilla", slug: "con-mirilla", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/mirilla.webp" },
-    { id: "ps-holandesa", TITULO: "Holandesa", slug: "holandesa", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/holandesa.webp" },
-    { id: "ps-doble", TITULO: "Doble", slug: "doble", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/tradicional/doble.webp" },
-    { id: "ps-ultra", TITULO: "Ultra", slug: "ultra", img: "https://blir.com.mx/assets/img/shop/individuales/puertas-sanitarias/ultra.webp" }
+    { id: "ps-clasica", TITULO: "Clásica", slug: "clasica", img: imagenLocal80 },
+    { id: "ps-con-fijo-lateral", TITULO: "Con Fijo Lateral", slug: "con-fijo-lateral", img: imagenLocal81 },
+    { id: "ps-con-antepecho", TITULO: "Con Antepecho", slug: "con-antepecho", img: imagenLocal82 },
+    { id: "ps-con-rejilla", TITULO: "Con Rejilla", slug: "con-rejilla", img: imagenLocal83 },
+    { id: "ps-con-mirilla", TITULO: "Con Mirilla", slug: "con-mirilla", img: imagenLocal84 },
+    { id: "ps-holandesa", TITULO: "Holandesa", slug: "holandesa", img: imagenLocal85 },
+    { id: "ps-doble", TITULO: "Doble", slug: "doble", img: imagenLocal86 },
+    { id: "ps-ultra", TITULO: "Ultra", slug: "ultra", img: imagenLocal87 }
   ]
 },
 {
   "TITULO": "Cubiertas",
   "slug": "cubiertas",
   "productos": [
-    { "id": "cub-vidrio", "TITULO": "Cubiertas de Vidrio", "slug": "vidrio", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/1-comedor.webp" },
-    { "id": "cub-bano", "TITULO": "Cubiertas de Baño", "slug": "bano", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/2-escritorio.webp" },
-    { "id": "cub-cocina", "TITULO": "Cubiertas de Cocina", "slug": "cocina", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/3-cuadrado.webp" },
-    { "id": "cub-mesas", "TITULO": "Cubiertas para Mesas", "slug": "mesas", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/4-rectangular.webp" },
-    { "id": "cub-templado", "TITULO": "Cubiertas de Vidrio Templado", "slug": "templado", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/5-circular.webp" },
-    { "id": "cub-lacobel", "TITULO": "Cubiertas de Cristal Pintado", "slug": "cristal-pintado", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/6-esmerilado.webp" },
-    { "id": "cub-repisas", "TITULO": "Cubiertas y Repisas", "slug": "repisas", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/7-personalizada.webp" },
-    { "id": "cub-entrepano", "TITULO": "Cubiertas Para Entrepaño", "slug": "entrepano", "img": "https://blir.com.mx/assets/img/shop/individuales/cubiertas/8-para-entrepano.webp" }
+    { "id": "cub-vidrio", "TITULO": "Cubiertas de Vidrio", "slug": "vidrio", "img": imagenLocal88 },
+    { "id": "cub-bano", "TITULO": "Cubiertas de Baño", "slug": "bano", "img": imagenLocal89 },
+    { "id": "cub-cocina", "TITULO": "Cubiertas de Cocina", "slug": "cocina", "img": imagenLocal90 },
+    { "id": "cub-mesas", "TITULO": "Cubiertas para Mesas", "slug": "mesas", "img": imagenLocal91 },
+    { "id": "cub-templado", "TITULO": "Cubiertas de Vidrio Templado", "slug": "templado", "img": imagenLocal92 },
+    { "id": "cub-lacobel", "TITULO": "Cubiertas de Cristal Pintado", "slug": "cristal-pintado", "img": imagenLocal93 },
+    { "id": "cub-repisas", "TITULO": "Cubiertas y Repisas", "slug": "repisas", "img": imagenLocal94 },
+    { "id": "cub-entrepano", "TITULO": "Cubiertas Para Entrepaño", "slug": "entrepano", "img": imagenLocal95 }
   ]
 },
   {
     "TITULO": "Estructuras",
     "slug": "estructuras",
     "productos": [
-      { "id": "est-domo", "TITULO": "Domo", "slug": "domo", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/1-domo.webp" },
-      { "id": "est-pergola", "TITULO": "Pérgola", "slug": "pergola", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/2-pergola.webp" },
-      { "id": "est-techo", "TITULO": "Techo", "slug": "techo", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/3-techo.webp" },
-      { "id": "est-cerramiento", "TITULO": "Cerramiento", "slug": "cerramiento", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/4-cerramiento.webp" },
-      { "id": "est-policarbonato", "TITULO": "De Policarbonato", "slug": "de-policarbonato", "img": "https://blir.com.mx/assets/img/shop/individuales/estructuras/5-de-policarbonato.webp" }
+      { "id": "est-domo", "TITULO": "Domo", "slug": "domo", "img": imagenLocal96 },
+      { "id": "est-pergola", "TITULO": "Pérgola", "slug": "pergola", "img": imagenLocal97 },
+      { "id": "est-techo", "TITULO": "Techo", "slug": "techo", "img": imagenLocal98 },
+      { "id": "est-cerramiento", "TITULO": "Cerramiento", "slug": "cerramiento", "img": imagenLocal99 },
+      { "id": "est-policarbonato", "TITULO": "De Policarbonato", "slug": "de-policarbonato", "img": imagenLocal100 }
     ]
 },
   {
@@ -253,12 +355,12 @@ export const CATEGORIAS = [
     "TITULO": "Domótica",
     "slug": "domotica",
     "productos": [
-      { "id": "dom-persianas", "TITULO": "Domótica para Persianas", "slug": "persianas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
-      { "id": "dom-puertas", "TITULO": "Domótica para Puertas", "slug": "puertas", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
+      { "id": "dom-persianas", "TITULO": "Domótica para Persianas", "slug": "persianas", "img": imagenLocal101 },
+      { "id": "dom-puertas", "TITULO": "Domótica para Puertas", "slug": "puertas", "img": imagenLocal101 },
       { "id": "dom-iluminacion", "TITULO": "Domótica para Iluminación", "slug": "iluminacion", "img": d_luces },
       { "id": "dom-cerraduras", "TITULO": "Cerraduras Inteligentes", "slug": "cerraduras-inteligentes", "img": d_cerradura },
       { "id": "dom-smart-glass", "TITULO": "Control para Vidrio Inteligente", "slug": "smart-glass", "img": d_ventana },
-      { "id": "dom-motores", "TITULO": "Motores Automatizados", "slug": "motores-automatizados", "img": "https://blir.com.mx/assets/img/shop/individuales/ventanas/1-corrediza.webp" },
+      { "id": "dom-motores", "TITULO": "Motores Automatizados", "slug": "motores-automatizados", "img": imagenLocal101 },
       { "id": "dom-sensores", "TITULO": "Sensores y Control Inteligente", "slug": "sensores-control", "img": d_perciana }
     ]
   },

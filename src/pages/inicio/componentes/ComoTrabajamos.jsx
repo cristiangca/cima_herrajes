@@ -1,4 +1,4 @@
-import fotoTrabajo from '../../../assets/como-trabajamos-azul.png'
+import fotoTrabajo from '../../../assets/inicio/como-trabajamos-azul.png'
 import { FiTool, FiShield, FiUsers, FiEdit3 } from 'react-icons/fi'
 import Slide from './Slide'
 import Reveal from './Reveal'

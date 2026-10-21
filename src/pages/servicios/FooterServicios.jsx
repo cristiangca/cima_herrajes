@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import { FiArrowUpRight, FiPhone, FiMail, FiMapPin } from 'react-icons/fi'
 import { FaWhatsapp } from 'react-icons/fa'
-import  logo  from '../../assets/cima.jpg' // Ajusta la ruta de tu logo si es necesario
+import  logo  from '../../assets/marca/cima.jpg' // Ajusta la ruta de tu logo si es necesario
 import { abrirWhatsApp, mensajeGeneral } from '../inicio/utilidades/whatsapp'
 import './footerservicios.css'
 import { CONTACTO } from '../../contenido/sitio'

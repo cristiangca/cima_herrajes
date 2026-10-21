@@ -87,7 +87,8 @@ export default function Servicios() {
             <h2>Diseñamos espacios funcionales y modernos</h2>
           </div>
 
-          <div className="servicios-especialidades-grid">
+          <p className="soluciones-deslizar" id="soluciones-deslizar">Desliza para explorar las 4 soluciones →</p>
+          <div className="servicios-especialidades-grid" tabIndex={0} role="region" aria-label="Nuestras cuatro soluciones" aria-describedby="soluciones-deslizar">
 
             <article className="especialidad-card">
               <div className="especialidad-img-container">
