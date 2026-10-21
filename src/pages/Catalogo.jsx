@@ -10,6 +10,7 @@ import { CONTACTO } from '../contenido/sitio'
 import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
 import { imagenConAcabado } from '../contenido/acabadosVentanas'
 import { HERRAJES_BARANDALES, tieneHerrajesBarandal, imagenHerrajesBarandal } from '../contenido/herrajesBarandales'
+import { registrarEvento, datosProducto } from '../utilidades/analytics'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 import { COLORES_LED, ACABADOS_ALUMINIO } from '../contenido/opcionesCatalogo'
@@ -48,6 +49,11 @@ const CatalogoItem = memo(function CatalogoItem({
         <div className="catalogo-item-acciones">
           <a
             href={onWhatsApp(producto.TITULO)}
+            data-origen="tarjeta-catalogo"
+            data-producto-id={producto.id}
+            data-producto-nombre={producto.TITULO}
+            data-categoria={producto.categoriaSlug}
+            data-acabado={producto.acabadoAnalitica}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-accion btn-whatsapp"
@@ -125,6 +131,24 @@ export default function Catalogo({ interactivo = false }) {
     return PRODUCTOS_FLAT.filter((p) => p.TITULO.toLowerCase().includes(q));
   }, [busquedaDiferida, productosCategoria]);
 
+  const idModal = productoEnlace?.id;
+  useEffect(() => {
+    if (!idModal) return;
+    const producto = PRODUCTOS_FLAT.find(item => item.id === idModal);
+    registrarEvento('producto_visto', datosProducto(producto, colorEnlace || 'original'));
+  }, [idModal, colorEnlace]);
+  useEffect(() => {
+    registrarEvento('categoria_catalogo', { categoria: categoriaSeleccionada });
+  }, [categoriaSeleccionada]);
+  useEffect(() => {
+    if (!busquedaDiferida.trim()) return;
+    const temporizador = setTimeout(() => registrarEvento('busqueda_catalogo', {
+      longitud_busqueda: busquedaDiferida.trim().length,
+      resultados: productosVisibles.length,
+    }), 900);
+    return () => clearTimeout(temporizador);
+  }, [busquedaDiferida, productosVisibles.length]);
+
   // Handlers estables
   const obtenerEnlaceWhatsApp = useCallback((nombreProducto) => {
     const acabado = esVentana && acabadoSeleccionado ? `, acabado: ${acabadoSeleccionado}` : '';
@@ -158,12 +182,13 @@ export default function Catalogo({ interactivo = false }) {
     const url = obtenerUrlProducto(producto);
     const data = { title: producto.TITULO, text: `Mira este producto: ${producto.TITULO}`, url };
     try {
-      if (navigator.share) await navigator.share(data);
-      else { await navigator.clipboard.writeText(url); alert('Enlace copiado al portapapeles'); }
+      if (navigator.share) { await navigator.share(data); registrarEvento('share', { ...datosProducto(producto), method: 'native', content_type: 'producto', item_id: producto.id }); }
+      else { await navigator.clipboard.writeText(url); registrarEvento('share', { ...datosProducto(producto), method: 'clipboard', content_type: 'producto', item_id: producto.id }); alert('Enlace copiado al portapapeles'); }
     } catch { /* cancelado */ }
   }, [obtenerUrlProducto]);
 
   const abrirModal = useCallback((producto) => {
+    registrarEvento('seleccionar_producto', datosProducto(producto, producto.acabadoAnalitica));
     setCategoriaSeleccionada(producto.categoriaSlug);
     navigate(rutaProducto(producto));
   }, [navigate, rutaProducto]);
@@ -172,6 +197,7 @@ export default function Catalogo({ interactivo = false }) {
     abrirModal(producto);
   }, [abrirModal]);
   const cerrarModal = useCallback(() => {
+    if (productoEnlace) registrarEvento('cerrar_producto', datosProducto(productoEnlace));
     const params = new URLSearchParams(location.search);
     params.delete('producto');
     params.delete('color');
@@ -258,7 +284,11 @@ export default function Catalogo({ interactivo = false }) {
 
             {ACABADOS_ALUMINIO.map((color) => (
               <button key={color.id} type="button" className="catalogo-color-led-item catalogo-acabado"
-                aria-pressed={acabadoSeleccionado === color.nombre} onClick={() => setAcabadoSeleccionado(actual => actual === color.nombre ? '' : color.nombre)}>
+                aria-pressed={acabadoSeleccionado === color.nombre} onClick={() => {
+                  const acabado = acabadoSeleccionado === color.nombre ? '' : color.nombre;
+                  setAcabadoSeleccionado(acabado);
+                  registrarEvento('seleccionar_acabado', { tipo: 'aluminio', acabado: acabado || 'original', categoria: categoriaSeleccionada });
+                }}>
                 <span className="catalogo-color-led-swatch" style={{ background: color.hex }} aria-hidden="true" />
                 <span className="catalogo-color-led-nombre">{color.nombre}</span>
               </button>
@@ -270,7 +300,7 @@ export default function Catalogo({ interactivo = false }) {
         <h3 className="catalogo-colores-led-titulo">Color de los herrajes</h3>
         <div className="catalogo-colores-led-lista">
           {HERRAJES_BARANDALES.map(color => <button key={color.id} type="button" className="catalogo-color-led-item catalogo-acabado"
-            aria-pressed={herrajeSeleccionado === color.id} onClick={() => setHerrajeSeleccionado(color.id)}>
+            aria-pressed={herrajeSeleccionado === color.id} onClick={() => { setHerrajeSeleccionado(color.id); registrarEvento('seleccionar_acabado', { tipo: 'herrajes', acabado: color.id, categoria: 'barandales' }); }}>
             <span className="catalogo-color-led-swatch" style={{ background: color.hex }} aria-hidden="true" />{color.nombre}
           </button>)}
         </div>
@@ -278,11 +308,11 @@ export default function Catalogo({ interactivo = false }) {
       <div className="catalogo-vista">
         <span>Zoom</span>
         <div className="catalogo-zoom" role="group" aria-label="Tamaño de las tarjetas del catálogo">
-          <button type="button" onClick={() => setZoomCatalogo(actual => Math.max(0, actual - 1))}
+          <button type="button" onClick={() => { setZoomCatalogo(actual => Math.max(0, actual - 1)); registrarEvento('zoom_catalogo', { nivel: Math.max(0, zoomCatalogo - 1), categoria: categoriaSeleccionada }); }}
             disabled={zoomCatalogo === 0} aria-label="Reducir imágenes para ver más productos" title="Ver más productos">−</button>
-          <button type="button" className="catalogo-zoom-restablecer" onClick={() => setZoomCatalogo(1)}
+          <button type="button" className="catalogo-zoom-restablecer" onClick={() => { setZoomCatalogo(1); registrarEvento('zoom_catalogo', { nivel: 1, categoria: categoriaSeleccionada, tipo: 'restablecer' }); }}
             aria-label="Restablecer zoom" title="Restablecer zoom">↺</button>
-          <button type="button" onClick={() => setZoomCatalogo(actual => Math.min(2, actual + 1))}
+          <button type="button" onClick={() => { setZoomCatalogo(actual => Math.min(2, actual + 1)); registrarEvento('zoom_catalogo', { nivel: Math.min(2, zoomCatalogo + 1), categoria: categoriaSeleccionada }); }}
             disabled={zoomCatalogo === 2} aria-label="Ampliar imágenes del catálogo" title="Ampliar imágenes">+</button>
         </div>
       </div>
@@ -294,7 +324,11 @@ export default function Catalogo({ interactivo = false }) {
         {COLORES_LED.map((color) => (
           <button key={color.id} type="button" className="catalogo-color-led-item catalogo-acabado" title={color.nombre}
             aria-pressed={luzSeleccionada === color.id}
-            onClick={() => setLuzSeleccionada(actual => actual === color.id ? '' : color.id)}>
+            onClick={() => {
+              const luz = luzSeleccionada === color.id ? '' : color.id;
+              setLuzSeleccionada(luz);
+              registrarEvento('seleccionar_acabado', { tipo: 'luz_led', acabado: luz || 'led-blanco-calido', categoria: categoriaSeleccionada });
+            }}>
             <span
               className="catalogo-color-led-swatch"
               style={{ background: color.hex }}
@@ -312,6 +346,7 @@ export default function Catalogo({ interactivo = false }) {
     const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
     const producto = original.luces ? { ...original, luz, img: original.luces[luz] }
       : { ...original, img: imagenHerrajesBarandal(original, herrajeSeleccionado, imagenConAcabado(original, acabado?.id)) };
+    producto.acabadoAnalitica = original.luces ? luz : tieneHerrajesBarandal(original) ? herrajeSeleccionado : acabado?.id;
     const destacado = servicioActivo && (
       producto.categoriaSlug
         ? categoriasDestacadas.has(producto.categoriaSlug)
@@ -367,7 +402,7 @@ export default function Catalogo({ interactivo = false }) {
             <button type="button" className="catalogo-modal-cotizar" onClick={() => {
               const enlace = window.location.origin + location.pathname + location.search + location.hash;
               const color = colorModal ? `\nColor: ${colorModal}` : '';
-              abrirWhatsApp(`Hola Cima Herrajes, me gustaría cotizar este modelo: ${productoModal.TITULO}.${color}\nEnlace: ${enlace}`, 'modal-producto');
+              abrirWhatsApp(`Hola Cima Herrajes, me gustaría cotizar este modelo: ${productoModal.TITULO}.${color}\nEnlace: ${enlace}`, 'modal-producto', datosProducto(productoModal, colorModal));
             }}>
               <FaWhatsapp size={20} aria-hidden="true" /> Consultar por WhatsApp
             </button>

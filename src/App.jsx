@@ -5,6 +5,7 @@ import Home from './pages/inicio/Home.jsx'
 import Servicios from './pages/servicios/Servicios.jsx'
 import Catalogo from './pages/Catalogo.jsx'
 import ProyectosRecientes from './pages/ProyectosRecientes.jsx'
+import Medicion from './components/Medicion'
 
 function NavegacionSecciones() {
   const { pathname, hash } = useLocation()
@@ -19,7 +20,7 @@ function NavegacionSecciones() {
 }
 
 export default function App() {
-  return <main className="container"><NavegacionSecciones /><Routes>
+  return <main className="container"><NavegacionSecciones /><Medicion /><Routes>
     <Route path="/" element={<Home />} />
     <Route path="/servicios" element={<Servicios />} />
     <Route path="/servicios/:idproductos" element={<Servicios />} />

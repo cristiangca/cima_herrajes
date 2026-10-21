@@ -2,7 +2,7 @@ import { REFERIDOS } from '../../../contenido/inicio'
 import Slide from './Slide'
 import Reveal from './Reveal'
 
-export default function Testimonios({ etiqueta = '05- Referidos' }) {
+export default function Testimonios({ etiqueta = '05- Testimonios' }) {
   return (
 <Slide id="referidos" className="slide-referidos">
  <Reveal as="span" className="kicker center">{etiqueta}</Reveal>

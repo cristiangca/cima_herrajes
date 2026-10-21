@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
 import { FaWhatsapp, FaShareAlt, FaArrowLeft } from 'react-icons/fa'
 import { CATEGORIAS } from '../../contenido/catalogo'
 import '../../styles/catalogo.css'
 
 import { CONTACTO } from '../../contenido/sitio'
+import { registrarEvento, datosProducto } from '../../utilidades/analytics'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 export default function DetalleProducto({ idproductos }) {
@@ -18,6 +20,12 @@ export default function DetalleProducto({ idproductos }) {
       break
     }
   }
+
+  useEffect(() => {
+    const categoria = CATEGORIAS.find(item => item.productos.some(producto => producto.id === idproductos));
+    const producto = categoria?.productos.find(item => item.id === idproductos);
+    if (producto) registrarEvento('producto_visto', datosProducto({ ...producto, categoriaSlug: categoria.slug }));
+  }, [idproductos]);
 
   // ===== Producto no encontrado =====
   if (!productoEncontrado) {
@@ -57,6 +65,7 @@ export default function DetalleProducto({ idproductos }) {
         await navigator.clipboard.writeText(url);
         alert('Enlace copiado al portapapeles');
       }
+      registrarEvento('share', { ...datosProducto({ ...productoEncontrado, categoriaSlug: categoriaEncontrada.slug }), method: navigator.share ? 'native' : 'clipboard', content_type: 'producto', item_id: productoEncontrado.id });
     } catch {
       // Cancelado por el usuario
     }
@@ -96,6 +105,10 @@ export default function DetalleProducto({ idproductos }) {
               target="_blank"
               rel="noopener noreferrer"
               className="btn-accion btn-whatsapp"
+              data-origen="detalle-producto"
+              data-producto-id={productoEncontrado.id}
+              data-producto-nombre={productoEncontrado.TITULO}
+              data-categoria={categoriaEncontrada.slug}
             >
               <FaWhatsapp /> Cotizar por WhatsApp
             </a>

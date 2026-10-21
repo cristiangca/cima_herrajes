@@ -1,14 +1,10 @@
 import { CONTACTO } from '../../../contenido/sitio'
+import { registrarEvento } from '../../../utilidades/analytics'
 
 const WHATSAPP_NUMBER = CONTACTO.whatsapp
 
-export function abrirWhatsApp(mensaje = '', origen = 'general') {
- if (typeof window !== 'undefined' && typeof window.gtag === 'function') {
- window.gtag('event', 'click_whatsapp', {
- origen,
- mensaje: mensaje.slice(0, 100)
- })
- }
+export function abrirWhatsApp(mensaje = '', origen = 'general', datos = {}) {
+ registrarEvento('click_whatsapp', { ...datos, origen })
  const base = `https://wa.me/${WHATSAPP_NUMBER}`
  const url = mensaje ? `${base}?text=${encodeURIComponent(mensaje)}` : base
  window.open(url, '_blank', 'noopener,noreferrer')
