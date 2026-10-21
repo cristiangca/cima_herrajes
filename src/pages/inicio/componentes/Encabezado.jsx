@@ -105,6 +105,7 @@ export default function Encabezado() {
               ['/servicios#proceso', 'Proceso de trabajo'],
               ['/servicios#como-trabajamos', 'Cómo trabajamos'],
               ['/servicios#valores', 'Garantía y valores'],
+
             ] },
             { id: 'proyectos', titulo: 'Proyectos', enlaces: [
               ['/#proyectos', 'Proyectos destacados'],
@@ -132,7 +133,7 @@ export default function Encabezado() {
             </div>
           ))}
         </div>
-        {/* <Link to="/afiliado" onClick={cerrarMenus}>Afiliados</Link> */}
+         <Link to="/afiliado" onClick={cerrarMenus}>Afiliados</Link> 
         <Link to={location.pathname === '/proyectos' ? '/proyectos#referidos' : '/#referidos'} onClick={cerrarMenus}>Testimonios</Link>
         <Link to={location.pathname === '/proyectos' ? '/proyectos#contacto' : '/#contacto'} onClick={cerrarMenus}>Contacto</Link>
 
