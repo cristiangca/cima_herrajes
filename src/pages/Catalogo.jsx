@@ -9,6 +9,7 @@ import { CATEGORIAS } from '../contenido/catalogo'
 import { CONTACTO } from '../contenido/sitio'
 import { abrirWhatsApp } from './inicio/utilidades/whatsapp'
 import { imagenConAcabado } from '../contenido/acabadosVentanas'
+import { HERRAJES_BARANDALES, tieneHerrajesBarandal, imagenHerrajesBarandal } from '../contenido/herrajesBarandales'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
 import { COLORES_LED, ACABADOS_ALUMINIO } from '../contenido/opcionesCatalogo'
@@ -84,16 +85,19 @@ export default function Catalogo({ interactivo = false }) {
   const [categoriaBase, setCategoriaSeleccionada] = useState('puertas');
   const categoriaSeleccionada = productoEnlace?.categoriaSlug || categoriaBase;
   const [busqueda, setBusqueda] = useState('');
+  const [zoomCatalogo, setZoomCatalogo] = useState(1);
   const [acabadoSeleccionado, setAcabadoSeleccionado] = useState('');
   const [luzSeleccionada, setLuzSeleccionada] = useState('');
+  const [herrajeSeleccionado, setHerrajeSeleccionado] = useState('plateado');
+  const herrajeEnlace = HERRAJES_BARANDALES.find(color => color.id === colorEnlace) || HERRAJES_BARANDALES[0];
   const esVentana = ['ventanas', 'ventanales'].includes(categoriaSeleccionada);
   const luzEnlace = COLORES_LED.find(color => color.id === 'led-' + colorEnlace);
   const acabadoEnlace = ACABADOS_ALUMINIO.find(color => color.id === colorEnlace);
   const colorModal = productoEnlace?.luces ? (luzEnlace?.nombre || 'Blanco Cálido')
-    : (['ventanas', 'ventanales'].includes(productoEnlace?.categoriaSlug) ? acabadoEnlace?.nombre : null);
+    : (productoEnlace && tieneHerrajesBarandal(productoEnlace) ? herrajeEnlace.nombre : ['ventanas', 'ventanales'].includes(productoEnlace?.categoriaSlug) ? acabadoEnlace?.nombre : null);
   const productoModal = productoEnlace ? { ...productoEnlace,
     img: productoEnlace.luces ? productoEnlace.luces[luzEnlace ? colorEnlace : 'blanco-calido']
-      : imagenConAcabado(productoEnlace, acabadoEnlace?.id, productoEnlace.imgDetalle || productoEnlace.img) } : null;
+      : imagenHerrajesBarandal(productoEnlace, herrajeEnlace.id, imagenConAcabado(productoEnlace, acabadoEnlace?.id, productoEnlace.imgDetalle || productoEnlace.img)) } : null;
   const busquedaDiferida = useDeferredValue(busqueda);
 
   // Cuando se activa un servicio, selecciona su primera categoría y hace scroll
@@ -125,21 +129,24 @@ export default function Catalogo({ interactivo = false }) {
   const obtenerEnlaceWhatsApp = useCallback((nombreProducto) => {
     const acabado = esVentana && acabadoSeleccionado ? `, acabado: ${acabadoSeleccionado}` : '';
     const luz = categoriaSeleccionada === 'espejos-led-touch' ? `, luz: ${COLORES_LED.find(color => color.id === luzSeleccionada)?.nombre || 'Blanco Cálido'}` : '';
-    const mensaje = encodeURIComponent(`Hola, me interesa cotizar el producto: ${nombreProducto}${acabado}${luz}`);
+    const producto = PRODUCTOS_FLAT.find(item => item.TITULO === nombreProducto && item.categoriaSlug === categoriaSeleccionada);
+    const herraje = producto && tieneHerrajesBarandal(producto) ? `, herrajes: ${herrajeSeleccionado}` : '';
+    const mensaje = encodeURIComponent(`Hola, me interesa cotizar el producto: ${nombreProducto}${acabado}${luz}${herraje}`);
     return `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
-  }, [esVentana, acabadoSeleccionado, categoriaSeleccionada, luzSeleccionada]);
+  }, [esVentana, acabadoSeleccionado, categoriaSeleccionada, luzSeleccionada, herrajeSeleccionado]);
 
   const rutaProducto = useCallback((producto) => {
     const params = new URLSearchParams(location.search);
     params.set('producto', producto.id);
     params.delete('color');
     if (producto.luces) params.set('color', producto.luz || 'blanco-calido');
+    else if (tieneHerrajesBarandal(producto)) params.set('color', herrajeSeleccionado);
     else if (['ventanas', 'ventanales'].includes(producto.categoriaSlug)) {
       const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
       if (acabado) params.set('color', acabado.id);
     }
     return { pathname: location.pathname, search: '?' + params.toString(), hash: location.hash };
-  }, [location.pathname, location.search, location.hash, acabadoSeleccionado]);
+  }, [location.pathname, location.search, location.hash, acabadoSeleccionado, herrajeSeleccionado]);
 
   const obtenerUrlProducto = useCallback((producto) => {
     const ruta = rutaProducto(producto);
@@ -172,9 +179,10 @@ export default function Catalogo({ interactivo = false }) {
       setCategoriaSeleccionada(productoEnlace.categoriaSlug);
       if (productoEnlace.luces) setLuzSeleccionada(luzEnlace?.id || 'led-blanco-calido');
       if (acabadoEnlace) setAcabadoSeleccionado(acabadoEnlace.nombre);
+      if (tieneHerrajesBarandal(productoEnlace)) setHerrajeSeleccionado(colorEnlace === 'negro' ? 'negro' : 'plateado');
     }
     navigate({ pathname: location.pathname, search: params.toString() ? '?' + params.toString() : '', hash: location.hash }, { replace: true });
-  }, [navigate, location.pathname, location.search, location.hash, productoEnlace, luzEnlace, acabadoEnlace]);
+  }, [navigate, location.pathname, location.search, location.hash, productoEnlace, luzEnlace, acabadoEnlace, colorEnlace]);
 
   const modalAbierto = Boolean(productoEnlace);
   useEffect(() => {
@@ -258,7 +266,27 @@ export default function Catalogo({ interactivo = false }) {
           </div>
         </div>
       )}
-     <div className="catalogo-grid">
+      {categoriaSeleccionada === 'barandales' && !busqueda && <div className="catalogo-colores-led">
+        <h3 className="catalogo-colores-led-titulo">Color de los herrajes</h3>
+        <div className="catalogo-colores-led-lista">
+          {HERRAJES_BARANDALES.map(color => <button key={color.id} type="button" className="catalogo-color-led-item catalogo-acabado"
+            aria-pressed={herrajeSeleccionado === color.id} onClick={() => setHerrajeSeleccionado(color.id)}>
+            <span className="catalogo-color-led-swatch" style={{ background: color.hex }} aria-hidden="true" />{color.nombre}
+          </button>)}
+        </div>
+      </div>}
+      <div className="catalogo-vista">
+        <span>Zoom</span>
+        <div className="catalogo-zoom" role="group" aria-label="Tamaño de las tarjetas del catálogo">
+          <button type="button" onClick={() => setZoomCatalogo(actual => Math.max(0, actual - 1))}
+            disabled={zoomCatalogo === 0} aria-label="Reducir imágenes para ver más productos" title="Ver más productos">−</button>
+          <button type="button" className="catalogo-zoom-restablecer" onClick={() => setZoomCatalogo(1)}
+            aria-label="Restablecer zoom" title="Restablecer zoom">↺</button>
+          <button type="button" onClick={() => setZoomCatalogo(actual => Math.min(2, actual + 1))}
+            disabled={zoomCatalogo === 2} aria-label="Ampliar imágenes del catálogo" title="Ampliar imágenes">+</button>
+        </div>
+      </div>
+     <div className={`catalogo-grid catalogo-zoom-${zoomCatalogo}`}>
   {categoriaSeleccionada === 'espejos-led-touch' && !busqueda && (
     <div className="catalogo-colores-led">
       <h3 className="catalogo-colores-led-titulo">Colores LED disponibles</h3>
@@ -283,7 +311,7 @@ export default function Catalogo({ interactivo = false }) {
     const luz = luzSeleccionada.replace('led-', '') || 'blanco-calido';
     const acabado = ACABADOS_ALUMINIO.find(color => color.nombre === acabadoSeleccionado);
     const producto = original.luces ? { ...original, luz, img: original.luces[luz] }
-      : { ...original, img: imagenConAcabado(original, acabado?.id) };
+      : { ...original, img: imagenHerrajesBarandal(original, herrajeSeleccionado, imagenConAcabado(original, acabado?.id)) };
     const destacado = servicioActivo && (
       producto.categoriaSlug
         ? categoriasDestacadas.has(producto.categoriaSlug)
@@ -329,8 +357,8 @@ export default function Catalogo({ interactivo = false }) {
             <h2 id="titulo-ampliacion">{productoModal.TITULO}</h2>
             {colorModal && <div className="catalogo-modal-color">
               <span className="catalogo-color-led-item catalogo-modal-capsula">
-                <span className="catalogo-color-led-swatch" style={{ background: productoEnlace.luces ? (luzEnlace || COLORES_LED[0]).hex : acabadoEnlace.hex }} aria-hidden="true" />
-                <span>Color: <strong>{colorModal}</strong></span>
+                <span className="catalogo-color-led-swatch" style={{ background: productoEnlace.luces ? (luzEnlace || COLORES_LED[0]).hex : tieneHerrajesBarandal(productoEnlace) ? herrajeEnlace.hex : acabadoEnlace.hex }} aria-hidden="true" />
+                <span>{tieneHerrajesBarandal(productoEnlace) ? 'Herrajes' : 'Color'}: <strong>{colorModal}</strong></span>
               </span>
             </div>}
             <p className="catalogo-modal-ayuda">¿Te interesa este modelo? Consulta disponibilidad, medidas y precio con nuestro equipo.</p>

@@ -858,3 +858,29 @@ button.catalogo-img-wrapper:focus-visible { outline: 3px solid #2563eb; outline-
   .catalogo-modal-consulta { padding: 14px 20px max(16px, env(safe-area-inset-bottom)); }
   .catalogo-ampliacion .catalogo-modal-close { top: 10px; right: 10px; }
 }
+
+/* Zoom de la galería: cambia la densidad conservando las imágenes completas. */
+.catalogo-vista { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px; margin: 0 0 20px; color: #475569; font-size: .85rem; }
+.catalogo-zoom { display: inline-flex; align-items: center; gap: 5px; }
+.catalogo-zoom button { display: inline-grid; place-items: center; width: 36px; min-height: 30px; padding: 0; border: 0; border-radius: 999px; background: #18181b; color: #fff; font: inherit; font-size: 1rem; line-height: 1; cursor: pointer; }
+.catalogo-zoom .catalogo-zoom-restablecer { width: 30px; background: #f1f5f9; color: #64748b; }
+.catalogo-zoom .catalogo-zoom-restablecer:hover { background: #e2e8f0; color: #0f172a; }
+.catalogo-zoom button:disabled { opacity: .35; cursor: default; }
+.catalogo-zoom button:hover:not(:disabled) { background: #334155; }
+.catalogo-vista button:focus-visible { outline: 3px solid #2563eb; outline-offset: -3px; }
+.catalogo-container .catalogo-grid[class*="catalogo-zoom-"] { grid-template-columns: repeat(auto-fill, minmax(min(100%, var(--tarjeta-ancho)), 1fr)); gap: clamp(10px, 2vw, 24px); }
+.catalogo-grid.catalogo-zoom-0 { --tarjeta-ancho: 150px; }
+.catalogo-grid.catalogo-zoom-1 { --tarjeta-ancho: 240px; }
+.catalogo-grid.catalogo-zoom-2 { --tarjeta-ancho: 340px; }
+.catalogo-grid.catalogo-zoom-0 .catalogo-item h2 { font-size: .85rem; padding: 12px; overflow-wrap: anywhere; }
+@media (max-width: 640px) {
+  .catalogo-vista { justify-content: center; gap: 8px; }
+  .catalogo-vista > span { text-align: center; }
+  .catalogo-grid.catalogo-zoom-0 { --tarjeta-ancho: 95px; }
+  .catalogo-grid.catalogo-zoom-1 { --tarjeta-ancho: 145px; }
+  .catalogo-grid.catalogo-zoom-2 { --tarjeta-ancho: 260px; }
+  .catalogo-grid.catalogo-zoom-0 .catalogo-item h2 { font-size: .75rem; padding: 10px 6px; }
+  .catalogo-grid.catalogo-zoom-0 .catalogo-item-acciones { flex-wrap: wrap; }
+}
+
+.catalogo-herrajes-nota { margin: 12px 0 0; color: #64748b; font-size: .8rem; line-height: 1.6; }
