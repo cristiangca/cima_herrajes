@@ -1,6 +1,6 @@
 // ServicioActivoContext.jsx
 import { createContext, useContext, useState, useCallback, useMemo } from 'react';
-import { SERVICIO_A_CATEGORIAS } from './map-servicios-categorias.jsx';
+import { SERVICIO_A_CATEGORIAS } from "../../contenido/servicios/categorias-relacionadas.js";
 import { registrarEvento } from '../../utilidades/analytics';
 
 const ServicioActivoContext = createContext({ servicioActivo: null, limpiarServicio: () => {} });

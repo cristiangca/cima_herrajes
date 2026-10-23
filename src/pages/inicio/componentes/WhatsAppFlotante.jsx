@@ -1,3 +1,4 @@
+import TEXTOS from '../../../contenido/general/textos/WhatsAppFlotante.json'
 import { FaWhatsapp } from 'react-icons/fa'
 
 export default function WhatsAppFlotante({ whatsappOpen, setWhatsappOpen, mensajeWhatsapp, setMensajeWhatsapp, enviarWhatsApp, abrirBurbujaGeneral }) {
@@ -10,19 +11,17 @@ export default function WhatsAppFlotante({ whatsappOpen, setWhatsappOpen, mensaj
  type="button"
  className="whatsapp-close"
  onClick={() => setWhatsappOpen(false)}
- aria-label="Cerrar"
- >
- ×
- </button>
+ aria-label={TEXTOS.cerrar}
+ >{TEXTOS.texto}</button>
 
- <p className="whatsapp-bubble-label">Escribe tu mensaje:</p>
+ <p className="whatsapp-bubble-label">{TEXTOS.escribe_tu_mensaje}</p>
 
  <textarea
  value={mensajeWhatsapp}
  onChange={(e) => setMensajeWhatsapp(e.target.value)}
  rows={5}
  className="whatsapp-input"
- placeholder="Escribe tu mensaje..."
+ placeholder={TEXTOS.escribe_tu_mensaje_2}
  />
 
  <button
@@ -30,9 +29,7 @@ export default function WhatsAppFlotante({ whatsappOpen, setWhatsappOpen, mensaj
  className="whatsapp-send"
  onClick={() => enviarWhatsApp('bubble')}
  >
- <FaWhatsapp size={18} />
- Enviar por WhatsApp
- </button>
+ <FaWhatsapp size={18} />{TEXTOS.enviar_por_whatsapp}</button>
  </div>
  )}
 
@@ -47,7 +44,7 @@ export default function WhatsAppFlotante({ whatsappOpen, setWhatsappOpen, mensaj
  abrirBurbujaGeneral()
  }
  }}
- aria-label="WhatsApp"
+ aria-label={TEXTOS.whatsapp}
  >
  <FaWhatsapp size={26} />
  </button>

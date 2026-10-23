@@ -1,0 +1,67 @@
+[
+  {
+    "key": "cerraduras",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-ca9f265f-5f4b-4095-9fe2-44a89bb1fe6b.png",
+    "dest": "src/assets/catalogo/domotica/cerraduras-simulado.webp"
+  },
+  {
+    "key": "persianas",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-d631a9f3-27f4-4fc8-a920-1225d8a8c9fc.png",
+    "dest": "src/assets/catalogo/domotica/persianas-simulado.webp"
+  },
+  {
+    "key": "puertas",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-05509d8a-c728-4186-a831-cb5f50e51066.png",
+    "dest": "src/assets/catalogo/domotica/puertas-simulado.webp"
+  },
+  {
+    "key": "iluminacion",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-91f2cba4-c66c-4ac5-b341-19f75456159f.png",
+    "dest": "src/assets/catalogo/domotica/iluminacion-simulado.webp"
+  },
+  {
+    "key": "vidrio",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-1a6bdce9-32cc-4ea8-aa42-8b1fffbfdabd.png",
+    "dest": "src/assets/catalogo/domotica/vidrio-simulado.webp"
+  },
+  {
+    "key": "motores",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-b0c504a3-11b3-4ec7-a019-fc674a39bd74.png",
+    "dest": "src/assets/catalogo/domotica/motores-simulado.webp"
+  },
+  {
+    "key": "sensores",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-bcfef8cd-8b95-4145-a31e-ffa35ebd6a77.png",
+    "dest": "src/assets/catalogo/domotica/sensores-simulado.webp"
+  },
+  {
+    "key": "residencial-despues",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-fb5a795a-d5c1-4467-86ea-8c73ae2cda0a.png",
+    "dest": "src/assets/proyectos/luz-y-amplitud/despues-simulado.webp"
+  },
+  {
+    "key": "barandales-despues",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-01a6a4e0-35e7-42b4-bf66-49671f1f6f43.png",
+    "dest": "src/assets/proyectos/transparencia/despues-simulado.webp"
+  },
+  {
+    "key": "fachada-despues",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-ca062fb8-decb-40bd-8e72-3746f58659f5.png",
+    "dest": "src/assets/proyectos/nueva-mirada/despues-simulado.webp"
+  },
+  {
+    "key": "residencial-antes",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-9bb22345-1501-4f11-9561-dcafa6138a94.png",
+    "dest": "src/assets/proyectos/luz-y-amplitud/antes-simulado.webp"
+  },
+  {
+    "key": "barandales-antes",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-aae04f9e-7e03-4fd6-a67a-117bd0301d25.png",
+    "dest": "src/assets/proyectos/transparencia/antes-simulado.webp"
+  },
+  {
+    "key": "fachada-antes",
+    "source": "C:\\Users\\pc\\.codex\\generated_images\\01a169d7-534c-73e3-aa77-8345bff60b29\\exec-3b8ce2ec-f539-484d-9f15-68244b77cf31.png",
+    "dest": "src/assets/proyectos/nueva-mirada/antes-simulado.webp"
+  }
+]

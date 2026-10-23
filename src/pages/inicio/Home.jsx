@@ -1,3 +1,4 @@
+import TEXTOS from '../../contenido/inicio/textos/Home.json'
 import { useEffect, useState } from 'react'
 import '../../styles/home.css'
 
@@ -43,12 +44,12 @@ function HomeContenido() {
 
  // SEO dinámico
  useEffect(() => {
- document.title = 'Cima Herrajes | Cancelería, aluminio, vidrio y barandales'
+ document.title = TEXTOS.cima_herrajes_canceleria_aluminio_vidrio_y_barandales
  const meta = document.querySelector('meta[name="description"]')
  if (meta) {
  meta.setAttribute(
  'content',
- 'Fabricación e instalación de cancelería, ventanas, puertas de aluminio, barandales, cristal templado y domótica. Cotiza por WhatsApp.'
+ TEXTOS.fabricacion_e_instalacion_de_canceleria_ventanas_puertas
  )
  }
  }, [])

@@ -1,3 +1,5 @@
+import { formatearTexto } from '../utilidades/plantillas.js'
+import TEXTOS from '../contenido/proyectos/textos/ProyectosRecientes.json'
 import { Link } from 'react-router-dom'
 import { FiArrowUpRight, FiPlus } from 'react-icons/fi'
 import Encabezado from './inicio/componentes/Encabezado'
@@ -7,26 +9,25 @@ import Contacto from './inicio/componentes/Contacto'
 import Reveal from './inicio/componentes/Reveal'
 import Slide from './inicio/componentes/Slide'
 import { abrirWhatsApp, mensajeProyecto } from './inicio/utilidades/whatsapp'
-import { PROYECTOS_RECIENTES } from '../contenido/proyectos'
+import { PROYECTOS_RECIENTES } from '../contenido/proyectos/seleccion.js'
 import '../styles/home.css'
 
 function TarjetaReciente({ proyecto, indice }) {
   return <Reveal as="article" className="reciente-tarjeta" delay={indice * 70}>
     <div className="reciente-resultado">
-      <img src={proyecto.despues} alt={`Resultado de referencia: ${proyecto.nombre}`} loading="lazy" />
-      <span className="reciente-etiqueta">Después</span>
+      <img src={proyecto.despues} alt={formatearTexto(TEXTOS["plantilla_resultado_de_referencia_dato1"], { dato1: (proyecto.nombre) })} loading="lazy" />
+      <span className="reciente-etiqueta">{TEXTOS.despues}</span>
       <div className="reciente-titulo"><span>{proyecto.tipo}</span><h2>{proyecto.nombre}</h2></div>
     </div>
     <div className="reciente-cuerpo">
       <span className="reciente-materiales">{proyecto.detalle}</span>
       <p>{proyecto.descripcion}</p>
-      <div className="reciente-origen">
-        <img src={proyecto.antes} alt={`Antes, imagen de referencia para ${proyecto.nombre}`} loading="lazy" />
-        <div><span className="kicker">Antes</span><p>El punto de partida para imaginar un nuevo espacio.</p></div>
-      </div>
-      {proyecto.ejemplo && <small className="reciente-referencia">Imágenes genéricas de referencia.</small>}
-      <button type="button" className="reciente-cotizar" onClick={() => abrirWhatsApp(mensajeProyecto(proyecto.tipo, proyecto.nombre), 'recientes')}>
-        Quiero algo similar <FiArrowUpRight size={16} />
+      {proyecto.antes && <div className="reciente-origen">
+        <img src={proyecto.antes} alt={formatearTexto(TEXTOS["plantilla_antes_imagen_de_referencia_para_dato1"], { dato1: (proyecto.nombre) })} loading="lazy" />
+        <div><span className="kicker">{TEXTOS.antes}</span><p>{TEXTOS.el_punto_de_partida_para_imaginar_un}</p></div>
+      </div>}
+      {proyecto.ejemplo && <small className="reciente-referencia">{TEXTOS.imagenes_genericas_de_referencia}</small>}
+      <button type="button" className="reciente-cotizar" onClick={() => abrirWhatsApp(mensajeProyecto(proyecto.tipo, proyecto.nombre), 'recientes')}>{TEXTOS.quiero_algo_similar}<FiArrowUpRight size={16} />
       </button>
     </div>
   </Reveal>
@@ -37,43 +38,41 @@ export default function ProyectosRecientes() {
     <Encabezado />
     <section id="recientes" className="recientes-portada">
       <div className="recientes-portada-texto">
-        <span className="kicker">01- Proyectos recientes</span>
-        <h1>Una idea.<br />Un espacio que cambia.</h1>
-        <p>Explora soluciones en aluminio y cristal para renovar la forma de vivir y trabajar en cada espacio.</p>
-        <a href="#trabajos-recientes" className="reciente-cotizar">Explorar proyectos <FiArrowUpRight /></a>
+        <span className="kicker">{TEXTOS["01_proyectos_recientes"]}</span>
+        <h1>{TEXTOS.una_idea}<br />{TEXTOS.un_espacio_que_cambia}</h1>
+        <p>{TEXTOS.explora_soluciones_en_aluminio_y_cristal_para}</p>
+        <a href="#trabajos-recientes" className="reciente-cotizar">{TEXTOS.explorar_proyectos}<FiArrowUpRight /></a>
       </div>
       <div className="recientes-portada-imagen">
-        <img src={PROYECTOS_RECIENTES[0].despues} alt="Inspiración residencial con grandes ventanales" />
-        <span>Vidrio · Aluminio · Diseño a medida</span>
+        {PROYECTOS_RECIENTES[0] && <img src={PROYECTOS_RECIENTES[0].despues} alt={TEXTOS.inspiracion_residencial_con_grandes_ventanales} />}
+        <span>{TEXTOS.vidrio_aluminio_diseno_a_medida}</span>
       </div>
     </section>
     <section id="trabajos-recientes" className="recientes-galeria">
-      <div className="recientes-galeria-encabezado"><div><span className="kicker">Transformaciones que inspiran</span><h2>Del punto de partida al resultado.</h2></div>
-        <p>Ejemplos visuales con fotografías genéricas para explorar las posibilidades de tu próximo proyecto.</p>
+      <div className="recientes-galeria-encabezado"><div><span className="kicker">{TEXTOS.transformaciones_que_inspiran}</span><h2>{TEXTOS.del_punto_de_partida_al_resultado}</h2></div>
       </div>
       <div className="recientes-tarjetas">{PROYECTOS_RECIENTES.map((proyecto, indice) => <TarjetaReciente key={proyecto.id} proyecto={proyecto} indice={indice} />)}</div>
-      <Link className="recientes-ver-destacados" to="/#proyectos">Ver proyectos destacados <FiArrowUpRight /></Link>
+      <Link className="recientes-ver-destacados" to="/#proyectos">{TEXTOS.ver_proyectos_destacados}<FiArrowUpRight /></Link>
     </section>
     <Slide id="detalle-recientes" className="recientes-detalles">
-      <Reveal as="span" className="kicker center">02- Preguntas frecuentes</Reveal>
-      <Reveal as="h2" className="display center">Resolvemos tus dudas antes de empezar.</Reveal>
+      <Reveal as="span" className="kicker center">{TEXTOS["02_preguntas_frecuentes"]}</Reveal>
+      <Reveal as="h2" className="display center">{TEXTOS.resolvemos_tus_dudas_antes_de_empezar}</Reveal>
       <div className="recientes-preguntas">
         {[
-          ['¿Qué necesito para solicitar una cotización?', 'Cuéntanos qué quieres instalar o renovar, comparte tu ubicación, medidas aproximadas y, si tienes, fotografías del espacio o una referencia. Con esa información podemos orientarte sobre el siguiente paso.'],
-          ['¿Puedo cotizar si todavía no tengo las medidas?', 'Sí. Puedes empezar con fotografías y una descripción de lo que necesitas. Para definir la fabricación, revisaremos contigo las medidas y los detalles del espacio.'],
-          ['¿Me ayudan a elegir el material y el acabado?', 'Sí. Te asesoramos sobre opciones de aluminio, vidrio, sistemas de apertura y acabados según el uso, el espacio y lo que buscas para tu proyecto.'],
-          ['¿También realizan la instalación?', 'Sí, Cima Herrajes diseña, fabrica e instala. Al solicitar tu propuesta, revisamos el alcance del trabajo y los detalles necesarios para el montaje.'],
-          ['¿Cuánto tarda un proyecto y qué garantía tiene?', 'El plazo depende de las medidas, los materiales y el tipo de instalación. Antes de aprobar tu propuesta, solicita el tiempo estimado y las condiciones de garantía que correspondan a tu proyecto.'],
-          ['¿Atienden en mi zona?', 'Compártenos tu ciudad y colonia por WhatsApp para confirmar la cobertura y la disponibilidad para tu ubicación.'],
+          [TEXTOS.que_necesito_para_solicitar_una_cotizacion, TEXTOS.cuentanos_que_quieres_instalar_o_renovar_comparte],
+          [TEXTOS.puedo_cotizar_si_todavia_no_tengo_las, TEXTOS.si_puedes_empezar_con_fotografias_y_una],
+          [TEXTOS.me_ayudan_a_elegir_el_material_y, TEXTOS.si_te_asesoramos_sobre_opciones_de_aluminio],
+          [TEXTOS.tambien_realizan_la_instalacion, TEXTOS.si_cima_herrajes_disena_fabrica_e_instala],
+          [TEXTOS.cuanto_tarda_un_proyecto_y_que_garantia, TEXTOS.el_plazo_depende_de_las_medidas_los],
+          [TEXTOS.atienden_en_mi_zona, TEXTOS.compartenos_tu_ciudad_y_colonia_por_whatsapp],
         ].map(([pregunta, respuesta]) => <details key={pregunta} className="recientes-pregunta">
           <summary>{pregunta}<FiPlus size={20} aria-hidden="true" /></summary>
           <p>{respuesta}</p>
         </details>)}
       </div>
       <div className="recientes-preguntas-contacto">
-        <p>¿Tu proyecto necesita una respuesta más específica?</p>
-        <button type="button" className="reciente-cotizar" onClick={() => abrirWhatsApp('Hola Cima Herrajes, tengo una duda sobre mi proyecto. ¿Me pueden asesorar?', 'preguntas-recientes')}>
-          Resolver mi duda por WhatsApp <FiArrowUpRight size={16} />
+        <p>{TEXTOS.tu_proyecto_necesita_una_respuesta_mas_especifica}</p>
+        <button type="button" className="reciente-cotizar" onClick={() => abrirWhatsApp(TEXTOS.hola_cima_herrajes_tengo_una_duda_sobre, 'preguntas-recientes')}>{TEXTOS.resolver_mi_duda_por_whatsapp}<FiArrowUpRight size={16} />
         </button>
       </div>
     </Slide>

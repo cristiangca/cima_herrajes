@@ -1,4 +1,5 @@
-import fotoTrabajo from '../../../assets/inicio/como-trabajamos-azul.png'
+import TEXTOS from '../../../contenido/inicio/textos/ComoTrabajamos.json'
+import { imagen_como_trabajamos_azul as fotoTrabajo } from '../../../contenido/imagenes/seleccion.js'
 import { FiTool, FiShield, FiUsers, FiEdit3 } from 'react-icons/fi'
 import Slide from './Slide'
 import Reveal from './Reveal'
@@ -10,24 +11,16 @@ export default function ComoTrabajamos() {
     <Reveal className="split-media" delay={280}>
       <img
         src={fotoTrabajo}
-        alt="Toma de medidas de una ventana sobre una mesa con herramientas azules"
+        alt={TEXTOS.toma_de_medidas_de_una_ventana_sobre}
       />
     </Reveal>
 
     <div className="split-text">
-      <Reveal as="span" className="kicker" delay={80}>
-        04- Cómo trabajamos
-      </Reveal>
+      <Reveal as="span" className="kicker" delay={80}>{TEXTOS["04_como_trabajamos"]}</Reveal>
 
-      <Reveal as="h2" delay={140}>
-        Nuestra forma de trabajar
-      </Reveal>
+      <Reveal as="h2" delay={140}>{TEXTOS.nuestra_forma_de_trabajar}</Reveal>
 
-      <Reveal as="p" delay={200}>
-        Combinamos conocimiento técnico, control de calidad y
-        acompañamiento cercano para llevar cada proyecto a una
-        ejecución precisa, funcional y bien resuelta.
-      </Reveal>
+      <Reveal as="p" delay={200}>{TEXTOS.combinamos_conocimiento_tecnico_control_de_calidad_y}</Reveal>
 
       <div className="split-pilares">
         <Reveal className="split-pilar" delay={260}>
@@ -35,12 +28,9 @@ export default function ComoTrabajamos() {
             <div className="split-pilar-icon">
               <FiTool size={18} />
             </div>
-            <h4>Experiencia</h4>
+            <h4>{TEXTOS.experiencia}</h4>
           </div>
-          <p>
-            Nuestro conocimiento técnico nos permite entender las
-            necesidades de cada proyecto y ejecutarlas con precisión.
-          </p>
+          <p>{TEXTOS.nuestro_conocimiento_tecnico_nos_permite_entender_las}</p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={320}>
@@ -48,12 +38,9 @@ export default function ComoTrabajamos() {
             <div className="split-pilar-icon">
               <FiShield size={18} />
             </div>
-            <h4>Calidad</h4>
+            <h4>{TEXTOS.calidad}</h4>
           </div>
-          <p>
-            Cuidamos cada etapa, desde los materiales y la fabricación
-            hasta la instalación y los acabados.
-          </p>
+          <p>{TEXTOS.cuidamos_cada_etapa_desde_los_materiales_y}</p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={380}>
@@ -61,12 +48,9 @@ export default function ComoTrabajamos() {
             <div className="split-pilar-icon">
               <FiUsers size={18} />
             </div>
-            <h4>Acompañamiento</h4>
+            <h4>{TEXTOS.acompanamiento}</h4>
           </div>
-          <p>
-            Acompañamos al cliente durante cada etapa, con comunicación
-            cercana y seguimiento continuo.
-          </p>
+          <p>{TEXTOS.acompanamos_al_cliente_durante_cada_etapa_con}</p>
         </Reveal>
 
         <Reveal className="split-pilar" delay={440}>
@@ -74,12 +58,9 @@ export default function ComoTrabajamos() {
             <div className="split-pilar-icon">
               <FiEdit3 size={18} />
             </div>
-            <h4>Personalización</h4>
+            <h4>{TEXTOS.personalizacion}</h4>
           </div>
-          <p>
-            Analizamos las necesidades de cada proyecto para encontrar
-            la solución más adecuada.
-          </p>
+          <p>{TEXTOS.analizamos_las_necesidades_de_cada_proyecto_para}</p>
         </Reveal>
       </div>
     </div>

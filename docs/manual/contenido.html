@@ -1,0 +1,209 @@
+<section id="inicio" data-title="Inicio y alcance">
+  <div class="eyebrow">CIMA HERRAJES / ENTREGA Y MANTENIMIENTO</div>
+  <h1>Tu página, fácil<br>de mantener.</h1>
+  <p class="lead">Manual completo para cambiar textos, productos y fotografías, administrar proyectos y preparar la publicación del sitio.</p>
+  <div class="cover-photo"><img src="{{asset:src/assets/proyectos/nueva-mirada/despues-simulado.webp}}" alt="Fachada comercial de un proyecto simulado con perfiles de aluminio negro"><span>Imágenes de proyectos simulados incluidas en el sitio.</span></div>
+  <div class="stats"><div><strong>{{readmeCount}}</strong><span>guías reunidas</span></div><div><strong>{{categoryCount}}</strong><span>categorías de productos</span></div><div><strong>{{imageCount}}</strong><span>imágenes locales</span></div></div>
+  <div class="note"><strong>Cómo utilizar este manual.</strong> Ábrelo con doble clic en el navegador. Funciona sin conexión y contiene sus imágenes integradas. Utiliza el índice, el buscador o el botón de imprimir. Las rutas se cuentan desde la carpeta principal del proyecto.</div>
+  <h2>Qué incluye el software</h2>
+  <p>Una página de presentación, catálogo de productos, soluciones, proyectos, formulario de afiliados y enlaces de contacto por WhatsApp. Está construida con React y Vite. El contenido se edita en archivos locales y las imágenes están dentro de <code>src/assets</code>.</p>
+  <p>El sitio no tiene un panel de administración conectado a una base de datos. Guardar un archivo actualiza la vista local mientras está abierto el servidor de desarrollo; para modificar la web publicada se debe compilar y publicar de nuevo.</p>
+  <table><thead><tr><th>Página</th><th>Ruta</th><th>Uso</th></tr></thead><tbody><tr><td>Inicio</td><td><code>/</code></td><td>Empresa, especialidades, collage y contacto.</td></tr><tr><td>Servicios</td><td><code>/servicios</code></td><td>Catálogo, soluciones, proceso y valores.</td></tr><tr><td>Catálogo</td><td><code>/catalogo</code></td><td>Exploración interactiva de productos.</td></tr><tr><td>Detalle</td><td><code>/servicios/:idproductos</code></td><td>Información de un producto por ID.</td></tr><tr><td>Proyectos</td><td><code>/proyectos</code></td><td>Comparaciones de antes y después.</td></tr><tr><td>Afiliados</td><td><code>/afiliado</code></td><td>Revisión de un referido y preparación del mensaje de WhatsApp.</td></tr></tbody></table>
+  <p class="small">Versión documental: 23 de octubre de 2026. El anexo conserva las guías originales del repositorio como referencia; las instrucciones principales de este manual describen la organización actual.</p>
+</section>
+
+<section id="primeros-pasos" data-title="Abrir y ejecutar el proyecto">
+  <div class="eyebrow">01 / PREPARACIÓN</div><h2>Abrir la página en tu computadora</h2>
+  <ol class="steps"><li><strong>Conserva una copia del proyecto.</strong> Antes de una actualización, guarda un respaldo o registra el estado con Git. Incluye las carpetas de contenido e imágenes.</li><li><strong>Prepara las herramientas.</strong> Necesitas Node.js con npm y un editor de código. Usa una versión de Node compatible con las dependencias entregadas; los scripts originales de recuperación requieren Node 20 o superior.</li><li><strong>Abre la carpeta principal en el editor.</strong> Debes ver <code>package.json</code>, <code>src</code>, <code>public</code> y <code>docs</code>. Abre ahí la terminal.</li><li><strong>Instala las dependencias.</strong> Solo es necesario la primera vez o cuando cambian las dependencias. Requiere acceso a internet si no están disponibles localmente.</li></ol>
+  <pre><code>npm ci</code></pre>
+  <p>Inicia la vista de trabajo:</p><pre><code>npm run dev</code></pre>
+  <p>La terminal mostrará una dirección local. Abre exactamente esa dirección en el navegador. Mantén la terminal abierta mientras editas. <kbd>Ctrl</kbd> + <kbd>C</kbd> detiene el servidor.</p>
+  <div class="flow"><span>Editar contenido</span><b>→</b><span>Guardar</span><b>→</b><span>Revisar en navegador</span><b>→</b><span>Validar y publicar</span></div>
+  <div class="note"><strong>No abras el index.html de la aplicación con doble clic para probar React.</strong> La página necesita el servidor de Vite durante el desarrollo. Este manual sí puede abrirse directamente como archivo HTML.</div>
+</section>
+
+<section id="mapa" data-title="Dónde se edita cada cosa">
+  <div class="eyebrow">02 / ORGANIZACIÓN</div><h2>Dos carpetas para casi todos los cambios</h2>
+  <div class="two"><div class="card"><h3>src/contenido</h3><p>Textos, listas de productos, datos de contacto, proyectos y selección de imágenes.</p></div><div class="card"><h3>src/assets</h3><p>Fotografías y archivos visuales. Las carpetas siguen las secciones y categorías.</p></div></div>
+  <pre><code>src/
+├── contenido/
+│   ├── general/       Contacto, menú, pies y WhatsApp
+│   ├── inicio/        Portada, empresa, servicios y testimonios
+│   ├── catalogo/      Categorías, opciones y variantes
+│   ├── servicios/     Soluciones, carrusel y recomendaciones
+│   ├── proyectos/    Lista única de proyectos
+│   ├── afiliados/    Textos y opciones del formulario
+│   └── imagenes/     Selección, inventario y registros
+├── assets/
+│   ├── marca/
+│   ├── inicio/
+│   ├── catalogo/
+│   ├── proyectos/
+│   └── documentacion/
+├── pages/            Presentación y comportamiento
+├── styles/           Diseño
+└── utilidades/       Funciones de apoyo</code></pre>
+  <h3>Mapa rápido de edición</h3>
+  {{contentMap}}
+  <p>Los archivos <code>.json</code> contienen valores de texto y ajustes. Los <code>.js</code> permiten importar imágenes y contienen listas con comentarios. Cambia el valor visible, conservando la clave que utiliza la página.</p>
+</section>
+
+<section id="textos" data-title="Cambiar textos y botones">
+  <div class="eyebrow">03 / TEXTOS</div><h2>Cambiar una frase sin tocar el diseño</h2>
+  <ol class="steps"><li>Identifica la sección. Por ejemplo, el título de soluciones se encuentra en <code>src/contenido/servicios/textos/SolucionesCarrusel.json</code>.</li><li>Busca la frase que ves en la página.</li><li>Edita solo el valor situado a la derecha de los dos puntos.</li><li>Guarda y revisa el navegador. Conserva el nombre de la clave.</li></ol>
+  <div class="two"><div><h3>Antes</h3><pre><code>"disenamos_espacios_funcionales_y_modernos":
+  "Diseñamos espacios funcionales y modernos"</code></pre></div><div><h3>Después</h3><pre><code>"disenamos_espacios_funcionales_y_modernos":
+  "Creamos espacios a tu medida"</code></pre></div></div>
+  <div class="note">El ejemplo muestra una entrada del objeto JSON. Conserva las llaves del archivo y las comas entre entradas. No agregues una coma después de la última entrada.</div>
+  <h3>Reglas que evitan errores</h3>
+  <ul><li>JSON utiliza comillas dobles, no admite comentarios y no permite comas sobrantes.</li><li>Para un salto de línea dentro del valor escribe <code>\n</code>. Para incluir comillas dobles escribe <code>\"</code>.</li><li>Los nombres de archivo de <code>textos/</code> indican el componente que los utiliza: <code>Portada.json</code>, <code>Nosotros.json</code>, <code>Valores.json</code>, etc.</li><li>Los títulos y descripciones de productos se editan en sus categorías; los nombres y descripciones de proyectos en su lista única.</li></ul>
+  <h3>Plantillas automáticas</h3><p>Las claves que comienzan con <code>plantilla_</code> pueden contener <code>{dato1}</code>, <code>{dato2}</code>, etc. La página los sustituye por un nombre de producto, acabado o dato del formulario. Conserva esos marcadores aunque cambies el resto de la frase.</p>
+  <pre><code>"plantilla_resultado_de_referencia_dato1":
+  "Resultado simulado: {dato1}"</code></pre>
+  <p>Para cambiar el título principal de portada utiliza <code>PORTADA.titulo</code> y <code>PORTADA.descripcion</code> en <code>src/contenido/general/sitio.js</code>.</p>
+</section>
+
+<section id="contacto" data-title="Contacto, portada y WhatsApp">
+  <div class="eyebrow">04 / DATOS COMPARTIDOS</div><h2>Contacto y mensajes de WhatsApp</h2>
+  <p>Abre <code>src/contenido/general/sitio.js</code>. Los datos actuales son:</p>{{contactCode}}
+  <table><thead><tr><th>Campo</th><th>Cómo editarlo</th></tr></thead><tbody><tr><td><code>whatsapp</code></td><td>País + lada + número, sin espacios ni signo +. También se utiliza en enlaces telefónicos.</td></tr><tr><td><code>telefonoVisible</code></td><td>Texto que lee el visitante. Actualízalo junto con whatsapp.</td></tr><tr><td><code>correo</code></td><td>Correo utilizado en los enlaces de contacto.</td></tr><tr><td><code>direccion</code> y <code>ubicacion</code></td><td>Dirección y ciudad mostradas en la página.</td></tr></tbody></table>
+  <p>El mensaje general y la consulta de proyectos están en <code>src/contenido/general/textos/whatsapp.json</code>. Las consultas específicas de productos y afiliados están en el JSON de su sección.</p>
+  <div class="note"><strong>Prueba el resultado.</strong> Pulsa un botón de WhatsApp y comprueba el número y el texto preparado. Abrir WhatsApp no confirma que el visitante haya enviado el mensaje.</div>
+</section>
+
+<section id="imagenes" data-title="Reemplazar imágenes locales">
+  <div class="eyebrow">05 / FOTOGRAFÍAS</div><h2>Una imagen, una ubicación clara</h2>
+  <figure><img class="wide" src="{{asset:src/assets/catalogo/domotica/puertas-simulado.webp}}" alt="Ejemplo ilustrativo de puerta corrediza automatizada"><figcaption>Ejemplo local: <code>src/assets/catalogo/domotica/puertas-simulado.webp</code>.</figcaption></figure>
+  <h3>La opción más sencilla: reemplazar el mismo archivo</h3>
+  <ol class="steps"><li>Busca el producto o la sección en <code>src/contenido</code>.</li><li>Localiza la ruta de su imagen en el <code>import</code> al principio del archivo. También puedes usar el inventario incluido al final del manual.</li><li>Prepara la nueva fotografía con el mismo nombre, extensión y carpeta.</li><li>Reemplaza el archivo, guarda y revisa la página.</li></ol>
+  <p>Si cambias el nombre, modifica también la importación:</p><pre><code>import fotoMiPuerta from
+  '../../../assets/catalogo/puertas/mi-puerta.webp'</code></pre>
+  <div class="note">Cambiar <code>.jpg</code> por <code>.webp</code> en el nombre no convierte una fotografía. Exporta o convierte el archivo con una herramienta de imágenes antes de sustituirlo.</div>
+  <table><thead><tr><th>Carpeta</th><th>Qué contiene</th></tr></thead><tbody><tr><td><code>src/assets/marca</code></td><td>Logotipo.</td></tr><tr><td><code>src/assets/inicio</code></td><td>Portadas, empresa y miniaturas de especialidades en servicios/.</td></tr><tr><td><code>src/assets/catalogo</code></td><td>Productos por categoría y sus variantes.</td></tr><tr><td><code>src/assets/proyectos</code></td><td>Una carpeta por proyecto, con imágenes de antes y después.</td></tr><tr><td><code>src/assets/documentacion</code></td><td>Material conservado de referencia, sin selección automática para publicar.</td></tr></tbody></table>
+  <p>Para nuevas imágenes utiliza nombres claros, preferentemente sin espacios ni acentos. Como orientación, una tarjeta suele necesitar de 640 a 1000 píxeles de ancho; una portada requiere más resolución. WebP ayuda a reducir el peso. Conserva la proporción y revisa el recorte en móvil.</p>
+  <h3>Tres registros, tres propósitos</h3><ul><li><code>imagenes/INVENTARIO.md</code>: ubicación, peso y archivos que utilizan cada imagen.</li><li><code>imagenes/origenes.json</code>: fuentes originales para recuperación de archivos registrados.</li><li><code>imagenes/generadas.json</code>: prompts y ubicaciones de las imágenes generadas con IA. No selecciona por sí mismo lo que aparece en la página.</li></ul>
+</section>
+
+<section id="catalogo" data-title="Agregar o editar productos">
+  <div class="eyebrow">06 / CATÁLOGO</div><h2>Un archivo por categoría</h2>
+  <p>Abre <code>src/contenido/catalogo/categorias</code>. Cada archivo contiene los nombres, las fotografías y el orden de los productos de esa categoría.</p>
+  {{categoryTable}}
+  <table><thead><tr><th>Campo</th><th>Función</th><th>Edición habitual</th></tr></thead><tbody><tr><td><code>TITULO</code></td><td>Nombre visible del producto o categoría.</td><td>Sí.</td></tr><tr><td><code>id</code></td><td>Identificador único; conecta enlaces y carrusel.</td><td>Conservar en productos existentes.</td></tr><tr><td><code>slug</code></td><td>Modelo utilizado para filtros o variantes.</td><td>Conservar en productos existentes.</td></tr><tr><td><code>img</code></td><td>Foto de la tarjeta.</td><td>Elegir o reemplazar imagen.</td></tr><tr><td><code>imgDetalle</code></td><td>Foto ampliada, cuando existe.</td><td>Actualizar junto con la tarjeta.</td></tr><tr><td><code>luces</code></td><td>Imágenes del mismo espejo con distintas luces.</td><td>Respetar el modelo y nombres de luz.</td></tr></tbody></table>
+  <h3>Ejemplo: agregar una puerta</h3><ol class="steps"><li>Coloca la fotografía en <code>src/assets/catalogo/puertas/mi-puerta.webp</code>.</li><li>Abre <code>src/contenido/catalogo/categorias/puertas.js</code> y añade el import al principio.</li><li>Agrega un objeto dentro de <code>productos</code>, con un ID nuevo y único.</li><li>Guarda y ejecuta la validación.</li></ol>
+  <pre><code>import fotoMiPuerta from '../../../assets/catalogo/puertas/mi-puerta.webp'
+
+// Dentro de la lista productos, separado por una coma:
+{
+  id: 'p-mi-puerta',
+  TITULO: 'Puerta a medida',
+  slug: 'mi-puerta',
+  img: fotoMiPuerta,
+},</code></pre>
+  <p>El orden dentro de <code>productos</code> es el orden de presentación. El orden de las categorías se configura en <code>src/contenido/catalogo/productos.js</code>. Para una categoría nueva, crea su archivo, impórtalo allí y revisa sus recomendaciones en <code>servicios/categorias-relacionadas.js</code>.</p>
+  <div class="note">Antes de eliminar un producto, revisa si su ID aparece en el carrusel. Cambia esas referencias para no dejar imágenes o enlaces inexistentes.</div>
+</section>
+
+<section id="variantes" data-title="Acabados, luces y herrajes">
+  <div class="eyebrow">07 / VARIANTES</div><h2>El mismo producto, distintas opciones</h2>
+  <p>Los nombres visibles y colores se editan en <code>src/contenido/catalogo/opciones.js</code>. Las funciones de <code>catalogo/variantes</code> buscan la fotografía correspondiente al modelo y a la opción elegida.</p>
+  <table><thead><tr><th>Tipo</th><th>Estructura en assets/catalogo</th><th>Función</th></tr></thead><tbody><tr><td>Ventanas</td><td><code>ventanas/variantes/&lt;acabado&gt;/&lt;slug&gt;.png</code></td><td><code>variantes/ventanas.js</code></td></tr><tr><td>Ventanales</td><td><code>ventanales/variantes/&lt;acabado&gt;/&lt;slug&gt;.png</code></td><td>La misma función de ventanas.</td></tr><tr><td>Barandales</td><td><code>barandales/variantes/&lt;negro o plateado&gt;/&lt;slug&gt;.webp</code></td><td><code>variantes/barandales.js</code></td></tr><tr><td>Espejos LED</td><td><code>espejos-led-touch/&lt;luz&gt;/&lt;modelo&gt;.jpg</code></td><td><code>variantes/espejos.js</code></td></tr><tr><td>Canceles de baño</td><td><code>canceles-de-bano/&lt;modelo&gt;-tarjeta.webp</code> y <code>-detalle.webp</code></td><td><code>variantes/canceles-bano.js</code></td></tr></tbody></table>
+  <p>El acabado <code>natural-gris</code> utiliza la carpeta <code>natural</code>. Las luces disponibles del espejo son blanco cálido, blanco frío, luz día, ámbar y azul. Conserva los identificadores de las opciones: renombrar una carpeta o un slug solo de un lado impide localizar su imagen.</p>
+  {{variantExamples}}
+  <p>Las variantes negras de herrajes y las imágenes generadas son simulaciones visuales. Solo se muestran opciones disponibles para los modelos configurados.</p>
+</section>
+
+<section id="domotica" data-title="Imágenes de domótica">
+  <div class="eyebrow">08 / DOMÓTICA</div><h2>Siete productos, siete imágenes</h2>
+  <p>El archivo <code>src/contenido/catalogo/categorias/domotica.js</code> selecciona las fotografías. Todas están guardadas localmente en <code>src/assets/catalogo/domotica</code> y optimizadas en WebP.</p>
+  {{automationGallery}}
+  <p>Para sustituir una imagen conserva su nombre o actualiza el import de la categoría. Las imágenes son ilustrativas y no certifican características de una marca o modelo comercial. Los PNG anteriores se conservan como referencia; el catálogo utiliza los nuevos WebP.</p>
+</section>
+
+<section id="carrusel" data-title="Configurar las cuatro soluciones">
+  <div class="eyebrow">09 / SOLUCIONES</div><h2>Las cuatro tarjetas del carrusel</h2>
+  <p>La configuración se divide en tres archivos:</p><ul><li><code>src/contenido/servicios/soluciones.js</code>: títulos, descripciones y productos cuyas fotos se alternan.</li><li><code>src/contenido/servicios/carrusel.json</code>: velocidad del movimiento y frecuencia de cambios.</li><li><code>src/contenido/servicios/textos/SolucionesCarrusel.json</code>: título, etiquetas y botones.</li></ul>
+  <div class="four card-labels"><div><b>01</b>Residenciales</div><div><b>02</b>Comerciales</div><div><b>03</b>Arquitectónicos</div><div><b>04</b>Automatización</div></div>
+  <pre><code>{
+  slug: 'domotica',
+  titulo: 'Automatización',
+  texto: 'Accesos y persianas inteligentes para tu día a día.',
+  productos: ['dom-cerraduras', 'dom-persianas', 'dom-iluminacion']
+}</code></pre>
+  <p>Este es un ejemplo abreviado de una tarjeta, no el archivo completo. En <code>productos</code> escribe IDs existentes del catálogo. La imagen y su enlace se toman automáticamente del producto. No repitas archivos de imagen aquí.</p>
+  <h3>Ajustes actuales</h3>{{carouselCode}}
+  <p>La velocidad se mide en píxeles por segundo. El intervalo cambia una fotografía del conjunto: con cuatro tarjetas y un intervalo de 2.5 segundos, cada tarjeta cambia aproximadamente cada diez segundos de animación activa.</p>
+  <p>Actualmente, al bajar por la página el carrusel se mueve hacia la izquierda; al subir, hacia la derecha. Pasar el cursor encima no lo detiene. Tiene flechas a los lados y botón de pausa. La animación se suspende fuera de pantalla o cuando la pestaña está oculta y respeta la preferencia de movimiento reducido.</p>
+  <p>La relación entre servicios y categorías recomendadas está en <code>src/contenido/servicios/categorias-relacionadas.js</code>. Conserva cuatro soluciones y usa números positivos en los ajustes.</p>
+</section>
+
+<section id="proyectos" data-title="Proyectos y collage de destacados">
+  <div class="eyebrow">10 / PROYECTOS</div><h2>Una sola ficha para todos los lugares</h2>
+  <p>Todos los proyectos se editan en <code>src/contenido/proyectos/lista.js</code>. Una misma ficha puede aparecer en el collage del inicio, en la página de proyectos o en ambos lugares.</p>
+  <h3>Este es el estilo fijo del collage en PC</h3>
+  <div class="manual-collage"><figure class="primary"><img src="{{asset:src/assets/proyectos/nueva-mirada/despues-simulado.webp}}" alt="Fachada, posición grande de la izquierda"><figcaption><b>1</b> Grande · izquierda</figcaption></figure><figure><img src="{{asset:src/assets/proyectos/luz-y-amplitud/despues-simulado.webp}}" alt="Vivienda, posición superior derecha"><figcaption><b>2</b> Derecha · arriba</figcaption></figure><figure><img src="{{asset:src/assets/proyectos/transparencia/despues-simulado.webp}}" alt="Barandales, posición inferior derecha"><figcaption><b>3</b> Derecha · abajo</figcaption></figure></div>
+  <p class="small">Esquema documental con las mismas imágenes del sitio. El diseño está declarado en <code>src/pages/inicio/componentes/proyectosCollage.css</code>. Conserva una imagen grande a la izquierda y dos a la derecha; en celular mantiene la distribución vertical.</p>
+  <table><thead><tr><th>Valor</th><th>Resultado</th></tr></thead><tbody><tr><td><code>destacado: 1</code></td><td>Ocupa las dos filas de la izquierda.</td></tr><tr><td><code>destacado: 2</code></td><td>Parte superior derecha.</td></tr><tr><td><code>destacado: 3</code></td><td>Parte inferior derecha.</td></tr><tr><td><code>destacado: false</code></td><td>No aparece en el collage.</td></tr><tr><td><code>mostrarEnRecientes: true</code></td><td>Aparece en la página de proyectos.</td></tr><tr><td><code>ejemplo: true</code></td><td>Se identifica como proyecto simulado.</td></tr></tbody></table>
+  <div class="note"><strong>Cambiar un destacado sin romper el collage.</strong> Debe existir exactamente un proyecto en cada posición 1, 2 y 3. Pon <code>false</code> en el proyecto anterior y asigna ese número al nuevo. El orden de la lista no modifica estas posiciones.</div>
+  <h3>Agregar un proyecto paso a paso</h3><ol class="steps"><li>Crea <code>src/assets/proyectos/casa-lopez</code>.</li><li>Coloca ahí sus fotografías, por ejemplo <code>antes.webp</code> y <code>despues.webp</code>.</li><li>Importa ambas imágenes al principio de <code>lista.js</code>.</li><li>Copia un bloque de proyecto y completa sus datos.</li></ol>
+  <pre><code>import casaAntes from '../../assets/proyectos/casa-lopez/antes.webp'
+import casaDespues from '../../assets/proyectos/casa-lopez/despues.webp'
+
+// Dentro de PROYECTOS:
+{
+  id: 'casa-lopez',
+  nombre: 'Casa López',
+  tipo: 'Residencial',
+  descripcion: 'Renovación de ventanas de aluminio.',
+  detalle: 'Ventanas · Aluminio',
+  portada: casaDespues,
+  antes: casaAntes,
+  despues: casaDespues,
+  destacado: false,
+  mostrarEnRecientes: true,
+  ejemplo: false,
+},</code></pre>
+  <p>Utiliza <code>ejemplo: false</code> solo cuando los datos y fotografías correspondan al trabajo real que estás publicando. Para una simulación, conserva <code>true</code>. Si no hay foto de antes, escribe <code>antes: null</code>; el bloque de antes se oculta. Un proyecto reciente requiere foto de después.</p>
+  <p><code>seleccion.js</code> prepara automáticamente las listas. No dupliques las fichas allí ni en los archivos de inicio. <code>fotografias.js</code> comparte imágenes con otras secciones, pero no almacena fichas de proyectos.</p>
+</section>
+
+<section id="comparaciones" data-title="Ejemplos de antes y después">
+  <div class="eyebrow">11 / EJEMPLOS VISUALES</div><h2>Antes y después del mismo espacio</h2>
+  <p>Los tres proyectos actuales son simulados. Sus pares de imágenes muestran el mismo lugar con la instalación anterior y la propuesta nueva. Puedes reemplazarlos por trabajos reales sin cambiar la estructura del sitio.</p>
+  {{projectComparisons}}
+  <p>En cada carpeta se utilizan <code>antes-simulado.webp</code> y <code>despues-simulado.webp</code>. Los archivos anteriores se conservan como referencia; no son las fotografías elegidas para las fichas actuales.</p>
+</section>
+
+<section id="inicio-afiliados" data-title="Inicio, testimonios y afiliados">
+  <div class="eyebrow">12 / OTRAS SECCIONES</div><h2>Inicio, empresa y afiliados</h2>
+  <table><thead><tr><th>Contenido</th><th>Archivo</th><th>Qué modificar</th></tr></thead><tbody><tr><td>Servicios y servicio destacado</td><td><code>contenido/inicio/secciones.js</code></td><td>Título, descripción, slug e imagen de las listas correspondientes.</td></tr><tr><td>Testimonios</td><td><code>contenido/inicio/secciones.js</code> → REFERIDOS</td><td>Texto, autor y cargo.</td></tr><tr><td>Historia, misión y garantía</td><td><code>contenido/inicio/pilares.js</code></td><td>Títulos, introducciones y párrafos.</td></tr><tr><td>Nosotros, proceso, valores y contacto</td><td><code>contenido/inicio/textos</code></td><td>JSON con el nombre de la sección.</td></tr><tr><td>Menú y pies</td><td><code>contenido/general/textos</code></td><td>Etiquetas visibles. Los destinos de navegación permanecen en componentes.</td></tr><tr><td>Afiliados</td><td><code>contenido/afiliados/textos/Afiliados.json</code></td><td>Presentación, pasos, condiciones, etiquetas y mensajes.</td></tr><tr><td>Servicios del formulario</td><td><code>contenido/afiliados/servicios.js</code></td><td>Lista de opciones y su orden.</td></tr></tbody></table>
+  <h3>Cómo funciona el formulario de afiliados</h3><p>El visitante escribe los datos, revisa el resumen y continúa en WhatsApp. La información no se registra automáticamente en un servidor. La opción de recordar datos guarda únicamente los datos de quien refiere en el almacenamiento local de su navegador.</p>
+  <p>El monto o porcentaje de una recompensa no está definido automáticamente por el sitio. Actualiza las condiciones del programa de acuerdo con lo que la empresa haya establecido y conserva los marcadores de la plantilla de WhatsApp.</p>
+</section>
+
+<section id="validar-publicar" data-title="Verificar y publicar los cambios">
+  <div class="eyebrow">13 / PUBLICACIÓN</div><h2>Del archivo editado al sitio publicado</h2>
+  <table><thead><tr><th>Comando</th><th>Para qué sirve</th></tr></thead><tbody><tr><td><code>npm run dev</code></td><td>Vista de desarrollo mientras trabajas.</td></tr><tr><td><code>npm run validar:contenido</code></td><td>Revisa JSON, rutas, imágenes, IDs, variantes, referencias del carrusel y posiciones de los destacados.</td></tr><tr><td><code>npm run lint</code></td><td>Revisa el código con ESLint.</td></tr><tr><td><code>npm run inventario:imagenes</code></td><td>Actualiza el inventario después de agregar o mover imágenes.</td></tr><tr><td><code>npm run build</code></td><td>Compila el sitio publicable en dist.</td></tr><tr><td><code>npm run preview</code></td><td>Permite revisar localmente una compilación ya generada.</td></tr><tr><td><code>npm run manual</code></td><td>Vuelve a generar este manual a partir de su contenido y las guías del proyecto.</td></tr></tbody></table>
+  <ol class="steps"><li>Guarda un respaldo de la versión publicada y termina los cambios.</li><li>Ejecuta la validación y ESLint; corrige los errores que reporten.</li><li>Compila con <code>npm run build</code>.</li><li>Revisa la compilación con <code>npm run preview</code>.</li><li>Publica el contenido de <code>dist</code> según el procedimiento de tu alojamiento.</li><li>Comprueba la página en el dominio público y abre directamente una ruta de producto.</li></ol>
+  <div class="note"><strong>El alojamiento debe admitir las rutas de React.</strong> Si al abrir directamente /proyectos o /servicios/ID aparece un error del servidor, revisa la configuración de redirecciones hacia index.html del proveedor. El procedimiento exacto depende del alojamiento.</div>
+  <p>No edites <code>dist</code> para mantener contenido: se reemplaza al compilar. Conserva <code>package-lock.json</code> para reproducir la instalación.</p>
+  <div class="checklist"><label><input type="checkbox"> Textos correctos y sin errores de escritura</label><label><input type="checkbox"> Fotos visibles y relacionadas con cada producto</label><label><input type="checkbox"> Collage: una grande a la izquierda y dos a la derecha</label><label><input type="checkbox"> Teléfono, correo y WhatsApp revisados</label><label><input type="checkbox"> Catálogo, acabados y enlaces de producto revisados</label><label><input type="checkbox"> Formulario de afiliados probado hasta su revisión</label><label><input type="checkbox"> Computadora y móvil revisados</label><label><input type="checkbox"> Compilación generada y versión pública comprobada</label></div>
+  <p class="small">Las casillas de este manual son una ayuda de revisión, no un registro de pruebas ejecutadas. La creación del manual no confirma la publicación ni una compilación de la web.</p>
+</section>
+
+<section id="problemas" data-title="Resolver problemas habituales">
+  <div class="eyebrow">14 / SOLUCIONES RÁPIDAS</div><h2>Si algo no aparece como esperabas</h2>
+  <table><thead><tr><th>Problema</th><th>Qué revisar</th></tr></thead><tbody><tr><td>La foto no aparece.</td><td>Ruta del import, nombre, extensión real y mayúsculas/minúsculas. Ejecuta validar:contenido.</td></tr><tr><td>El texto no cambia.</td><td>Archivo de la sección correcta, guardado y servidor local activo. Si es el sitio público, compila y publica.</td></tr><tr><td>El JSON marca error.</td><td>Comillas dobles, comas entre entradas, llaves y ausencia de comentarios.</td></tr><tr><td>El collage se desordena.</td><td>Un solo proyecto por posición destacado 1, 2 y 3. No cambies el CSS para reemplazar fotografías.</td></tr><tr><td>Una variante no cambia.</td><td>Coincidencia del slug del producto, nombre de acabado y carpeta. natural-gris corresponde a natural.</td></tr><tr><td>Un enlace de producto deja de funcionar.</td><td>Que su ID siga existiendo en la categoría. Conserva los IDs existentes.</td></tr><tr><td>Una imagen del carrusel falla.</td><td>Que todos los IDs de productos de soluciones.js existan en el catálogo.</td></tr><tr><td>No inicia npm.</td><td>Node/npm instalados, terminal en la carpeta de package.json y dependencias instaladas.</td></tr><tr><td>Build muestra acceso denegado.</td><td>Permisos de lectura/escritura del proyecto y la terminal. Distingue un bloqueo del entorno de un error de código; conserva el mensaje completo.</td></tr><tr><td>El sitio funciona en inicio pero falla en otra ruta directa.</td><td>Configuración de redirecciones del alojamiento para React Router.</td></tr></tbody></table>
+  <h3>Recuperar imágenes registradas</h3><pre><code>node scripts/localizar-imagenes.mjs</code></pre><p>Este script requiere internet y consulta <code>src/contenido/imagenes/origenes.json</code>. Recupera únicamente archivos registrados que faltan y conserva los existentes. No recupera automáticamente una imagen nueva que nunca se registró. Las imágenes generadas y sus prompts tienen un registro independiente.</p>
+</section>
+
+<section id="entrega" data-title="Entrega, analítica y mantenimiento">
+  <div class="eyebrow">15 / ENTREGA</div><h2>Dejar el proyecto listo para otra persona</h2>
+  <table><thead><tr><th>Dato de entrega</th><th>Completar con el responsable</th></tr></thead><tbody><tr><td>Versión o commit</td><td>________________________________</td></tr><tr><td>Fecha de entrega</td><td>________________________________</td></tr><tr><td>Responsable de mantenimiento</td><td>________________________________</td></tr><tr><td>Dominio y proveedor de alojamiento</td><td>________________________________</td></tr><tr><td>Procedimiento de publicación</td><td>________________________________</td></tr><tr><td>Respaldo o repositorio entregado</td><td>________________________________</td></tr></tbody></table>
+  <p>Entrega <code>src</code>, <code>public</code>, <code>docs</code>, <code>scripts</code>, los archivos de configuración, <code>index.html</code>, <code>package.json</code> y <code>package-lock.json</code>. Incluye <code>dist</code> si se necesita el paquete ya compilado. No es necesario entregar node_modules ni temporales de trabajo. Los accesos del alojamiento se comparten por un medio privado.</p>
+  <h3>Contenido que requiere revisión del responsable</h3><p>Verifica contacto y ubicación, textos de testimonios y condiciones de afiliados. Los tres proyectos actuales y las nuevas fotografías de domótica son ilustrativos. Para presentar una obra real, reemplaza la ficha y sus fotografías por la información correspondiente.</p>
+  <h3>Analítica configurada en el proyecto</h3><p>Los identificadores presentes en <code>index.html</code> son <code>G-QEEDJ58YGH</code> para Google Analytics y <code>GTM-NV7FNFFT</code> para Tag Manager. Su administración requiere acceso a esas cuentas. La lógica local está documentada en el anexo de analítica.</p>
+  <p>Los clics en WhatsApp miden intención de contacto, no prueban el envío de un mensaje o una venta. El formulario de afiliados no registra automáticamente una solicitud en un servidor. Las comprobaciones locales no confirman que una cuenta de analítica esté recibiendo eventos.</p>
+  <h3>Actualizar este manual</h3><p>El contenido principal está en <code>docs/manual/contenido.html</code>; su diseño y controles, en <code>docs/manual/plantilla.html</code>. Las guías de carpetas se incorporan automáticamente sin eliminarlas de sus ubicaciones originales.</p><pre><code>npm run inventario:imagenes
+npm run manual</code></pre>
+  <p>El archivo de entrega es <code>docs/MANUAL_COMPLETO.html</code>. Sus imágenes están integradas, por lo que puede compartirse como un único archivo. Si cambias productos, imágenes o guías, vuelve a generarlo para actualizar sus datos e imágenes.</p>
+</section>

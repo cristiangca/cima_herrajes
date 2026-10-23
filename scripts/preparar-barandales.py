@@ -8,7 +8,7 @@ root = Path(__file__).resolve().parents[1]
 registros = json.loads((root / 'output/variantes-barandales.json').read_text(encoding='utf-8'))
 originales = ['1-con-anclas.webp', '2-con-chapetones.webp', '3-con-herraje-y-pasamanos.webp', '4-con-minipostes-y-pasamanos.webp', '6-con-pinzas-y-pasamanos.webp', '7-con-postes-y-pasamanos.webp', '14-de-balcon.webp']
 titulos = ['Anclas', 'Chapetones', 'Herraje y pasamanos', 'Minipostes', 'Pinzas', 'Postes', 'Balcón']
-destino = root / 'src/assets/barandales-herrajes'
+destino = root / 'src/assets/catalogo/barandales/variantes'
 for carpeta in ['negro', 'plateado', 'collages']:
     (destino / carpeta).mkdir(parents=True, exist_ok=True)
 hoja = Image.new('RGB', (1440, 260 + 7 * 640), '#ffffff')

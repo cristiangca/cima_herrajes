@@ -11,17 +11,18 @@
 ## Validar con la empresa antes de publicar
 
 - Confirmar teléfono, WhatsApp y correo. Se unificó el número de inicio y se retiró el número de ejemplo del catálogo.
-- Sustituir “Tu ciudad, México” por la ubicación autorizada.
+- Confirmar la dirección y ubicación configuradas en `src/contenido/general/sitio.js`.
 - Confirmar que proyectos y testimonios sean reales y estén autorizados. El contenido original requiere revisión.
 - Revisar autorización y disponibilidad de imágenes externas de Unsplash y blir.com.mx; sustituirlas por fotografías propias cuando corresponda.
 - Confirmar titularidad de Google Tag Manager GTM-NV7FNFFT y Google Analytics G-QEEDJ58YGH en index.html, así como los requisitos del aviso de privacidad.
-
+-Confirma haceso de afiliado o recomenacion como una aprtado de reseñas Confirmar vista funcion y pruevas de alcanze 
 ## Material a entregar
 
 - Código fuente: src, public, configuraciones, index.html, package.json, package-lock.json, README y docs.
 - Carpeta dist generada mediante npm run build si se necesita para publicar.
 - Excluir node_modules, temporales, credenciales y respaldos personales del paquete.
 - Mostrar al responsable cómo cambiar un texto, una fotografía y compilar de nuevo.
+- Incluir `docs/MANUAL_COMPLETO.html`, con las imágenes integradas, y sus fuentes en `docs/manual/`. Se actualiza con `npm run manual`.
 
 ## Alcance y aceptación
 

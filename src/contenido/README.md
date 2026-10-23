@@ -1,37 +1,65 @@
-# Guía de contenido e imágenes
+# Empieza aquí: contenido editable
 
-Los textos y las imágenes se actualizan aquí sin modificar los componentes de la página.
+También puedes consultar el [manual completo ilustrado](../../docs/MANUAL_COMPLETO.html), que reúne esta guía y las demás instrucciones del proyecto en un solo archivo.
 
-- `sitio.js`: contacto y textos de portada.
-- `inicio.js`: servicios, proyectos y contenido de inicio.
-- `catalogo.js`: categorías y productos. Cada imagen se importa desde el proyecto.
-- `opcionesCatalogo.js`: nombres y colores de luces LED y acabados de aluminio.
-- `acabadosVentanas.js`: correspondencia entre producto, acabado e imagen.
-- `canceles-bano.js` y `espejos.js`: imágenes y variantes de esos productos.
-- `proyectos.js` y `fotos-proyecto.js`: información y fotografías de proyectos.
-- `imagenes-origen.json`: relación de archivo local y URL original. Es documentación; la web no necesita consultar esas URLs.
+Los textos, productos, imágenes seleccionadas y ajustes de contenido están organizados por sección. Los JSON se leen directamente desde la página.
 
-## Actualizar un producto
+| Quiero cambiar | Archivo dentro de esta carpeta |
+| --- | --- |
+| WhatsApp, teléfono, correo y dirección | general/sitio.js → CONTACTO |
+| Título y descripción principal de portada | general/sitio.js → PORTADA |
+| Servicios y testimonios de inicio | inicio/secciones.js |
+| Historia, misión y garantía | inicio/pilares.js |
+| Portada, nosotros, proceso, valores y contacto | inicio/textos/ — un JSON por sección |
+| Cuatro tarjetas de soluciones y productos de sus fotos | servicios/soluciones.js |
+| Velocidad y frecuencia de cambio de fotos | servicios/carrusel.json |
+| Título, etiquetas y botones del carrusel | servicios/textos/SolucionesCarrusel.json |
+| Productos, nombres e imágenes | catalogo/categorias/ — un archivo por categoría |
+| Orden de las categorías | catalogo/productos.js |
+| Etiquetas de colores LED y acabados | catalogo/opciones.js |
+| Categorías recomendadas por cada servicio | servicios/categorias-relacionadas.js |
+| Todos los proyectos, destacados y antes/después | proyectos/lista.js |
+| Textos, condiciones y mensaje de afiliados | afiliados/textos/Afiliados.json |
+| Opciones del formulario de afiliados | afiliados/servicios.js |
+| Menú, pies de página y burbuja de WhatsApp | general/textos/ |
+| Mensaje general y de cotización de proyectos | general/textos/whatsapp.json |
+| Otras plantillas de consulta | JSON de la sección que las utiliza |
+| Imágenes importadas directamente por las páginas | imagenes/seleccion.js |
+| Dónde está cada imagen y qué archivo la utiliza | imagenes/INVENTARIO.md |
 
-1. Busca su `id` en `catalogo.js`.
-2. Edita `TITULO` para cambiar su nombre visible. El título es independiente del nombre del archivo.
-3. Para sustituir una fotografía, reemplaza el archivo importado conservando nombre y extensión, o cambia el import para apuntar al nuevo archivo.
-4. Conserva `id` y `slug` para mantener los enlaces compartidos y la selección de acabados.
-5. Ejecuta `npm run build` antes de entregar.
+## Editar un texto
 
-## Organización de assets
+Busca el texto actual en el JSON de la sección. Cambia solo el valor de la derecha, conservando el nombre de la izquierda, las comas y las llaves.
 
-- `assets/catalogo/`: descargas por categoría; conserva subcarpetas de modelos y fabricantes.
-- `assets/marca/`: logotipo.
-- `assets/inicio/`: portada e imágenes de inicio.
-- `assets/servicios/`: imágenes de presentación de servicios.
-- `assets/proyectos/` y `assets/proyectos-referencia/`: fotografías de proyectos.
-- `assets/domotica/`, `assets/muebles/` y `assets/acabados/`: material local de esas categorías.
-- `assets/canceles-bano/`, `assets/espejos-50-imagenes/`, `assets/ventanas-acabados/` y `assets/ventanales-acabados/`: variantes que se buscan por modelo, luz o acabado. Mantén sus nombres para que funcionen esas opciones.
-- `assets/referencias/`: material suelto conservado para revisión; no se eliminó.
+```json
+"disenamos_espacios_funcionales_y_modernos": "Creamos espacios a tu medida"
+```
 
-Las imágenes se incluyen en la compilación de Vite. Entrega el código con `src/assets`, `src/contenido`, `package.json` y `package-lock.json`; para publicar, utiliza la carpeta `dist` generada por el build.
+Los archivos JSON no admiten comentarios. Las instrucciones están en los README de cada carpeta. Usa `\n` para un salto de línea y `\"` para comillas dentro de un texto.
 
-## Recuperación de imágenes
+Las claves que empiezan por `plantilla_` pueden contener `{dato1}`, `{dato2}`, etc. Son valores automáticos como el nombre del producto o los datos de un formulario. Puedes moverlos dentro de la frase, pero conserva su escritura.
 
-`node scripts/localizar-imagenes.mjs` comprueba los archivos registrados y descarga los que falten. Requiere Node 20 o superior y acceso a internet. No reemplaza archivos existentes, para respetar actualizaciones manuales. El registro documenta una fuente de domótica que devolvía 404 y su sustitución local.
+## Editar imágenes y productos
+
+Consulta [la guía del catálogo](catalogo/README.md), [la guía de imágenes](../assets/README.md) y [el inventario](imagenes/INVENTARIO.md).
+
+Reemplazar una fotografía conservando nombre, extensión y carpeta mantiene sus referencias. Si cambias la ruta, actualiza su importación en el archivo de contenido indicado por el inventario.
+
+Edita TITULO para cambiar el nombre de un producto. Conserva id y slug de los productos existentes: conectan sus enlaces, filtros y variantes.
+
+## Comprobar y publicar
+
+Desde la raíz del proyecto:
+
+```sh
+npm run dev
+npm run validar:contenido
+npm run lint
+npm run build
+```
+
+Revisa el cambio en la dirección que muestra dev. La validación revisa JSON, referencias locales, IDs de productos y productos del carrusel. build genera dist, que es la carpeta que se publica. Guardar el JSON no actualiza por sí solo el sitio publicado.
+
+## Contenido y funcionamiento
+
+Los .js de contenido permiten importar imágenes y llevan comentarios explicativos. catalogo/variantes contiene funciones que relacionan productos con sus fotos de acabados, luces y herrajes. El diseño y la lógica de formularios permanecen en pages, styles y utilidades. La analítica y los metadatos iniciales del documento HTML se configuran en index.html.

@@ -1,6 +1,8 @@
+import { formatearTexto } from '../../../utilidades/plantillas.js'
+import TEXTOS from '../../../contenido/inicio/textos/ServiciosInicio.json'
 import { FiArrowRight, FiArrowUpRight } from 'react-icons/fi'
 import { Link } from 'react-router-dom'
-import { SERVICIOS, SERVICIO_DESTACADO } from '../../../contenido/inicio'
+import { SERVICIOS, SERVICIO_DESTACADO } from "../../../contenido/inicio/secciones.js"
 import Slide from './Slide'
 import Reveal from './Reveal'
 import { useServicioActivo } from '../../catalogo/ServicioActivoContext'
@@ -9,14 +11,9 @@ export default function ServiciosInicio({ abrirBurbujaGeneral }) {
   const { activarServicio } = useServicioActivo()
   return (
     <Slide id="servicios" className="slide-servicios">
-      <Reveal as="span" className="kicker center">02- NUESTROS SERVICIOS</Reveal>
-      <Reveal as="h2" className="display center" delay={80}>
-        Especialidades
-      </Reveal>
-      <Reveal as="p" className="servicios-sub" delay={140}>
-        Soluciones integrales en aluminio, cristal templado y automatización
-        para proyectos residenciales y comerciales.
-      </Reveal>
+      <Reveal as="span" className="kicker center">{TEXTOS["02_nuestros_servicios"]}</Reveal>
+      <Reveal as="h2" className="display center" delay={80}>{TEXTOS.especialidades}</Reveal>
+      <Reveal as="p" className="servicios-sub" delay={140}>{TEXTOS.soluciones_integrales_en_aluminio_cristal_templado_y}</Reveal>
 
       <div className="servicios-grid">
         {SERVICIOS.map((s, i) => {
@@ -54,7 +51,7 @@ export default function ServiciosInicio({ abrirBurbujaGeneral }) {
           type="button"
           className="servicio-destacado-trigger"
           onClick={() => abrirBurbujaGeneral()}
-          aria-label={`Cotizar ${SERVICIO_DESTACADO.titulo}`}
+          aria-label={formatearTexto(TEXTOS["plantilla_cotizar_dato1"], { dato1: (SERVICIO_DESTACADO.titulo) })}
         >
           <div className="servicio-destacado-media">
             <img src={SERVICIO_DESTACADO.img} alt={SERVICIO_DESTACADO.titulo} loading="lazy" />
@@ -77,13 +74,11 @@ export default function ServiciosInicio({ abrirBurbujaGeneral }) {
           className="servicios-cta-final"
           onClick={() => abrirBurbujaGeneral()}
         >
-          <strong>¿Tienes un proyecto en mente?</strong>
-          <span>
-            Cotizar proyecto personalizado <FiArrowUpRight size={14} />
+          <strong>{TEXTOS.tienes_un_proyecto_en_mente}</strong>
+          <span>{TEXTOS.cotizar_proyecto_personalizado}<FiArrowUpRight size={14} />
           </span>
         </button>
       </Reveal>
     </Slide>
   )
 }
-

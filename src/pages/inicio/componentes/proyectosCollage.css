@@ -1,0 +1,12 @@
+/* Collage de destacados: conservar estas tres posiciones en escritorio.
+   Los tamaños, separación y encuadre siguen definidos en home.css. */
+@media (min-width: 901px) {
+  .proyectos-grid.proyectos-collage {
+    grid-template-areas:
+      'principal derecha-arriba'
+      'principal derecha-abajo';
+  }
+  .proyectos-collage > .proyecto:nth-child(1) { grid-area: principal; }
+  .proyectos-collage > .proyecto:nth-child(2) { grid-area: derecha-arriba; }
+  .proyectos-collage > .proyecto:nth-child(3) { grid-area: derecha-abajo; }
+}

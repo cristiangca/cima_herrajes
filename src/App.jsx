@@ -1,3 +1,4 @@
+import TEXTOS from './contenido/general/textos/App.json'
 import { useEffect } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import Afiliados from './pages/Afiliados.jsx'
@@ -27,6 +28,6 @@ export default function App() {
     <Route path="/proyectos" element={<ProyectosRecientes />} />
     <Route path="/afiliado" element={<Afiliados />} />
     <Route path="/catalogo" element={<Catalogo interactivo />} />
-    <Route path="*" element={<section><h1>Página no encontrada</h1><Link to="/">Volver al inicio</Link></section>} />
+    <Route path="*" element={<section><h1>{TEXTOS.pagina_no_encontrada}</h1><Link to="/">{TEXTOS.volver_al_inicio}</Link></section>} />
   </Routes></main>
 }

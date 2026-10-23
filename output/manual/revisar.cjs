@@ -1,0 +1,52 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const {pathToFileURL}=require('node:url');
+const {chromium}=require('C:/Users/pc/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright');
+(async()=>{
+  const browser=await chromium.launch({headless:true,executablePath:'C:/Program Files/Google/Chrome/Application/chrome.exe'});
+  try {
+    const page=await browser.newPage({viewport:{width:1440,height:1000},deviceScaleFactor:1});
+    const errors=[];page.on('pageerror',error=>errors.push(error.message));
+    const network=[];page.on('request',request=>{if(/^https?:/.test(request.url()))network.push(request.url());});
+    await page.goto(pathToFileURL(path.resolve('docs/MANUAL_COMPLETO.html')).href,{waitUntil:'load'});
+    const audit=await page.evaluate(async()=>{
+      await Promise.all([...document.images].map(image=>image.decode().catch(()=>null)));
+      return {title:document.title,sections:document.querySelectorAll('main section').length,guides:document.querySelectorAll('details[data-guide]').length,images:document.images.length,brokenImages:[...document.images].filter(i=>!i.complete||!i.naturalWidth).map(i=>i.alt),notEmbedded:[...document.images].filter(i=>!i.src.startsWith('data:')).map(i=>i.src),horizontalOverflow:document.documentElement.scrollWidth>innerWidth};
+    });
+    if(audit.guides!==34||audit.brokenImages.length||audit.notEmbedded.length||audit.horizontalOverflow)throw Error(JSON.stringify(audit));
+    await page.screenshot({path:'output/manual/escritorio.png'});
+    await page.locator('#proyectos').screenshot({path:'output/manual/collage.png'});
+    await page.locator('#comparaciones').screenshot({path:'output/manual/comparaciones.png'});
+    await page.locator('#search').fill('cambiar imagen');
+    await page.waitForTimeout(150);
+    const search=await page.locator('#search-results').innerText();
+    if(!search.includes('encontradas'))throw Error('La búsqueda no devolvió resultados');
+    await page.locator('#search').fill('zzzxxyysinterminos');
+    if(!(await page.locator('#search-results').innerText()).includes('Sin resultados'))throw Error('Falta mensaje sin resultados');
+    await page.locator('#search').fill('');
+    await page.locator('#expand').click();
+    if(await page.locator('details[data-guide][open]').count()!==34)throw Error('No se abrieron todas las guías');
+    await page.locator('#collapse').click();
+    if(await page.locator('details[data-guide][open]').count())throw Error('No se cerraron todas las guías');
+    await page.evaluate(()=>{document.querySelector('[data-open-guide]').click();});
+    if(!await page.locator('details[data-guide][open]').count())throw Error('Enlace no abre guía');
+    await page.locator('#include-appendix').uncheck();
+    if(!(await page.locator('body').getAttribute('class')).includes('print-main-only'))throw Error('Selector de impresión');
+    await page.emulateMedia({media:'print'});
+    if(await page.locator('aside').isVisible())throw Error('Índice lateral visible al imprimir');
+    if(await page.locator('#guias').isVisible())throw Error('Anexo visible con impresión de capítulos solamente');
+    await page.locator('#inicio').screenshot({path:'output/manual/impresion.png'});
+    await page.emulateMedia({media:'screen'});
+    await page.setViewportSize({width:390,height:844});
+    await page.goto(pathToFileURL(path.resolve('docs/MANUAL_COMPLETO.html')).href,{waitUntil:'load'});
+    if(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth))throw Error('Desbordamiento horizontal móvil');
+    await page.screenshot({path:'output/manual/movil.png'});
+    await page.locator('#mobile-menu').click();
+    if(await page.locator('#mobile-menu').getAttribute('aria-expanded')!=='true')throw Error('No abre índice móvil');
+    await page.locator('aside nav a[href="#imagenes"]').click();
+    if(await page.locator('#mobile-menu').getAttribute('aria-expanded')!=='false')throw Error('No cierra índice móvil');
+    if(errors.length||network.length)throw Error(JSON.stringify({errors,network}));
+    const result={...audit,search:search.split('\n')[0],browserErrors:errors,externalRequests:network,mobile:'correcto',printing:'correcto'};
+    fs.writeFileSync('output/manual/verificacion.json',JSON.stringify(result,null,2));console.log(JSON.stringify(result,null,2));
+  } finally {await browser.close();}
+})().catch(error=>{console.error(error);process.exitCode=1;});

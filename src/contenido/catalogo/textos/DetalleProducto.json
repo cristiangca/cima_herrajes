@@ -1,0 +1,12 @@
+{
+  "producto_no_encontrado": "Producto no encontrado",
+  "no_existe_un_producto_con_el_id": "No existe un producto con el ID: ",
+  "volver_al_catalogo": " Volver al catálogo",
+  "enlace_copiado_al_portapapeles": "Enlace copiado al portapapeles",
+  "id": "ID:",
+  "slug": "Slug:",
+  "cotizar_por_whatsapp": " Cotizar por WhatsApp",
+  "compartir": " Compartir",
+  "plantilla_hola_me_interesa_cotizar_el_producto": "Hola, me interesa cotizar el producto: {dato1}",
+  "plantilla_mira_este_producto_dato1": "Mira este producto: {dato1}"
+}

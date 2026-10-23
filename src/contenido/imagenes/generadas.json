@@ -1,0 +1,62 @@
+{
+  "herramienta": "image_gen integrada",
+  "fecha": "2026-10-23",
+  "nota": "Imágenes ilustrativas generadas. Los proyectos son simulados, no obras documentadas de la empresa. Optimizadas a WebP para uso local.",
+  "imagenes": [
+    {
+      "archivo": "src/assets/catalogo/domotica/cerraduras-simulado.webp",
+      "prompt": "Use case: product-mockup. Create one polished photorealistic catalog photograph for a Mexican architectural glass/aluminum and home automation company. Subject: a modern black keyless smart lock with keypad and fingerprint reader, installed neatly on a light oak residential front door, handle and lock fully visible. Soft neutral daylight, warm off-white wall, restrained elegant styling, realistic construction and hardware. Square composition, subject centered with ample breathing room, product is the main focus, no people, no text, no logos, no watermark, no collage. This is an illustrative product image, no specific brand claimed."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/persianas-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: motorized roller blinds with a discreet tubular motor concealed inside the top roller, neatly installed above a large living-room window; one blind partly lowered and a small wall remote visible nearby."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/puertas-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: a black aluminum framed sliding glass patio door with a clearly visible compact overhead automatic sliding-door motor rail and small motion activation sensor mounted above the opening, clean finished installation."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/iluminacion-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: a modern living-room corner with recessed warm LED ceiling lights and a compact white smart wall switch with dimmer, foreground focus on the switch, evenly balanced illumination."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/vidrio-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: an elegant office privacy-glass partition showing one frosted switchable glass panel and an adjacent transparent panel in thin black aluminum frames, with a discreet wall switch; restrained functional architecture."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/motores-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: close-up catalog photo of a compact motorized sliding-gate operator with visible toothed rack engaged under a dark graphite metal driveway gate; neat installed base plate on concrete, realistic safe wiring enclosure."
+    },
+    {
+      "archivo": "src/assets/catalogo/domotica/sensores-simulado.webp",
+      "prompt": "Use case: product-mockup. One photorealistic catalog photograph for an architectural home automation company. Square composition. Modern Mexican contemporary interior, off-white and light oak surfaces with matte black aluminum details, subtle daylight, product clearly visible and centered, believable hardware, no people, no text or typography, no logos, no watermarks, no collage. Illustrative product photo with no specific brand claimed. Subject: a small white wireless PIR motion sensor with an authentic translucent faceted detection lens, mounted high at the junction of two off-white walls in a modern hallway; a compact matching door-contact sensor on the adjacent aluminum entry frame, clear close architectural view."
+    },
+    {
+      "archivo": "src/assets/proyectos/luz-y-amplitud/despues-simulado.webp",
+      "prompt": "Use case: photorealistic-natural. Single landscape architectural photograph, 3:2 composition, of a fictional completed renovation in Guadalajara Mexico for a glass and aluminum contractor portfolio. Premium but believable local contemporary architecture, realistic construction detail, straight vertical lines, natural materials and soft daytime light. No people, no text, no logos, no watermark, no collage, no split panels. Clearly photographed as one full scene. A warm light-beige residential living room opening onto a modest private garden through newly fitted large floor-to-ceiling matte black aluminum sliding glass doors. View from inside, 35mm eye-level camera from back-left corner. Three-panel glazed opening across rear wall, cream sofa along left wall, light oak floor, subtle green outdoor plants, elegant finished frames and clean threshold. The window installation is central to the image."
+    },
+    {
+      "archivo": "src/assets/proyectos/transparencia/despues-simulado.webp",
+      "prompt": "Use case: photorealistic-natural. Single landscape architectural photograph, 3:2 composition, of a fictional completed renovation in Guadalajara Mexico for a glass and aluminum contractor portfolio. Premium but believable local contemporary architecture, realistic construction detail, straight vertical lines, natural materials and soft daytime light. No people, no text, no logos, no watermark, no collage, no split panels. Clearly photographed as one full scene. Interior of a contemporary house with an L-shaped staircase rising from lower right toward upper left, pale stone treads, light beige plaster walls, a small rectangular window high on rear wall. Newly fitted transparent tempered glass balustrade along stairs and upper landing, unobtrusive brushed stainless steel base clamps and slim handrail. Eye-level view from the bottom front-left of stairs, wide view clearly showing safe continuous railing and complete stair geometry, minimal warm furnishings."
+    },
+    {
+      "archivo": "src/assets/proyectos/nueva-mirada/despues-simulado.webp",
+      "prompt": "Use case: photorealistic-natural. Single landscape architectural photograph, 3:2 composition, of a fictional completed renovation in Guadalajara Mexico for a glass and aluminum contractor portfolio. Premium but believable local contemporary architecture, realistic construction detail, straight vertical lines, natural materials and soft daytime light. No people, no text, no logos, no watermark, no collage, no split panels. Clearly photographed as one full scene. Street-level exterior of a small two-story commercial office building. Wide frontal three-quarter view from across the pavement. Cream stucco upper floor with three aligned rectangular black aluminum windows, newly installed full-width black aluminum and clear glass storefront on ground floor, glass double entrance at right, slim fixed glass panels at left, dark stone low plinth, pale sidewalk and a small tree at far left. Refined realistic façade renovation, no signage or branding."
+    },
+    {
+      "archivo": "src/assets/proyectos/luz-y-amplitud/antes-simulado.webp",
+      "prompt": "Use case: precise-object-edit. The supplied image is the EDIT TARGET and depicts the finished version of a fictional architectural renovation. Create its plausible BEFORE photograph. Preserve exactly the same building/room, camera position, framing, perspective, dimensions, furniture, plant locations, daylight direction, surrounding walls and floor. Only replace the specified installed glass/aluminum element with its older equivalent; the two images must visibly be the same space. Full landscape image, same aspect ratio. No people, no text, no watermarks, no split-screen or collage. Replace the modern wide black aluminum sliding glass doors with older thin natural-silver aluminum sliding doors divided into more narrow panes with a modest horizontal crossbar. Keep the exact opening dimensions, garden, sofa, decor and floor. Slight weathering of the old silver frame and track, clean glass. Do not change furniture or renovate the room.",
+      "referencia": "src/assets/proyectos/luz-y-amplitud/despues-simulado.webp"
+    },
+    {
+      "archivo": "src/assets/proyectos/transparencia/antes-simulado.webp",
+      "prompt": "Use case: precise-object-edit. The supplied image is the EDIT TARGET and depicts the finished version of a fictional architectural renovation. Create its plausible BEFORE photograph. Preserve exactly the same building/room, camera position, framing, perspective, dimensions, furniture, plant locations, daylight direction, surrounding walls and floor. Only replace the specified installed glass/aluminum element with its older equivalent; the two images must visibly be the same space. Full landscape image, same aspect ratio. No people, no text, no watermarks, no split-screen or collage. Replace every transparent glass stair and landing balustrade and stainless clamp with older painted dark brown iron railings made of simple closely spaced vertical bars and a plain metal handrail. Keep the exact same stair treads, staircase shape, landing, window, door, artwork, rugs and pots. Do not remove any safety railing or change stair geometry.",
+      "referencia": "src/assets/proyectos/transparencia/despues-simulado.webp"
+    },
+    {
+      "archivo": "src/assets/proyectos/nueva-mirada/antes-simulado.webp",
+      "prompt": "Use case: precise-object-edit. The supplied image is the EDIT TARGET and depicts the finished version of a fictional architectural renovation. Create its plausible BEFORE photograph. Preserve exactly the same building/room, camera position, framing, perspective, dimensions, furniture, plant locations, daylight direction, surrounding walls and floor. Only replace the specified installed glass/aluminum element with its older equivalent; the two images must visibly be the same space. Full landscape image, same aspect ratio. No people, no text, no watermarks, no split-screen or collage. Replace the ground-floor modern black aluminum glass storefront with dated natural-silver aluminum storefront frames with more narrow vertical divisions and a simple silver-framed entrance door in the exact existing opening. Replace upper black window frames with older silver frames but keep windows in identical positions. Ground-floor low plinth remains the same stone. Stucco may be slightly aged but keep same color. Preserve the exact tree, sidewalk, sunlight, building outline and camera. No signage.",
+      "referencia": "src/assets/proyectos/nueva-mirada/despues-simulado.webp"
+    }
+  ]
+}

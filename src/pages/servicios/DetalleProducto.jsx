@@ -1,10 +1,12 @@
+import { formatearTexto } from '../../utilidades/plantillas.js'
+import TEXTOS from '../../contenido/catalogo/textos/DetalleProducto.json'
 import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import { FaWhatsapp, FaShareAlt, FaArrowLeft } from 'react-icons/fa'
-import { CATEGORIAS } from '../../contenido/catalogo'
+import { CATEGORIAS } from "../../contenido/catalogo/productos.js"
 import '../../styles/catalogo.css'
 
-import { CONTACTO } from '../../contenido/sitio'
+import { CONTACTO } from "../../contenido/general/sitio.js"
 import { registrarEvento, datosProducto } from '../../utilidades/analytics'
 const NUMERO_WHATSAPP = CONTACTO.whatsapp
 
@@ -31,13 +33,11 @@ export default function DetalleProducto({ idproductos }) {
   if (!productoEncontrado) {
     return (
       <div className="detalle-no-encontrado">
-        <h1>Producto no encontrado</h1>
-        <p>
-          No existe un producto con el ID: <strong>{idproductos}</strong>
+        <h1>{TEXTOS.producto_no_encontrado}</h1>
+        <p>{TEXTOS.no_existe_un_producto_con_el_id}<strong>{idproductos}</strong>
         </p>
         <Link to="/servicios" className="detalle-btn-volver">
-          <FaArrowLeft /> Volver al catálogo
-        </Link>
+          <FaArrowLeft />{TEXTOS.volver_al_catalogo}</Link>
       </div>
     )
   }
@@ -45,7 +45,7 @@ export default function DetalleProducto({ idproductos }) {
   // ===== Acciones =====
   const obtenerEnlaceWhatsApp = () => {
     const mensaje = encodeURIComponent(
-      `Hola, me interesa cotizar el producto: ${productoEncontrado.TITULO}`
+      formatearTexto(TEXTOS["plantilla_hola_me_interesa_cotizar_el_producto"], { dato1: (productoEncontrado.TITULO) })
     );
     return `https://wa.me/${NUMERO_WHATSAPP}?text=${mensaje}`;
   };
@@ -54,7 +54,7 @@ export default function DetalleProducto({ idproductos }) {
     const url = window.location.href;
     const data = {
       title: productoEncontrado.TITULO,
-      text: `Mira este producto: ${productoEncontrado.TITULO}`,
+      text: formatearTexto(TEXTOS["plantilla_mira_este_producto_dato1"], { dato1: (productoEncontrado.TITULO) }),
       url,
     };
 
@@ -63,7 +63,7 @@ export default function DetalleProducto({ idproductos }) {
         await navigator.share(data);
       } else {
         await navigator.clipboard.writeText(url);
-        alert('Enlace copiado al portapapeles');
+        alert(TEXTOS.enlace_copiado_al_portapapeles);
       }
       registrarEvento('share', { ...datosProducto({ ...productoEncontrado, categoriaSlug: categoriaEncontrada.slug }), method: navigator.share ? 'native' : 'clipboard', content_type: 'producto', item_id: productoEncontrado.id });
     } catch {
@@ -75,8 +75,7 @@ export default function DetalleProducto({ idproductos }) {
     <div className="detalle-container">
       {/* Breadcrumb / volver */}
       <Link to="/servicios" className="detalle-btn-volver">
-        <FaArrowLeft /> Volver al catálogo
-      </Link>
+        <FaArrowLeft />{TEXTOS.volver_al_catalogo}</Link>
 
       <div className="detalle-card">
         {/* Imagen */}
@@ -94,8 +93,8 @@ export default function DetalleProducto({ idproductos }) {
           <h1>{productoEncontrado.TITULO}</h1>
 
           <div className="detalle-meta">
-            <p><strong>ID:</strong> {productoEncontrado.id}</p>
-            <p><strong>Slug:</strong> {productoEncontrado.slug}</p>
+            <p><strong>{TEXTOS.id}</strong> {productoEncontrado.id}</p>
+            <p><strong>{TEXTOS.slug}</strong> {productoEncontrado.slug}</p>
           </div>
 
           {/* Acciones */}
@@ -110,15 +109,13 @@ export default function DetalleProducto({ idproductos }) {
               data-producto-nombre={productoEncontrado.TITULO}
               data-categoria={categoriaEncontrada.slug}
             >
-              <FaWhatsapp /> Cotizar por WhatsApp
-            </a>
+              <FaWhatsapp />{TEXTOS.cotizar_por_whatsapp}</a>
 
             <button
               className="btn-accion btn-compartir"
               onClick={compartirProducto}
             >
-              <FaShareAlt /> Compartir
-            </button>
+              <FaShareAlt />{TEXTOS.compartir}</button>
           </div>
         </div>
       </div>

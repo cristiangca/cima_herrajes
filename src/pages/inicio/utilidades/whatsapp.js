@@ -1,4 +1,6 @@
-import { CONTACTO } from '../../../contenido/sitio'
+import { formatearTexto } from '../../../utilidades/plantillas.js'
+import TEXTOS from '../../../contenido/general/textos/whatsapp.json'
+import { CONTACTO } from "../../../contenido/general/sitio.js"
 import { registrarEvento } from '../../../utilidades/analytics'
 
 const WHATSAPP_NUMBER = CONTACTO.whatsapp
@@ -11,18 +13,9 @@ export function abrirWhatsApp(mensaje = '', origen = 'general', datos = {}) {
 }
 
 export function mensajeProyecto(tipo, nombre) {
- return `Hola, vi el proyecto "${nombre}" (${tipo}) y me gustaría cotizar algo similar.
-
-Tipo de proyecto:
-Medidas aproximadas:
-Material o acabado de interés:
-Fotografías o referencia:
-Fecha estimada:
-Ubicación:
-
-Quedo pendiente de su propuesta.`
+ return formatearTexto(TEXTOS["plantilla_hola_vi_el_proyecto_dato1_dato2"], { dato1: (nombre), dato2: (tipo) })
 }
 
 export function mensajeGeneral() {
- return `Hola Cima Herrajes, me gustaría cotizar un proyecto. ¿Me pueden asesorar?`
+ return TEXTOS["plantilla_hola_cima_herrajes_me_gustaria_cotizar"]
 }

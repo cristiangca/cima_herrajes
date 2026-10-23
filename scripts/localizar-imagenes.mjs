@@ -2,26 +2,12 @@ import { readFile, writeFile, mkdir, access } from 'node:fs/promises';
 import path from 'node:path';
 
 // Ejecutar desde la raíz. El manifiesto permite recuperar las fuentes originales.
-const manifiestoPath = 'src/contenido/imagenes-origen.json';
+const manifiestoPath = 'src/contenido/imagenes/origenes.json';
 let manifiesto = [];
 try { manifiesto = JSON.parse(await readFile(manifiestoPath, 'utf8')); } catch (error) {
   if (error.code !== 'ENOENT') throw error;
 }
-const fuentes = ['catalogo', 'inicio', 'proyectos'];
-const textos = new Map();
-for (const fuente of fuentes) {
-  const archivo = `src/contenido/${fuente}.js`;
-  const texto = await readFile(archivo, 'utf8');
-  textos.set(archivo, texto);
-  for (const url of new Set(texto.match(/https:\/\/(?:blir\.com\.mx|images\.unsplash\.com)\/[^'"\s]+/g) || [])) {
-    if (manifiesto.some(item => item.url === url && item.archivo === archivo)) continue;
-    const parsed = new URL(url);
-    const relativo = parsed.hostname === 'blir.com.mx'
-      ? `catalogo/${parsed.pathname.split('/individuales/')[1]}`
-      : `${fuente}/${path.posix.basename(parsed.pathname)}-${parsed.searchParams.get('w') || 'original'}.jpg`;
-    manifiesto.push({ archivo, url, local: `src/assets/${relativo}` });
-  }
-}
+// Recupera solamente imágenes registradas; conserva los archivos existentes.
 let indice = 0;
 let fallos = 0;
 await Promise.all(Array.from({ length: 6 }, async () => {

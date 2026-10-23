@@ -1,60 +1,35 @@
-# Manual de mantenimiento para CIMA Herrajes
+# Manual de actualización
 
-## Antes de editar
+La versión unificada con imágenes, índice y buscador está en [MANUAL_COMPLETO.html](MANUAL_COMPLETO.html). Incluye todos los README y los documentos de entrega y analítica. Se regenera desde la raíz con `npm run manual`.
 
-Guardar una copia del proyecto o registrar los cambios con Git. Abrirlo en Visual Studio Code u otro editor. Cambiar el contenido entre comillas conservando comas, llaves y comillas. Guardar como UTF-8 para mantener acentos.
+Empieza por [la guía de contenido](../src/contenido/README.md), que relaciona cada sección con su archivo editable.
 
-## Cambiar un texto
+## Cambiar textos y contacto
 
-En `src/contenido/sitio.js`, cambiar `PORTADA.titulo` y `PORTADA.descripcion`. Ejemplo:
+Contacto y título principal de portada: src/contenido/general/sitio.js. Los demás textos están en los JSON de textos/, dentro de cada sección. Busca la frase y cambia el valor, conservando la clave y la sintaxis. Las plantillas con {dato1} reciben valores automáticos: conserva sus marcadores.
 
-```js
-titulo: 'Cancelería y cristal para tu proyecto.',
-```
+## Cambiar productos
 
-En `src/contenido/inicio.js` están los textos de servicios, proyectos y testimonios. En `src/contenido/catalogo.js`, editar `TITULO` para cambiar nombres de productos. Otros textos de inicio están en los componentes de `src/pages/inicio/componentes/`; los pilares están en `src/pages/Pilares.jsx`.
+Abre src/contenido/catalogo/categorias/ y elige la categoría. Edita TITULO para el nombre visible. Las fotografías se importan al principio. Conserva id y slug de los productos existentes. Consulta [la guía del catálogo](../src/contenido/catalogo/README.md) para agregar productos.
 
-## Cambiar una imagen
+## Cambiar fotografías
 
-Reemplazar el archivo en `src/assets/` conservando exactamente nombre y extensión. Por ejemplo, `hero.png` es la portada. El logotipo de inicio es `src/assets/cima.jpg`; el icono del navegador usa otra copia en `public/cima.jpg`.
+Consulta [el mapa de assets](../src/assets/README.md) y [el inventario](../src/contenido/imagenes/INVENTARIO.md). Reemplazar una imagen conservando nombre y extensión mantiene sus referencias. Si cambias su ruta, actualiza el archivo de contenido correspondiente.
 
-Si cambia el nombre, actualizar su importación al principio de `src/contenido/inicio.js` o `src/contenido/catalogo.js`:
+## Cambiar el carrusel
 
-```js
-import banner from '../assets/nueva-portada.jpg'
-```
-
-Usar imágenes autorizadas, sin deformarlas. Procurar menos de 500 KB por producto y menos de 1 MB en portada. Algunas imágenes son enlaces externos: para usar una fotografía propia, importarla y asignar esa variable en `img`, siguiendo los ejemplos de imágenes locales.
-
-## Cambiar contacto
-
-En `src/contenido/sitio.js`, `whatsapp` lleva país y número sin espacios ni signo +; `telefonoVisible` es el texto mostrado. Actualizar ambos, además de `correo` y `ubicacion`. El número actual se tomó de inicio y debe confirmarse con la empresa.
-
-## Agregar un producto
-
-En `src/contenido/catalogo.js`, agregar un elemento a `productos` de la categoría, separado por una coma:
-
-```js
-{ id: 'producto-nuevo', TITULO: 'Nombre del producto', slug: 'producto-nuevo', img: miImagen }
-```
-
-Importar `miImagen` al principio del archivo. Cada id debe ser único. Conservar los id y slug existentes para mantener los enlaces compartidos. Si se agregan categorías, revisar también `src/pages/catalogo/map-servicios-categorias.jsx` para las recomendaciones.
-
-## Cambiar estilos
-
-En `src/styles/tema.css`, `--accent` es el azul principal de inicio, `--accent-hover` su tono al pasar el cursor, `--ink` el texto oscuro y `--bg-soft` el fondo suave. Conservar nombres de variables y buen contraste.
-
-El diseño completo está en `src/styles/home.css`, `catalogo.css` y `pilares.css`. Algunos colores están escritos directamente en esos archivos. Las reglas `@media` ajustan la vista de celular. Cambiar una propiedad a la vez y revisar computadora y celular.
+src/contenido/servicios/soluciones.js contiene las cuatro tarjetas y los IDs de productos cuyas fotos se alternan. carrusel.json configura velocidad y frecuencia. Título y botones: servicios/textos/SolucionesCarrusel.json.
 
 ## Revisar y publicar
 
-1. Ejecutar `npm run dev` y revisar texto, imágenes, menú y catálogo.
-2. Probar búsqueda, ampliación de imágenes y enlaces de productos.
-3. Comprobar que los botones de WhatsApp abren el número correcto, sin necesidad de enviar mensajes.
-4. Ejecutar `npm run lint` y `npm run build`.
-5. Revisar la versión final con `npm run preview`.
-6. Publicar el contenido de `dist` mediante el proveedor de alojamiento de la empresa.
+```sh
+npm run dev
+npm run validar:contenido
+npm run lint
+npm run build
+npm run preview
+```
 
-El alojamiento debe servir index.html al abrir una ruta como /servicios/p-batiente. `public/_redirects` incluye una regla para proveedores compatibles; otros necesitan configurar su equivalente. Conservar la versión publicada anterior para restaurarla si hace falta.
+Revisa PC, móvil, enlaces de productos y WhatsApp. Publica dist siguiendo las instrucciones del alojamiento. No edites dist directamente: se regenera al compilar. Los cambios en el código fuente requieren volver a compilar y publicar.
 
-Si aparece una pantalla en blanco, revisar la terminal y deshacer el último cambio. Si no carga una imagen, comprobar ruta, mayúsculas y extensión. Si el sitio publicado no cambia, verificar que se publicó una compilación nueva y recargar sin caché.
+npm run inventario:imagenes actualiza la lista de imágenes después de agregar o mover archivos. La configuración de analítica y los metadatos iniciales del documento están en index.html.

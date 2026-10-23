@@ -1,7 +1,9 @@
+import { formatearTexto } from '../../../utilidades/plantillas.js'
+import TEXTOS from '../../../contenido/general/textos/Encabezado.json'
 import { useState, useEffect, useRef } from 'react'
 import { FiX, FiMenu, FiArrowUpRight, FiChevronDown } from 'react-icons/fi'
 import { Link, useLocation } from 'react-router-dom'
-import { logo } from '../../../contenido/inicio'
+import { logo } from "../../../contenido/inicio/secciones.js"
 import { abrirWhatsApp, mensajeGeneral } from '../utilidades/whatsapp'
 import '../../../styles/navigation.css'
 
@@ -71,8 +73,8 @@ export default function Encabezado() {
   return (
     <header ref={headerRef} className={`landing-header ${menuOpen ? 'open' : ''}`}>
       <Link to="/" className="landing-brand" onClick={cerrarMenus}>
-        <img src={logo} alt="Cima Herrajes" />
-        <span>CIMA HERRAJES</span>
+        <img src={logo} alt={TEXTOS.cima_herrajes} />
+        <span>{TEXTOS.cima_herrajes_2}</span>
       </Link>
 
       <button
@@ -81,35 +83,31 @@ export default function Encabezado() {
         ref={burgerRef}
         aria-controls="navegacion-principal"
         onClick={() => setMenuOpen((v) => !v)}
-        aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+        aria-label={menuOpen ? TEXTOS.cerrar_menu : TEXTOS.abrir_menu}
         aria-expanded={menuOpen}
       >
         {menuOpen ? <FiX size={22} /> : <FiMenu size={22} />}
       </button>
 
-      <nav id="navegacion-principal" aria-label="Navegación principal" inert={esMovil && !menuOpen ? true : undefined} className={`landing-nav ${menuOpen ? 'open' : ''}`}>
-        <Link to="/" onClick={cerrarMenus}>
-          Inicio
-        </Link>
+      <nav id="navegacion-principal" aria-label={TEXTOS.navegacion_principal} inert={esMovil && !menuOpen ? true : undefined} className={`landing-nav ${menuOpen ? 'open' : ''}`}>
+        <Link to="/" onClick={cerrarMenus}>{TEXTOS.inicio}</Link>
         
         {/* Cambiado "Nosotros" por "Especialidades" */}
-        <Link to="/servicios#catalogo" onClick={cerrarMenus}>
-          Especialidades
-        </Link>
+        <Link to="/servicios#catalogo" onClick={cerrarMenus}>{TEXTOS.especialidades}</Link>
 
         <div ref={dropdownRef} className="landing-nav-submenus">
           {[
-            { id: 'servicios', titulo: 'Qué hacemos', enlaces: [
-              ['/servicios#catalogo', 'Especialidades'],
-              ['/servicios#soluciones', 'Nuestras soluciones'],
-              ['/servicios#proceso', 'Proceso de trabajo'],
-              ['/servicios#como-trabajamos', 'Cómo trabajamos'],
-              ['/servicios#valores', 'Garantía y valores'],
+            { id: 'servicios', titulo: TEXTOS.que_hacemos, enlaces: [
+              ['/servicios#catalogo', TEXTOS.especialidades],
+              ['/servicios#soluciones', TEXTOS.nuestras_soluciones],
+              ['/servicios#proceso', TEXTOS.proceso_de_trabajo],
+              ['/servicios#como-trabajamos', TEXTOS.como_trabajamos],
+              ['/servicios#valores', TEXTOS["garantia_y_valores"]],
 
             ] },
-            { id: 'proyectos', titulo: 'Proyectos', enlaces: [
-              ['/#proyectos', 'Proyectos destacados'],
-              ['/proyectos#recientes', 'Proyectos recientes'],
+            { id: 'proyectos', titulo: TEXTOS.proyectos, enlaces: [
+              ['/#proyectos', TEXTOS.proyectos_destacados],
+              ['/proyectos#recientes', TEXTOS.proyectos_recientes],
             ] },
           ].map(({ id, titulo, enlaces }) => (
             <div key={id} className={`landing-nav-dropdown ${dropdownOpen === id ? 'active' : ''}`}
@@ -121,7 +119,7 @@ export default function Encabezado() {
                   className={`landing-dropdown-trigger ${id === 'servicios' && esPaginaServicios ? 'landing-nav-highlight' : ''}`}
                   onClick={cerrarMenus}>{titulo}</Link>
                 <button type="button" className="landing-dropdown-toggle"
-                  aria-label={`${dropdownOpen === id ? 'Cerrar' : 'Abrir'} submenú de ${titulo}`}
+                  aria-label={formatearTexto(TEXTOS["plantilla_dato1_submenu_de_dato2"], { dato1: (dropdownOpen === id ? TEXTOS["cerrar"] : TEXTOS["abrir"]), dato2: (titulo) })}
                   aria-expanded={dropdownOpen === id} aria-controls={`submenu-${id}`}
                   onClick={() => setDropdownOpen(dropdownOpen === id ? null : id)}>
                   <FiChevronDown className={`dropdown-icon ${dropdownOpen === id ? 'rotate' : ''}`} size={16} />
@@ -133,9 +131,9 @@ export default function Encabezado() {
             </div>
           ))}
         </div>
-         <Link to="/afiliado" onClick={cerrarMenus}>Afiliados</Link> 
-        <Link to={location.pathname === '/proyectos' ? '/proyectos#referidos' : '/#referidos'} onClick={cerrarMenus}>Testimonios</Link>
-        <Link to={location.pathname === '/proyectos' ? '/proyectos#contacto' : '/#contacto'} onClick={cerrarMenus}>Contacto</Link>
+         <Link to="/afiliado" onClick={cerrarMenus}>{TEXTOS.afiliados}</Link>
+        <Link to={location.pathname === '/proyectos' ? '/proyectos#referidos' : '/#referidos'} onClick={cerrarMenus}>{TEXTOS.testimonios}</Link>
+        <Link to={location.pathname === '/proyectos' ? '/proyectos#contacto' : '/#contacto'} onClick={cerrarMenus}>{TEXTOS.contacto}</Link>
 
         <button
           type="button"
@@ -144,8 +142,7 @@ export default function Encabezado() {
             cerrarMenus()
             abrirWhatsApp(mensajeGeneral(), 'header-mobile')
           }}
-        >
-          Cotizar <FiArrowUpRight size={16} />
+        >{TEXTOS.cotizar}<FiArrowUpRight size={16} />
         </button>
       </nav>
 
@@ -153,8 +150,7 @@ export default function Encabezado() {
         type="button"
         className="landing-header-cta desktop-only"
         onClick={() => abrirWhatsApp(mensajeGeneral(), 'header')}
-      >
-        Cotizar <FiArrowUpRight size={16} />
+      >{TEXTOS.cotizar}<FiArrowUpRight size={16} />
       </button>
     </header>
   )

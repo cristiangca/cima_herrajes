@@ -7,6 +7,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
+    "validar:contenido": "node scripts/verificar-contenido.mjs",
+    "inventario:imagenes": "node scripts/inventario-imagenes.mjs",
+    "manual": "node scripts/generar-manual.mjs",
     "preview": "vite preview"
   },
   "dependencies": {

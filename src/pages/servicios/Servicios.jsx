@@ -1,3 +1,4 @@
+import TEXTOS from '../../contenido/servicios/textos/Servicios.json'
 import { useParams, useNavigate } from 'react-router-dom'
 import '../../styles/home.css'
 import './servicios.css'
@@ -8,12 +9,13 @@ import Proceso from '../inicio/componentes/Proceso.jsx'
 import Valores from '../inicio/componentes/Valores.jsx'
 import IndicadorScroll from '../inicio/componentes/IndicadorScroll.jsx'
 import { useEffect, useState } from 'react'
+import SolucionesCarrusel from './SolucionesCarrusel'
 import Encabezado from '../inicio/componentes/EncabezadoServ.jsx'
 import WhatsAppFlotante from '../inicio/componentes/WhatsAppFlotante.jsx'
 import FooterServicios from './FooterServicios.jsx'
 import { abrirWhatsApp } from '../inicio/utilidades/whatsapp'
 import { useServicioActivo } from '../catalogo/ServicioActivoContext'
-import { FOTOS_PROYECTO } from '../../contenido/fotos-proyecto'
+
 
 export default function Servicios() {
   const { idproductos } = useParams()
@@ -21,9 +23,8 @@ export default function Servicios() {
   const { activarServicio } = useServicioActivo()
   const [whatsappOpen, setWhatsappOpen] = useState(false)
   const [mensajeWhatsapp, setMensajeWhatsapp] = useState('')
-
   const abrirBurbujaGeneral = () => {
-    setMensajeWhatsapp('Hola, me interesa solicitar una cotización general de sus servicios y productos.')
+    setMensajeWhatsapp(TEXTOS.hola_me_interesa_solicitar_una_cotizacion_general)
     setWhatsappOpen(true)
   }
 
@@ -40,12 +41,12 @@ export default function Servicios() {
 
   // SEO dinámico
   useEffect(() => {
-    document.title = 'Cima Herrajes | Cancelería, aluminio, vidrio y barandales'
+    document.title = TEXTOS.cima_herrajes_canceleria_aluminio_vidrio_y_barandales
     const meta = document.querySelector('meta[name="description"]')
     if (meta) {
       meta.setAttribute(
         'content',
-        'Fabricación e instalación de cancelería, ventanas, puertas de aluminio, barandales, cristal templado y domótica. Cotiza por WhatsApp.'
+        TEXTOS.fabricacion_e_instalacion_de_canceleria_ventanas_puertas
       )
     }
   }, [])
@@ -74,96 +75,14 @@ export default function Servicios() {
         {/* Sección: Catálogo interactivo */}
        <div id="catalogo">
   <div className="servicios-especialidades-header">
-    <span>01- ESPECIALIDADES</span>
-    <h2>Diseñamos, fabricamos e instalamos soluciones a medida para cada proyecto. </h2>
+    <span>{TEXTOS["01_especialidades"]}</span>
+    <h2>{TEXTOS.disenamos_fabricamos_e_instalamos_soluciones_a_medida}</h2>
   </div>
   <Catalogo interactivo={false} />
 </div>
 
         {/* Sección: Tus soluciones / Especialidades */}
-        <section id="soluciones" className="servicios-especialidades">
-          <div className="servicios-especialidades-header">
-            <span>02- NUESTRAS SOLUCIONES</span>
-            <h2>Diseñamos espacios funcionales y modernos</h2>
-          </div>
-
-          <p className="soluciones-deslizar" id="soluciones-deslizar">Desliza para explorar las 4 soluciones →</p>
-          <div className="servicios-especialidades-grid" tabIndex={0} role="region" aria-label="Nuestras cuatro soluciones" aria-describedby="soluciones-deslizar">
-
-            <article className="especialidad-card">
-              <div className="especialidad-img-container">
-                <img 
-                  src={FOTOS_PROYECTO.residencial}
-                  alt="Soluciones residenciales - Ventanas y Canceles" 
-                />
-              </div>
-              <span>01</span>
-              <h3>Soluciones residenciales</h3>
-              <p>
-                Ventanas, puertas, canceles y barandales diseñados para elevar la
-                estética y funcionalidad de tu hogar.
-              </p>
-              <button type="button" className="especialidad-cta" onClick={() => verSolucion('residencial', 'Soluciones residenciales')} aria-label="Ver productos relacionados: Soluciones residenciales">
-                Ver productos relacionados &rarr;
-              </button>
-            </article>
-
-            <article className="especialidad-card">
-              <div className="especialidad-img-container">
-                <img 
-                  src={FOTOS_PROYECTO.comercial}
-                  alt="Soluciones comerciales - Fachadas y accesos" 
-                />
-              </div>
-              <span>02</span>
-              <h3>Soluciones comerciales</h3>
-              <p>
-                Fachadas, accesos, divisiones y sistemas de aluminio para oficinas,
-                locales y espacios corporativos.
-              </p>
-              <button type="button" className="especialidad-cta" onClick={() => verSolucion('comercial', 'Soluciones comerciales')} aria-label="Ver productos relacionados: Soluciones comerciales">
-                Ver productos relacionados &rarr;
-              </button>
-            </article>
-
-            <article className="especialidad-card">
-              <div className="especialidad-img-container">
-                <img 
-                  src={FOTOS_PROYECTO.arquitectonico}
-                  alt="Proyectos arquitectónicos a medida" 
-                />
-              </div>
-              <span>03</span>
-              <h3>Proyectos arquitectónicos</h3>
-              <p>
-                Colaboramos con arquitectos y desarrolladores para crear proyectos a
-                medida con acabados premium.
-              </p>
-              <button type="button" className="especialidad-cta" onClick={() => verSolucion('arquitectonico', 'Proyectos arquitectónicos')} aria-label="Ver productos relacionados: Proyectos arquitectónicos">
-                Ver productos relacionados &rarr;
-              </button>
-            </article>
-
-            <article className="especialidad-card">
-              <div className="especialidad-img-container">
-                <img 
-                  src={FOTOS_PROYECTO.automatizacion}
-                  alt="Automatización y sistemas de domótica" 
-                />
-              </div>
-              <span>04</span>
-              <h3>Automatización</h3>
-              <p>
-                Integración de sistemas automatizados para accesos, puertas, cortinas y
-                soluciones inteligentes.
-              </p>
-              <button type="button" className="especialidad-cta" onClick={() => verSolucion('domotica', 'Automatización')} aria-label="Ver productos relacionados: Automatización">
-                Ver productos relacionados &rarr;
-              </button>
-            </article>
-
-          </div>
-        </section>
+        <SolucionesCarrusel verSolucion={verSolucion} />
 
         {/* Sección: Proceso de trabajo */}
         <div>
